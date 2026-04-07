@@ -1,0 +1,79 @@
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import TagsArea from "../Tags";
+import { useNavigate } from "react-router";
+import type { ProjectDataValues } from "@/utils/globals";
+// import { CpuIcon, Drama, GraduationCap } from "lucide-react";
+
+import techImg from "@/assets/tecnologia.png";
+
+interface SmallCarouselProps {
+  sectionTitle: string;
+  itemList: ProjectDataValues[];
+}
+
+export default function SmallCarousel({
+  sectionTitle,
+  itemList,
+}: SmallCarouselProps) {
+  const navigate = useNavigate();
+
+  return (
+    <section className="w-full py-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-12">
+        <div className="flex justify-start mb-4">
+          <h2 className="text-2xl font-bold text-[#553a25]">{sectionTitle}</h2>
+        </div>
+
+        <Carousel
+          opts={{
+            align: "start",
+            loop: false,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {itemList.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-2 md:pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+              >
+                <div
+                  onClick={() => navigate(`/projects/${item.id}`)}
+                  className="cursor-pointer bg-cover bg-center w-full h-40 md:h-48 rounded-xl p-4 flex flex-col justify-end shadow-sm"
+                  style={{ backgroundImage: `url(${techImg})` }}
+                >
+                  <span className="flex font-bold text-black text-lg md:text-xl leading-tight">
+                    {item.title}
+                  </span>
+                  <TagsArea
+                    tags={[
+                      {
+                        tagType: "Tecnologia",
+                      },
+                      {
+                        tagType: "Cultura",
+                      },
+                      {
+                        tagType: "Ensino",
+                      },
+                    ]}
+                    size="md"
+                  ></TagsArea>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious className="hidden sm:flex -left-4 md:-left-12 bg-white/80 -translate-y-1" />
+          <CarouselNext className="hidden sm:flex -right-4 md:-right-12 bg-white/80 -translate-y-1" />
+        </Carousel>
+      </div>
+    </section>
+  );
+}
