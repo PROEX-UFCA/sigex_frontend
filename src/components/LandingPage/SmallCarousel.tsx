@@ -5,17 +5,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import TagsArea from "../Tags";
+import TagsArea from "@/components/Tags";
 import { useNavigate } from "react-router";
-import type { ProjectDataValues } from "@/utils/globals";
-// import { CpuIcon, Drama, GraduationCap } from "lucide-react";
 
 import techImg from "@/assets/tecnologia.png";
 
-interface SmallCarouselProps {
-  sectionTitle: string;
-  itemList: ProjectDataValues[];
-}
+import type { SmallCarouselProps } from "@/utils/smallCarousel";
 
 export default function SmallCarousel({
   sectionTitle,
