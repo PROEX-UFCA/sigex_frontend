@@ -22,8 +22,8 @@ export default function SmallCarousel({
 
   return (
     <section className="w-full py-6">
-      <div className="max-w-47/50 mx-auto px-6 sm:px-12">
-        <div className="flex justify-start mb-2">
+      <div className="flex flex-col max-w-47/50 mx-auto px-6 sm:px-12 items-center">
+        <div className="flex self-start mb-2">
           <h2 className="text-2xl font-bold text-[#553a25]">{sectionTitle}</h2>
         </div>
 
@@ -32,7 +32,7 @@ export default function SmallCarousel({
             align: "start",
             loop: false,
           }}
-          className="w-full"
+          className="w-full max-sm:w-11/12"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {itemList.map((item, index) => (
@@ -60,15 +60,17 @@ export default function SmallCarousel({
                         tagType: "Ensino",
                       },
                     ]}
-                    size={(getWindowSize().width > BREAKPOINTS.medium) ? "lg":"md"}
+                    size={
+                      getWindowSize().width > BREAKPOINTS.medium ? "lg" : "sm"
+                    }
                   ></TagsArea>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="flex -left-4 md:-left-12 bg-white/80 -translate-y-1" />
-          <CarouselNext className="flex -right-4 md:-right-12 bg-white/80 -translate-y-1" />
+          <CarouselPrevious className="flex bg-white/80 -translate-y-1" />
+          <CarouselNext className="flex bg-white/80 -translate-y-1" />
         </Carousel>
       </div>
     </section>
