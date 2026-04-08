@@ -11,6 +11,8 @@ import { useNavigate } from "react-router";
 import techImg from "@/assets/tecnologia.png";
 
 import type { SmallCarouselProps } from "@/utils/smallCarousel";
+import { getWindowSize } from "@/hooks/screen";
+import { BREAKPOINTS } from "@/utils/constants";
 
 export default function SmallCarousel({
   sectionTitle,
@@ -36,16 +38,16 @@ export default function SmallCarousel({
             {itemList.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="pl-2 md:pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                className="pl-2 md:pl-4 basis-1/2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
               >
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
-                  className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
+                  className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 lg:h-60 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
                   style={{ backgroundImage: `url(${techImg})` }}
                 >
-                  <span className="flex font-bold text-black text-lg md:text-xl leading-tight">
+                  <p className="flex font-bold text-black text-xl leading-tight">
                     {item.title}
-                  </span>
+                  </p>
                   <TagsArea
                     tags={[
                       {
@@ -58,7 +60,7 @@ export default function SmallCarousel({
                         tagType: "Ensino",
                       },
                     ]}
-                    size="md"
+                    size={(getWindowSize().width > BREAKPOINTS.medium) ? "lg":"md"}
                   ></TagsArea>
                 </div>
               </CarouselItem>
