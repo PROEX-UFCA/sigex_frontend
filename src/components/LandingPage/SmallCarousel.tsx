@@ -20,8 +20,8 @@ export default function SmallCarousel({
 
   return (
     <section className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12">
-        <div className="flex justify-start mb-4">
+      <div className="max-w-47/50 mx-auto px-6 sm:px-12">
+        <div className="flex justify-start mb-2">
           <h2 className="text-2xl font-bold text-[#553a25]">{sectionTitle}</h2>
         </div>
 
@@ -40,7 +40,7 @@ export default function SmallCarousel({
               >
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
-                  className="cursor-pointer bg-cover bg-center w-full h-40 md:h-48 rounded-xl p-4 flex flex-col justify-end shadow-sm"
+                  className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
                   style={{ backgroundImage: `url(${techImg})` }}
                 >
                   <span className="flex font-bold text-black text-lg md:text-xl leading-tight">
@@ -65,8 +65,8 @@ export default function SmallCarousel({
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="hidden sm:flex -left-4 md:-left-12 bg-white/80 -translate-y-1" />
-          <CarouselNext className="hidden sm:flex -right-4 md:-right-12 bg-white/80 -translate-y-1" />
+          <CarouselPrevious className="flex -left-4 md:-left-12 bg-white/80 -translate-y-1" />
+          <CarouselNext className="flex -right-4 md:-right-12 bg-white/80 -translate-y-1" />
         </Carousel>
       </div>
     </section>
