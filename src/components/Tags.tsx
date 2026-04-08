@@ -26,7 +26,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
     },
     lg: {
       badge:
-        "h-8 text-sm lg:text-base px-3 py-1 gap-2 rounded-xl font-semibold",
+        "h-8 text-md sm:text-md md:text-base lg:text-lg px-3 py-1 gap-2 rounded-xl font-semibold",
       icon: "w-4 h-4 lg:w-5 lg:h-5",
     },
   };

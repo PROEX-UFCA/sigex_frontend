@@ -38,15 +38,15 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
               <CarouselItem>
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
-                  className="cursor-pointer bg-cover bg-center rounded-3xl min-h-125 flex flex-col justify-end relative"
+                  className="cursor-pointer bg-cover bg-center rounded-3xl lg:h-180 md:h-160 sm:h-160 h-160 flex flex-col justify-end relative"
                   style={{backgroundImage: `url(${culturaImg})`}}
                 >
-                  <div className="absolute bottom-0 left-0 right-0 h-45 bg-black/20 blur-md rounded-b-3xl"></div>
-                  <div className="flex flex-col relative z-10 p-10 w-full text-gray-50 mx-5 gap-2">
+                  <div className="absolute bottom-0 left-0 right-0 lg:h-55 md:h-60 sm:h-80 h-80 bg-black/20 blur-md rounded-b-3xl"></div>
+                  <div className="flex flex-col relative z-10 lg:px-20 md:p-10 sm:p-8 p-8 w-full text-gray-50 mx-5 gap-2">
                     <span className="flex text-5xl font-bold">
                       Título do projeto
                     </span>
-                    <span className="flex text-left opacity-80">
+                    <span className="flex text-left text-lg opacity-80">
                       Tempor esse labore consectetur quis dolor laborum magna
                       nulla dolore. Consequat laborum esse minim et ullamco id
                       enim culpa irure. Exercitation nulla duis pariatur anim ea
