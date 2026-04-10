@@ -11,7 +11,7 @@ import {
   Scale,
   SportShoe,
   Stethoscope,
-  UsersRound,
+  Users,
 } from "lucide-react";
 
 export const CATEGORIES = {
@@ -26,7 +26,7 @@ export const CATEGORIES = {
     textColor: "text-green-600",
   },
   Sociedade: {
-    icon: UsersRound,
+    icon: Users,
     backgroundColor: "bg-neutral-300",
     textColor: "text-neutral-600",
   },
