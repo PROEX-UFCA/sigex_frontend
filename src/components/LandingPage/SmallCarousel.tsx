@@ -57,7 +57,7 @@ export default function SmallCarousel({
                         tagType: "Cultura",
                       },
                       {
-                        tagType: "Ensino",
+                        tagType: "Educação",
                       },
                     ]}
                     size={

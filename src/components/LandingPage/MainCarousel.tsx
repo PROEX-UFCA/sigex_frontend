@@ -38,7 +38,7 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
               <CarouselItem>
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
-                  className="cursor-pointer bg-cover bg-center rounded-3xl lg:h-180 md:h-160 sm:h-160 h-160 flex flex-col justify-end relative"
+                  className="cursor-pointer bg-cover bg-center rounded-3xl 2xl:h-180 xl:h-130 lg:h-120 md:h-120 sm:h-100 h-125 flex flex-col justify-end relative"
                   style={{backgroundImage: `url(${culturaImg})`}}
                 >
                   <div className="absolute bottom-0 left-0 right-0 lg:h-55 md:h-60 sm:h-80 h-80 bg-black/20 blur-md rounded-b-3xl"></div>
@@ -63,7 +63,7 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
                           tagType: "Cultura",
                         },
                         {
-                          tagType: "Ensino",
+                          tagType: "Educação",
                         },
                       ]}
                       size="lg"
