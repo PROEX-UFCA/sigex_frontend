@@ -13,6 +13,7 @@ import techImg from "@/assets/tecnologia.png";
 import type { SmallCarouselProps } from "@/utils/smallCarousel";
 import { getWindowSize } from "@/hooks/screen";
 import { BREAKPOINTS } from "@/utils/constants";
+import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
 
 export default function SmallCarousel({
   sectionTitle,
@@ -43,23 +44,15 @@ export default function SmallCarousel({
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
                   className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 lg:h-60 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
-                  style={{ backgroundImage: `url(${techImg})` }}
+                  style={{
+                    backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[item.tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][Number(item.id) % DEFAULT_PROJECT_IMAGES[item.tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
+                  }}
                 >
                   <p className="flex font-bold text-black text-xl leading-tight">
                     {item.title}
                   </p>
                   <TagsArea
-                    tags={[
-                      {
-                        tagType: "Tecnologia",
-                      },
-                      {
-                        tagType: "Cultura",
-                      },
-                      {
-                        tagType: "Educação",
-                      },
-                    ]}
+                    tags={item.tags}
                     size={
                       getWindowSize().width > BREAKPOINTS.medium ? "lg" : "sm"
                     }
