@@ -5,17 +5,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import TagsArea from "../Tags";
+import TagsArea from "@/components/Tags";
 import { useNavigate } from "react-router";
-import type { ProjectDataValues } from "@/utils/globals";
-// import { CpuIcon, Drama, GraduationCap } from "lucide-react";
 
 import techImg from "@/assets/tecnologia.png";
 
-interface SmallCarouselProps {
-  sectionTitle: string;
-  itemList: ProjectDataValues[];
-}
+import type { SmallCarouselProps } from "@/utils/smallCarousel";
+import { getWindowSize } from "@/hooks/screen";
+import { BREAKPOINTS } from "@/utils/constants";
 
 export default function SmallCarousel({
   sectionTitle,
@@ -25,8 +22,8 @@ export default function SmallCarousel({
 
   return (
     <section className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12">
-        <div className="flex justify-start mb-4">
+      <div className="flex flex-col max-w-47/50 mx-auto px-6 sm:px-12 items-center">
+        <div className="flex self-start mb-2">
           <h2 className="text-2xl font-bold text-[#553a25]">{sectionTitle}</h2>
         </div>
 
@@ -35,22 +32,22 @@ export default function SmallCarousel({
             align: "start",
             loop: false,
           }}
-          className="w-full"
+          className="w-full max-sm:w-11/12"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
             {itemList.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="pl-2 md:pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                className="pl-2 md:pl-4 basis-1/2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
               >
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
-                  className="cursor-pointer bg-cover bg-center w-full h-40 md:h-48 rounded-xl p-4 flex flex-col justify-end shadow-sm"
+                  className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 lg:h-60 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
                   style={{ backgroundImage: `url(${techImg})` }}
                 >
-                  <span className="flex font-bold text-black text-lg md:text-xl leading-tight">
+                  <p className="flex font-bold text-black text-xl leading-tight">
                     {item.title}
-                  </span>
+                  </p>
                   <TagsArea
                     tags={[
                       {
@@ -60,18 +57,20 @@ export default function SmallCarousel({
                         tagType: "Cultura",
                       },
                       {
-                        tagType: "Ensino",
+                        tagType: "Educação",
                       },
                     ]}
-                    size="md"
+                    size={
+                      getWindowSize().width > BREAKPOINTS.medium ? "lg" : "sm"
+                    }
                   ></TagsArea>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="hidden sm:flex -left-4 md:-left-12 bg-white/80 -translate-y-1" />
-          <CarouselNext className="hidden sm:flex -right-4 md:-right-12 bg-white/80 -translate-y-1" />
+          <CarouselPrevious className="flex bg-white/80 -translate-y-1" />
+          <CarouselNext className="flex bg-white/80 -translate-y-1" />
         </Carousel>
       </div>
     </section>

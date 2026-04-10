@@ -1,6 +1,6 @@
 import type { ElementType } from "react";
 import { Badge } from "@/components/ui/badge";
-import { CpuIcon, Drama, GraduationCap } from "lucide-react";
+import { CATEGORIES } from "@/utils/constants";
 
 export interface TagAttributes {
   tagType: string;
@@ -26,7 +26,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
     },
     lg: {
       badge:
-        "h-8 text-sm lg:text-base px-3 py-1 gap-2 rounded-xl font-semibold",
+        "h-8 text-md sm:text-md md:text-base lg:text-lg px-3 py-1 gap-2 rounded-xl font-semibold",
       icon: "w-4 h-4 lg:w-5 lg:h-5",
     },
   };
@@ -36,38 +36,19 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
   return (
     <div className="flex flex-wrap gap-2">
       {tags.map((tag, _) => {
-        let IconTag: ElementType | null = null;
-        let bkgColor: string = "";
-        let textColor: string = "";
+        const category = CATEGORIES[tag.tagType as keyof typeof CATEGORIES];
 
-        switch (tag.tagType) {
-          case "Tecnologia":
-            IconTag = CpuIcon;
-            bkgColor = "bg-blue-100";
-            textColor = "text-blue-600";
-            break;
-          case "Cultura":
-            IconTag = Drama;
-            bkgColor = "bg-amber-100";
-            textColor = "text-amber-600";
-            break;
-          case "Ensino":
-            IconTag = GraduationCap;
-            bkgColor = "bg-green-100";
-            textColor = "text-green-600";
-            break;
-          default:
-            if (tag.icon) IconTag = tag.icon;
-            if (tag.backgroundColor) bkgColor = tag.backgroundColor;
-            if (tag.textColor) textColor = tag.textColor;
-        }
+        const IconTag: ElementType | null = category.icon ?? tag.icon ?? null;
+        const bkgColor: string =
+          category.backgroundColor ?? tag.backgroundColor ?? "";
+        const textColor: string = category.textColor ?? tag.textColor ?? "";
 
         return (
           <Badge
             variant={"secondary"}
             className={`flex items-center border-none ${currentSize.badge} ${bkgColor} ${textColor}`}
           >
-            {IconTag ? <IconTag className={currentSize.icon} /> : <></>}
+            {IconTag && <IconTag className={currentSize.icon} />}
             {tag.tagType}
           </Badge>
         );

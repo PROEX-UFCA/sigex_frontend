@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 import Footer from "@/components/footer/Footer";
 import TopBar from "@/components/topbar/TopBar";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function App() {
   return (

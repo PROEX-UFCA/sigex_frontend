@@ -32,7 +32,7 @@ const router = createBrowserRouter([
                 tagType: "Cultura",
               },
               {
-                tagType: "Ensino",
+                tagType: "Educação",
               },
             ]}
           />

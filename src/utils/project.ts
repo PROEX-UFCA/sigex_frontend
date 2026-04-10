@@ -17,3 +17,7 @@ export interface ProjectData {
   description: string;
   contact: ContactInfo;
 }
+
+export function getRandomImage(imageList: any, id: number) {
+  return imageList[Number(id) % imageList.length];
+}
