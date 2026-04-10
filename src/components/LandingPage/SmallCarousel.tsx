@@ -8,8 +8,6 @@ import {
 import TagsArea from "@/components/Tags";
 import { useNavigate } from "react-router";
 
-import techImg from "@/assets/tecnologia.png";
-
 import type { SmallCarouselProps } from "@/utils/smallCarousel";
 import { getWindowSize } from "@/hooks/screen";
 import { BREAKPOINTS } from "@/utils/constants";
