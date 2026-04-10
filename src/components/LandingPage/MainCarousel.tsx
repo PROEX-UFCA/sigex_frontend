@@ -12,6 +12,11 @@ import { useNavigate } from "react-router";
 import type { ProjectDataValues } from "@/utils/globals";
 
 import culturaImg from "@/assets/cultura.png";
+import culturaImg_2 from "@/assets/cultura_2.png";
+import culturaImg_3 from "@/assets/cultura_3.png";
+import { getRandomImage } from "@/utils/project";
+
+const culturaImgs = [culturaImg, culturaImg_2, culturaImg_3];
 
 const TIME_DELAY = 10000;
 
@@ -34,12 +39,14 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
             (
               item,
               __, // __ = index, embora não esteja usando agora
-            ) => (
+            ) => {
+              const bgImg = getRandomImage(culturaImgs, Number(item.id));
+              return (
               <CarouselItem>
                 <div
                   onClick={() => navigate(`/projects/${item.id}`)}
                   className="cursor-pointer bg-cover bg-center rounded-3xl 2xl:h-180 xl:h-130 lg:h-120 md:h-120 sm:h-100 h-125 flex flex-col justify-end relative"
-                  style={{backgroundImage: `url(${culturaImg})`}}
+                  style={{backgroundImage: `url(${bgImg})`}}
                 >
                   <div className="absolute bottom-0 left-0 right-0 lg:h-55 md:h-60 sm:h-80 h-80 bg-black/20 blur-md rounded-b-3xl"></div>
                   <div className="flex flex-col relative z-10 lg:px-20 md:p-10 sm:p-8 p-8 w-full text-gray-50 mx-5 gap-2">
@@ -70,8 +77,8 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
                     />
                   </div>
                 </div>
-              </CarouselItem>
-            ),
+              </CarouselItem>)
+},
           )}
         </CarouselContent>
         <CarouselPrevious className="w-10 h-10 left-5 bg-gray-300 text-gray-600 hover:bg-[#c1c5cc] -translate-y-1" />

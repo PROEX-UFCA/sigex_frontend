@@ -1,5 +1,6 @@
 import MainCarousel from "@/components/LandingPage/MainCarousel";
 import SmallCarousel from "@/components/LandingPage/SmallCarousel";
+import TagsArea from "@/components/Tags";
 // import { Toggle } from "@/components/ui/toggle";
 
 export default function LandingPage() {
@@ -81,7 +82,7 @@ export default function LandingPage() {
           busca por filtro
         </a>
       </section>
-      {/* <TagsArea
+      <TagsArea
         tags={[
           {
             tagType: "Comunicação",
@@ -124,7 +125,7 @@ export default function LandingPage() {
           },
         ]}
         size="lg"
-      ></TagsArea> */}
+      ></TagsArea>
     </div>
   );
 }
