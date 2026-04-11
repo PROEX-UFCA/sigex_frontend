@@ -10,8 +10,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 import { Check, Funnel } from "lucide-react";
-// import { Toggle } from "@/components/ui/toggle";
+
 import { useState } from "react";
+
+import { Toggle } from "@/components/ui/toggle";
 
 interface Filter {
   filterName: string;
@@ -26,15 +28,10 @@ function TogglableButton({ filterName }: Filter) {
   const [toggled, setToggled] = useState(false);
 
   return (
-    // <Toggle
-    <Button
-      className="flex-1 max-w-fit"
-      onClick={() => setToggled(!toggled)}
-    >
+    <Toggle aria-pressed={toggled} onClick={() => setToggled(!toggled)}>
       {toggled ? <Check></Check> : null}
       {filterName}
-    {/* </Toggle> */}
-    </Button>
+    </Toggle>
   );
 }
 

@@ -1,6 +1,5 @@
 import MainCarousel from "@/components/LandingPage/MainCarousel";
 import SmallCarousel from "@/components/LandingPage/SmallCarousel";
-// import { Toggle } from "@/components/ui/toggle";
 
 export default function LandingPage() {
   return (

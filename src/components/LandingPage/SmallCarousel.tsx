@@ -52,7 +52,7 @@ export default function SmallCarousel({
                   <TagsArea
                     tags={item.tags}
                     size={
-                      getWindowSize().width > BREAKPOINTS.medium ? "lg" : "sm"
+                      getWindowSize().width > BREAKPOINTS.medium ? "md" : "sm"
                     }
                   ></TagsArea>
                 </div>
