@@ -1,10 +1,12 @@
-import culturaImg from "@/assets/cultura.png";
+import { Info, Mail, Phone } from "lucide-react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
+import TagsArea from "@/components/Tags";
 
 import type { ProjectData } from "@/utils/project";
-import TagsArea from "@/components/Tags";
-import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
-import { Info, Mail, Phone } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+
+import culturaImg from "@/assets/cultura.png";
 
 export default function ProjectPage({
   title,
