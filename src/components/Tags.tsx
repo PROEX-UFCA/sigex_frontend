@@ -11,7 +11,7 @@ export interface TagAttributes {
 
 interface TagProps {
   tags: Array<TagAttributes>;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 export default function TagsArea({ tags, size = "md" }: TagProps) {
@@ -25,6 +25,11 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
       icon: "w-3.5 h-3.5",
     },
     lg: {
+      badge:
+        "h-6 text-sm sm:text-sm md:text-md lg:text-md px-3 py-1 gap-2 rounded-xl font-semibold",
+      icon: "w-4 h-4 lg:w-5 lg:h-5",
+    },
+    xl: {
       badge:
         "h-8 text-md sm:text-md md:text-base lg:text-lg px-3 py-1 gap-2 rounded-xl font-semibold",
       icon: "w-4 h-4 lg:w-5 lg:h-5",
