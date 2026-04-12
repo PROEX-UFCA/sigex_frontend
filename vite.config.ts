@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 // https://vite.dev/config/
+// teste
 export default defineConfig({
   base: '/sigex_frontend/',
   plugins: [react(), tailwindcss()],
