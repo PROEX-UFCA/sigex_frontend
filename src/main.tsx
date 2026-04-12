@@ -3,11 +3,11 @@ import "./index.css";
 import App from "./App.tsx";
 
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "@/pages/LandingPage.tsx";
 import ProjectPage from "@/pages/ProjectPage.tsx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
