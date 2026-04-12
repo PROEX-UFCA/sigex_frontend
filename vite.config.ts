@@ -5,8 +5,8 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/sigex_frontend/',
   plugins: [react(), tailwindcss()],
+  base: '/sigex_frontend/',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
