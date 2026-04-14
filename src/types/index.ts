@@ -1,1 +1,1 @@
-export * from './projeto';
+export * from '@/types/projeto';

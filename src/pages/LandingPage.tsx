@@ -1,5 +1,5 @@
-import MainCarousel from "@/components/LandingPage/MainCarousel";
-import SmallCarousel from "@/components/LandingPage/SmallCarousel";
+import MainCarousel from "@/features/LandingPage/MainCarousel";
+import SmallCarousel from "@/features/LandingPage/SmallCarousel";
 
 export default function LandingPage() {
   return (

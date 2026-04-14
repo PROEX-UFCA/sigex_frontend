@@ -5,20 +5,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import TagsArea from "@/components/Tags";
-import { useNavigate } from "react-router";
 
 import type { SmallCarouselProps } from "@/utils/smallCarousel";
-import { getWindowSize } from "@/hooks/screen";
-import { BREAKPOINTS } from "@/utils/constants";
-import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
+import SmallProject from "@/components/SmallProject";
 
 export default function SmallCarousel({
   sectionTitle,
   itemList,
 }: SmallCarouselProps) {
-  const navigate = useNavigate();
-
   return (
     <section className="w-full py-6">
       <div className="flex flex-col max-w-47/50 mx-auto px-6 sm:px-12 items-center">
@@ -39,23 +33,11 @@ export default function SmallCarousel({
                 key={index}
                 className="pl-2 md:pl-4 basis-1/2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
               >
-                <div
-                  onClick={() => navigate(`/projects/${item.id}`)}
-                  className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 lg:h-60 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
-                  style={{
-                    backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[item.tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][Number(item.id) % DEFAULT_PROJECT_IMAGES[item.tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
-                  }}
-                >
-                  <p className="flex font-bold text-black text-xl leading-tight">
-                    {item.title}
-                  </p>
-                  <TagsArea
-                    tags={item.tags}
-                    size={
-                      getWindowSize().width > BREAKPOINTS.medium ? "md" : "sm"
-                    }
-                  ></TagsArea>
-                </div>
+                <SmallProject
+                  id={item.id}
+                  tags={item.tags}
+                  title={item.title}
+                />
               </CarouselItem>
             ))}
           </CarouselContent>

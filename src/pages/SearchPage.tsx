@@ -1,15 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { TriangleAlert } from "lucide-react";
 
 import { searchProjectsByTitle } from "@/services/projectServices";
+import type { Projeto } from "@/types";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
+  const [results, setResults] = useState<Projeto[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    searchProjectsByTitle(term ?? "");
+    const fetchData = async () => {
+      const data = await searchProjectsByTitle(term ?? "");
+      setResults(data.data);
+      setLoading(false);
+    };
+
+    fetchData();
   }, [term]);
 
   if (!term) {
@@ -25,5 +34,15 @@ export default function SearchPage() {
     );
   }
 
-  return <div></div>;
+  if (loading) {
+    return <p className="text-2xl text-gray-400">Buscando resultados...</p>;
+  }
+
+  return (
+    <div>
+      {results.map((projeto) => (
+        <div>{projeto.titulo}</div>
+      ))}
+    </div>
+  );
 }
