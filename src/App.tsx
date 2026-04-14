@@ -2,7 +2,7 @@ import "@/App.css";
 
 import { Outlet } from "react-router";
 
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/Footer";
 import TopBar from "@/components/topbar/TopBar";
 import ScrollToTop from "@/components/ScrollToTop";
 // import { getProjectById, getProjects } from "@/services/projectServices";
