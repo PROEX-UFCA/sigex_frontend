@@ -4,8 +4,10 @@ import App from "./App.tsx";
 
 import ReactDOM from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
+
 import LandingPage from "@/pages/LandingPage.tsx";
 import ProjectPage from "@/pages/ProjectPage.tsx";
+import SearchPage from "@/pages/SearchPage.tsx";
 
 const router = createHashRouter([
   {
@@ -38,6 +40,10 @@ const router = createHashRouter([
           />
         ),
       },
+      {
+        path: "/search/:term?",
+        element: (<SearchPage></SearchPage>)
+      }
     ],
   },
 ]);

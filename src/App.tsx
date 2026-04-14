@@ -5,8 +5,12 @@ import { Outlet } from "react-router";
 import Footer from "@/components/footer/Footer";
 import TopBar from "@/components/topbar/TopBar";
 import ScrollToTop from "@/components/ScrollToTop";
+// import { getProjectById, getProjects } from "@/services/projectServices";
 
 function App() {
+  // console.log(getProjects());
+  // console.log(getProjectById("392bc438-cc21-49eb-87d4-1b3c9977e5d5"));
+
   return (
     <div className="flex flex-col gap-3">
       <ScrollToTop />

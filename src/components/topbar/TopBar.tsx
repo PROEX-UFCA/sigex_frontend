@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 import FilterDialog from "./FilterDialog";
 import { Link } from "react-router";
+import { useSearch } from "@/hooks/useSearch";
 
 function ToggleableSearchBar() {
   const [active, setActive] = useState(false);
@@ -27,6 +28,8 @@ function ToggleableSearchBar() {
 }
 
 function SearchArea() {
+  const { term, setTerm, handleSearch } = useSearch();
+
   const { width } = getWindowSize();
 
   let isMobile: boolean = width < BREAKPOINTS.small;
@@ -44,10 +47,14 @@ function SearchArea() {
         ></Input>
       )}
       {isDesktop && (
-        <Input
-          placeholder="Pesquise projetos ou áreas de atuação"
-          className="border-gray-400 bg-gray-100 font-bold w-2/5 h-10"
-        ></Input>
+        <form className="w-2/5" onSubmit={handleSearch}>
+          <Input
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+            placeholder="Pesquise projetos ou áreas de atuação"
+            className="border-gray-400 bg-gray-100 font-bold w-full h-10"
+          ></Input>
+        </form>
       )}
       {(isTablet || isDesktop) && <FilterDialog></FilterDialog>}
     </div>
