@@ -7,6 +7,7 @@ import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
 import { BREAKPOINTS } from "@/utils/constants";
 
 import TagsArea from "@/components/Tags";
+import { hashId } from "@/utils/hashId";
 
 export default function SmallProject({ id, title, tags }: ProjectDataValues) {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function SmallProject({ id, title, tags }: ProjectDataValues) {
       onClick={() => navigate(`/projects/${id}`)}
       className="cursor-pointer bg-cover bg-center w-full h-48 md:h-52 lg:h-60 rounded-xl p-4 flex flex-col justify-end shadow-sm gap-2"
       style={{
-        backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][Number(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
+        backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
       }}
     >
       <p className="flex font-bold text-black text-xl leading-tight">{title}</p>

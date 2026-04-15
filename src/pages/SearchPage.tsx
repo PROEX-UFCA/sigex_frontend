@@ -5,6 +5,7 @@ import { TriangleAlert } from "lucide-react";
 
 import { searchProjectsByTitle } from "@/services/projectServices";
 import type { Projeto } from "@/types";
+import SmallProject from "@/components/SmallProject";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
@@ -41,7 +42,7 @@ export default function SearchPage() {
   return (
     <div>
       {results.map((projeto) => (
-        <div>{projeto.titulo}</div>
+        <SmallProject id={projeto.id} tags={[{tagType: "Cultura"}]} title={projeto.titulo} />
       ))}
     </div>
   );

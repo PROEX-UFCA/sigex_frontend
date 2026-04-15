@@ -7,7 +7,7 @@ export default function LandingPage() {
       <MainCarousel
         itemList={[
           {
-            id: 1,
+            id: "1",
             title: "Projeto",
             tags: [
               { tagType: "Cultura" },
@@ -16,7 +16,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 2,
+            id: "2",
             title: "Projeto",
             tags: [
               { tagType: "Justiça" },
@@ -25,7 +25,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 3,
+            id: "3",
             title: "Projeto",
             tags: [
               { tagType: "Ambiente" },
@@ -34,7 +34,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 4,
+            id: "4",
             title: "Projeto",
             tags: [
               { tagType: "Artes" },
@@ -43,7 +43,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 5,
+            id: "5",
             title: "Projeto",
             tags: [
               { tagType: "Tecnologia" },
@@ -57,7 +57,7 @@ export default function LandingPage() {
         sectionTitle="Filtro 1"
         itemList={[
           {
-            id: 1,
+            id: "1",
             title: "Projeto",
             tags: [
               { tagType: "Cultura" },
@@ -66,7 +66,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 2,
+            id: "2",
             title: "Projeto",
             tags: [
               { tagType: "Justiça" },
@@ -75,7 +75,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 3,
+            id: "3",
             title: "Projeto",
             tags: [
               { tagType: "Ambiente" },
@@ -84,7 +84,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 4,
+            id: "4",
             title: "Projeto",
             tags: [
               { tagType: "Artes" },
@@ -93,7 +93,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 5,
+            id: "5",
             title: "Projeto",
             tags: [
               { tagType: "Tecnologia" },
@@ -102,7 +102,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 6,
+            id: "6",
             title: "Projeto",
             tags: [
               { tagType: "Trabalho" },
@@ -111,7 +111,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 7,
+            id: "7",
             title: "Projeto",
             tags: [
               { tagType: "Patrimônio" },
@@ -120,7 +120,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 8,
+            id: "8",
             title: "Projeto",
             tags: [
               { tagType: "Saúde" },
@@ -129,7 +129,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 9,
+            id: "9",
             title: "Projeto",
             tags: [
               { tagType: "Educação" },
@@ -143,7 +143,7 @@ export default function LandingPage() {
         sectionTitle="Filtro 1"
         itemList={[
           {
-            id: 1,
+            id: "1",
             title: "Projeto",
             tags: [
               { tagType: "Cultura" },
@@ -152,7 +152,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 2,
+            id: "2",
             title: "Projeto",
             tags: [
               { tagType: "Justiça" },
@@ -161,7 +161,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 3,
+            id: "3",
             title: "Projeto",
             tags: [
               { tagType: "Ambiente" },
@@ -170,7 +170,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 4,
+            id: "4",
             title: "Projeto",
             tags: [
               { tagType: "Artes" },
@@ -179,7 +179,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 5,
+            id: "5",
             title: "Projeto",
             tags: [
               { tagType: "Tecnologia" },
@@ -188,7 +188,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 6,
+            id: "6",
             title: "Projeto",
             tags: [
               { tagType: "Trabalho" },
@@ -197,7 +197,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 7,
+            id: "7",
             title: "Projeto",
             tags: [
               { tagType: "Patrimônio" },
@@ -206,7 +206,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 8,
+            id: "8",
             title: "Projeto",
             tags: [
               { tagType: "Saúde" },
@@ -215,7 +215,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 9,
+            id: "9",
             title: "Projeto",
             tags: [
               { tagType: "Educação" },
@@ -229,7 +229,7 @@ export default function LandingPage() {
         sectionTitle="Filtro 2"
         itemList={[
           {
-            id: 1,
+            id: "1",
             title: "Projeto",
             tags: [
               { tagType: "Cultura" },
@@ -238,7 +238,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 2,
+            id: "2",
             title: "Projeto",
             tags: [
               { tagType: "Justiça" },
@@ -247,7 +247,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 3,
+            id: "3",
             title: "Projeto",
             tags: [
               { tagType: "Ambiente" },
@@ -256,7 +256,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 4,
+            id: "4",
             title: "Projeto",
             tags: [
               { tagType: "Artes" },
@@ -265,7 +265,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 5,
+            id: "5",
             title: "Projeto",
             tags: [
               { tagType: "Tecnologia" },
@@ -274,7 +274,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 6,
+            id: "6",
             title: "Projeto",
             tags: [
               { tagType: "Trabalho" },
@@ -283,7 +283,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 7,
+            id: "7",
             title: "Projeto",
             tags: [
               { tagType: "Patrimônio" },
@@ -292,7 +292,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 8,
+            id: "8",
             title: "Projeto",
             tags: [
               { tagType: "Saúde" },
@@ -301,7 +301,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 9,
+            id: "9",
             title: "Projeto",
             tags: [
               { tagType: "Educação" },
@@ -315,7 +315,7 @@ export default function LandingPage() {
         sectionTitle="Filtro 3"
         itemList={[
           {
-            id: 1,
+            id: "1",
             title: "Projeto",
             tags: [
               { tagType: "Cultura" },
@@ -324,7 +324,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 2,
+            id: "2",
             title: "Projeto",
             tags: [
               { tagType: "Justiça" },
@@ -333,7 +333,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 3,
+            id: "3",
             title: "Projeto",
             tags: [
               { tagType: "Ambiente" },
@@ -342,7 +342,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 4,
+            id: "4",
             title: "Projeto",
             tags: [
               { tagType: "Artes" },
@@ -351,7 +351,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 5,
+            id: "5",
             title: "Projeto",
             tags: [
               { tagType: "Tecnologia" },
@@ -360,7 +360,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 6,
+            id: "6",
             title: "Projeto",
             tags: [
               { tagType: "Trabalho" },
@@ -369,7 +369,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 7,
+            id: "7",
             title: "Projeto",
             tags: [
               { tagType: "Patrimônio" },
@@ -378,7 +378,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 8,
+            id: "8",
             title: "Projeto",
             tags: [
               { tagType: "Saúde" },
@@ -387,7 +387,7 @@ export default function LandingPage() {
             ],
           },
           {
-            id: 9,
+            id: "9",
             title: "Projeto",
             tags: [
               { tagType: "Educação" },
