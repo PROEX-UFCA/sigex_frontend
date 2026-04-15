@@ -20,7 +20,7 @@ export default function SmallProject({ id, title, tags }: ProjectDataValues) {
         backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
       }}
     >
-      <p className="flex font-bold text-black text-xl leading-tight">{title}</p>
+      <p className="flex font-bold text-black text-xl text-left">{title}</p>
       <TagsArea
         tags={tags}
         size={getWindowSize().width > BREAKPOINTS.medium ? "md" : "sm"}

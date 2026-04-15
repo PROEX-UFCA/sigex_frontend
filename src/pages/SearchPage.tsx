@@ -5,7 +5,9 @@ import { TriangleAlert } from "lucide-react";
 
 import { searchProjectsByTitle } from "@/services/projectServices";
 import type { Projeto } from "@/types";
-import SmallProject from "@/components/SmallProject";
+
+import Results from "@/features/SearchPage/Results";
+import SearchPagination from "@/features/SearchPage/SearchPagination";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
@@ -22,7 +24,11 @@ export default function SearchPage() {
     fetchData();
   }, [term]);
 
-  if (!term) {
+  if (loading) {
+    return <p className="text-2xl text-gray-400">Buscando resultados...</p>;
+  }
+
+  if (!results.length) {
     return (
       <div className="flex flex-col w-2/3 self-center gap-4">
         <div className="flex flex-col w-2/3 self-center text-gray-400 my-4 py-4">
@@ -35,15 +41,10 @@ export default function SearchPage() {
     );
   }
 
-  if (loading) {
-    return <p className="text-2xl text-gray-400">Buscando resultados...</p>;
-  }
-
   return (
-    <div>
-      {results.map((projeto) => (
-        <SmallProject id={projeto.id} tags={[{tagType: "Cultura"}]} title={projeto.titulo} />
-      ))}
+    <div className="flex flex-col">
+      <Results projetos={results}></Results>
+      <SearchPagination></SearchPagination>
     </div>
   );
 }
