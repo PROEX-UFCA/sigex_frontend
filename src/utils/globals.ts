@@ -1,7 +1,7 @@
 import type { TagAttributes } from "@/components/Tags";
 
 export interface ProjectDataValues {
-  id: number | string;
+  id: string;
   title: string;
   tags: TagAttributes[];
 }
