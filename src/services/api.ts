@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiConnection = axios.create({
-  baseURL: "http://localhost:8001/api",
+  baseURL: "https://sigex.danielnasc.com.br/api",
   headers: { "Content-Type": "application/json" },
 });
 
