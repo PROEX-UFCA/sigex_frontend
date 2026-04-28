@@ -83,6 +83,12 @@ function FilterTypes({
 }
 
 export default function FilterDialog() {
+  const [resetKey, setResetKey] = useState(0);
+
+  function handleClear() {
+    setResetKey(prev => prev + 1);
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -95,7 +101,7 @@ export default function FilterDialog() {
         <DialogHeader>
           <DialogTitle className="text-xl">Filtros</DialogTitle>
         </DialogHeader>
-        <div className="max-h-72 overflow-y-auto no-scrollbar">
+        <div key={resetKey}  className="max-h-72 overflow-y-auto no-scrollbar">
           <FilterTypes
             filterType="Categoria"
             filters={[
@@ -135,7 +141,7 @@ export default function FilterDialog() {
           />
         </div>
         <DialogFooter className="flex flex-row sm:justify-center gap-3 mx-1">
-          <Button variant={"destructive"}>Limpar filtros</Button>
+          <Button variant={"destructive"} onClick={handleClear}>Limpar filtros</Button>
           <Button variant={"outline"}>Aplicar filtros</Button>
         </DialogFooter>
       </DialogContent>
