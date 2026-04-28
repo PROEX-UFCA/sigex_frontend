@@ -39,7 +39,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
   const currentSize = sizeStyles[size];
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 z-10">
       {tags.map((tag, _) => {
         const category = CATEGORIES[tag.tagType as keyof typeof CATEGORIES];
 
