@@ -30,7 +30,12 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
           {itemList.map((item, index) => {
             return (
               <CarouselItem key={index}>
-                <BigProject id={item.id} tags={item.tags} title={item.title} />
+                <BigProject
+                  key={item.id}
+                  id={item.id}
+                  tags={item.tags}
+                  title={item.title}
+                />
               </CarouselItem>
             );
           })}

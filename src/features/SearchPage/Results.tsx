@@ -12,6 +12,7 @@ export default function Results({ projetos }: ResultsData) {
       {projetos.map((projeto) => {
         return (
           <SmallProject
+            key={projeto.id}
             id={projeto.id}
             title={projeto.titulo}
             tags={recognizeTags([projeto.area_tematica])}
