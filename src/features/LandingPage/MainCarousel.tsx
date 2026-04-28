@@ -8,14 +8,14 @@ import {
 
 import Autoplay from "embla-carousel-autoplay";
 
-import type { ProjectDataValues } from "@/utils/globals";
+import type { ProjectProps } from "@/utils/globals";
 
 import BigProject from "@/components/BigProject";
 
 const TIME_DELAY = 10000;
 
 interface MainCarouselProps {
-  itemList: ProjectDataValues[];
+  itemList: ProjectProps[];
 }
 
 export default function MainCarousel({ itemList }: MainCarouselProps) {
@@ -35,6 +35,8 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
                   id={item.id}
                   tags={item.tags}
                   title={item.title}
+                  description={item.description}
+                  center={false}
                 />
               </CarouselItem>
             );

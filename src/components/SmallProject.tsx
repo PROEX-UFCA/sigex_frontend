@@ -2,14 +2,14 @@ import { useNavigate } from "react-router";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 
-import type { ProjectDataValues } from "@/utils/globals";
+import type { ProjectProps } from "@/utils/globals";
 import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
 import { BREAKPOINTS } from "@/utils/constants";
 
 import TagsArea from "@/components/Tags";
 import { hashId } from "@/utils/hashId";
 
-export default function SmallProject({ id, title, tags }: ProjectDataValues) {
+export default function SmallProject({ id, title, tags }: ProjectProps) {
   const navigate = useNavigate();
 
   return (

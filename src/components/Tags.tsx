@@ -42,7 +42,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
 
   return (
     <div className="flex flex-wrap gap-2 z-10">
-      {tags.map((tag, _) => {
+      {tags.map((tag) => {
         const category = CATEGORIES[tag.tagType as keyof typeof CATEGORIES];
 
         if (category && !existingTags.includes(tag.tagType)) {
