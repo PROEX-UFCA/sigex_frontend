@@ -28,7 +28,12 @@ function TogglableButton({ filterName }: Filter) {
   const [toggled, setToggled] = useState(false);
 
   return (
-    <Toggle aria-pressed={toggled} onClick={() => setToggled(!toggled)}>
+    <Toggle
+      variant={"outline"}
+      aria-pressed={toggled}
+      onClick={() => setToggled(!toggled)}
+      className="my-1"
+    >
       {toggled ? <Check></Check> : null}
       {filterName}
     </Toggle>
@@ -37,8 +42,8 @@ function TogglableButton({ filterName }: Filter) {
 
 function FilterTypes({ filterType, filters }: FilterAttributes) {
   return (
-    <div className="flex flex-col max-h-52 overflow-y-auto gap-2 w-full">
-      <h1 className="font-bold text-lg">{filterType}</h1>
+    <div className="flex flex-col overflow-y-auto gap-2 w-full no-scrollbar">
+      <h1 className="font-bold text-xl">{filterType}</h1>
       <div className="flex flex-wrap gap-x-2 w-full">
         {filters.map((filter, _) => (
           <TogglableButton filterName={filter.filterName}></TogglableButton>
@@ -57,34 +62,39 @@ export default function FilterDialog() {
           Filtros
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-full">
         <DialogHeader>
-          <DialogTitle>Filtros</DialogTitle>
+          <DialogTitle className="text-xl">Filtros</DialogTitle>
         </DialogHeader>
         <div className="max-h-72 overflow-y-auto no-scrollbar">
           <FilterTypes
-            filterType="Filtro"
+            filterType="Categoria"
             filters={[
-              { filterName: "Categoria 1" },
-              { filterName: "Categoria 2" },
-              { filterName: "Categoria 2" },
-              { filterName: "2" },
-              { filterName: "Categoria 1" },
-              { filterName: "Categoria 2" },
-              { filterName: "2" },
+              { filterName: "Comunicação" },
+              { filterName: "Esportes" },
+              { filterName: "Sociedade" },
+              { filterName: "Cultura" },
+              { filterName: "Justiça" },
+              { filterName: "Educação" },
+              { filterName: "Idiomas" },
+              { filterName: "Artes" },
+              { filterName: "Meio Ambiente" },
+              { filterName: "Patrimônio" },
+              { filterName: "Saúde" },
+              { filterName: "Tecnologia" },
+              { filterName: "Trabalho" },
             ]}
           />
           <Separator className="my-2" />
           <FilterTypes
-            filterType="Filtro"
+            filterType="Tipo de Ação"
             filters={[
-              { filterName: "Categoria 1" },
-              { filterName: "Categoria 2" },
-              { filterName: "Categoria 2" },
-              { filterName: "2" },
-              { filterName: "Categoria 1" },
-              { filterName: "Categoria 2" },
-              { filterName: "2" },
+              { filterName: "Curso" },
+              { filterName: "Evento" },
+              { filterName: "Prestação de Serviços" },
+              { filterName: "Produto" },
+              { filterName: "Programa" },
+              { filterName: "Projeto" },
             ]}
           />
           <Separator className="my-2" />
