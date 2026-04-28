@@ -1,26 +1,26 @@
-interface TagsInterface {
-  tagArray: Array<string>;
-}
+import type { TagAttributes } from "@/components/Tags";
 
-export default function recognizeTags({
-  tagArray,
-}: TagsInterface): Array<string> {
-  const result: Array<string> = [];
+export default function recognizeTags(
+  tagArray: string[],
+): Array<TagAttributes> {
+  const result: Array<TagAttributes> = [];
 
-  for (const tag in tagArray) {
-    if (tag.match(/\bcultural?/i)) result.push("Cultura");
-    if (tag.match(/tecnologia/i)) result.push("Tecnologia");
-    if (tag.match(/comunica[cç][aã]o/i)) result.push("Comunicação");
-    if (tag.match(/esport(ivo|iva|es?)/i)) result.push("Esportes");
-    if (tag.match(/justi[cç]a/i)) result.push("Justiça");
-    if (tag.match(/soci(al|edade)\b/i)) result.push("Sociedade");
-    if (tag.match(/educa[cç][aã]o/i)) result.push("Educação");
-    if (tag.match(/idiomas?/i)) result.push("Idiomas");
-    if (tag.match(/artes?|art[ií]stic[oa]/i)) result.push("Artes");
-    if (tag.match(/ambient(e|al)/i)) result.push("Ambiente");
-    if (tag.match(/patrim[oô]ni(o|al)/i)) result.push("Patrimônio");
-    if (tag.match(/sa[uú]de|sa[uú]d[aá]ve(l|is)/i)) result.push("Saúde");
-    if (tag.match(/trabalho/i)) result.push("Trabalho");
+  for (const tag of tagArray) {
+    console.log(tag);
+    if (/\bcultural?/i.test(tag)) result.push({ tagType: "Cultura" });
+    if (/tecnologia/i.test(tag)) result.push({ tagType: "Tecnologia" });
+    if (/comunica[cç][aã]o/i.test(tag)) result.push({ tagType: "Comunicação" });
+    if (/esport(ivo|iva|es?)/i.test(tag)) result.push({ tagType: "Esportes" });
+    if (/justi[cç]a/i.test(tag)) result.push({ tagType: "Justiça" });
+    if (/soci(al|edade)\b/i.test(tag)) result.push({ tagType: "Sociedade" });
+    if (/educa[cç][aã]o/i.test(tag)) result.push({ tagType: "Educação" });
+    if (/idiomas?/i.test(tag)) result.push({ tagType: "Idiomas" });
+    if (/artes?|art[ií]stic[oa]/i.test(tag)) result.push({ tagType: "Artes" });
+    if (/ambient(e|al)/i.test(tag)) result.push({ tagType: "Ambiente" });
+    if (/patrim[oô]ni(o|al)/i.test(tag)) result.push({ tagType: "Patrimônio" });
+    if (/sa[uú]de|sa[uú]d[aá]ve(l|is)/i.test(tag))
+      result.push({ tagType: "Saúde" });
+    if (/trabalho/i.test(tag)) result.push({ tagType: "Trabalho" });
   }
 
   return result;

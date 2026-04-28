@@ -28,7 +28,6 @@ export default function SearchPage() {
     return <p className="text-2xl text-gray-400">Buscando resultados...</p>;
   }
 
-  if (!results) console.log("oie")
   if (results.length == 0) {
     return (
       <div className="flex flex-col w-2/3 self-center gap-4">
