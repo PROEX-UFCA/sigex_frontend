@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-import { getWindowSize } from "@/hooks/screen";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
 import type { ProjectDataValues } from "@/utils/globals";
 import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
@@ -26,7 +26,7 @@ export default function SmallProject({ id, title, tags }: ProjectDataValues) {
       </p>
       <TagsArea
         tags={tags}
-        size={getWindowSize().width > BREAKPOINTS.medium ? "md" : "sm"}
+        size={useScreenSize().width > BREAKPOINTS.medium ? "md" : "sm"}
       ></TagsArea>
     </div>
   );
