@@ -4,6 +4,19 @@ import apiConnection from "@/services/api";
 export const getProjects = (): Promise<Projeto[]> =>
   apiConnection.get("/acoes");
 
+export const getProjectByID = async (id: string): Promise<Projeto> => {
+  try {
+    const data = await apiConnection.get(`/acoes/${id}`);
+
+    const project: Projeto = data.data.data;
+
+    return project;
+  } catch (error) {
+    console.error("ERRO AO PEGAR INFORMAÇÕES DO PROJETO!", error);
+    return {} as Projeto;
+  }
+};
+
 interface ProjectFilters {
   titulo?: string;
   tipo_acao?: string;

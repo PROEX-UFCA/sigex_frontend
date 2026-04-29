@@ -42,7 +42,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
 
   return (
     <div className="flex flex-wrap gap-2 z-10">
-      {tags.map((tag) => {
+      {tags.map((tag, index) => {
         const category = CATEGORIES[tag.tagType as keyof typeof CATEGORIES];
 
         if (category && !existingTags.includes(tag.tagType)) {
@@ -55,6 +55,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
 
           return (
             <Badge
+              key={index}
               variant={"secondary"}
               className={`flex items-center border-none ${currentSize.badge} ${bkgColor} ${textColor}`}
             >
