@@ -11,10 +11,16 @@ import { useState } from "react";
 
 export interface DateFilterProps {
   label: string;
+  onDateChange: (date: Date | undefined) => void;
 }
 
-export default function DateFilter({ label }: DateFilterProps) {
+export default function DateFilter({ label, onDateChange }: DateFilterProps) {
   const [date, setDate] = useState<Date>();
+
+  function handleSelect(date: Date | undefined) {
+    setDate(date);
+    onDateChange?.(date);
+  }
 
   return (
     <Field>
@@ -32,7 +38,7 @@ export default function DateFilter({ label }: DateFilterProps) {
           <Calendar
             mode="single"
             selected={date}
-            onSelect={setDate}
+            onSelect={handleSelect}
             defaultMonth={date}
           ></Calendar>
         </PopoverContent>
