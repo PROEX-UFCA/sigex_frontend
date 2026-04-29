@@ -1,5 +1,5 @@
 import logoProex from "@/assets/proex-branco_total_teste.png";
-import { getWindowSize } from "@/hooks/screen";
+import { useScreenSize } from "@/hooks/useScreenSize";
 import { BREAKPOINTS } from "@/utils/constants";
 
 export default function Footer() {
@@ -19,7 +19,7 @@ export default function Footer() {
             &ndash; Bloco "K", Salas K201 e K202 (2° Andar) &ndash; Telefone:
             (88) 3221-9286
           </div>
-          {getWindowSize().width > BREAKPOINTS.small ? (
+          {useScreenSize().width > BREAKPOINTS.small ? (
             <div className="justify-start w-1/3"></div>
           ) : (
             <></>

@@ -14,6 +14,8 @@ export default function LandingPage() {
               { tagType: "Educação" },
               { tagType: "Tecnologia" },
             ],
+            description:
+              "Tempor esse labore consectetur quis dolor laborum magna nulla dolore. Consequat laborum esse minim et ullamco id enim culpa irure. Exercitation nulla duis pariatur anim ea nostrud eu dolore proident eiusmod. In sunt reprehenderit irure do do. Voluptate velit exercitation ea aute nisi. Culpa elit Lorem fugiat Lorem sunt reprehenderit.",
           },
           {
             id: "2",
@@ -23,6 +25,8 @@ export default function LandingPage() {
               { tagType: "Educação" },
               { tagType: "Tecnologia" },
             ],
+            description:
+              "Tempor esse labore consectetur quis dolor laborum magna nulla dolore. Consequat laborum esse minim et ullamco id enim culpa irure. Exercitation nulla duis pariatur anim ea nostrud eu dolore proident eiusmod. In sunt reprehenderit irure do do. Voluptate velit exercitation ea aute nisi. Culpa elit Lorem fugiat Lorem sunt reprehenderit.",
           },
           {
             id: "3",
@@ -32,6 +36,8 @@ export default function LandingPage() {
               { tagType: "Educação" },
               { tagType: "Tecnologia" },
             ],
+            description:
+              "Tempor esse labore consectetur quis dolor laborum magna nulla dolore. Consequat laborum esse minim et ullamco id enim culpa irure. Exercitation nulla duis pariatur anim ea nostrud eu dolore proident eiusmod. In sunt reprehenderit irure do do. Voluptate velit exercitation ea aute nisi. Culpa elit Lorem fugiat Lorem sunt reprehenderit.",
           },
           {
             id: "4",
@@ -41,6 +47,8 @@ export default function LandingPage() {
               { tagType: "Educação" },
               { tagType: "Tecnologia" },
             ],
+            description:
+              "Tempor esse labore consectetur quis dolor laborum magna nulla dolore. Consequat laborum esse minim et ullamco id enim culpa irure. Exercitation nulla duis pariatur anim ea nostrud eu dolore proident eiusmod. In sunt reprehenderit irure do do. Voluptate velit exercitation ea aute nisi. Culpa elit Lorem fugiat Lorem sunt reprehenderit.",
           },
           {
             id: "5",
@@ -50,6 +58,8 @@ export default function LandingPage() {
               { tagType: "Educação" },
               { tagType: "Tecnologia" },
             ],
+            description:
+              "Tempor esse labore consectetur quis dolor laborum magna nulla dolore. Consequat laborum esse minim et ullamco id enim culpa irure. Exercitation nulla duis pariatur anim ea nostrud eu dolore proident eiusmod. In sunt reprehenderit irure do do. Voluptate velit exercitation ea aute nisi. Culpa elit Lorem fugiat Lorem sunt reprehenderit.",
           },
         ]}
       ></MainCarousel>

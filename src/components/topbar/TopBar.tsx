@@ -3,7 +3,7 @@ import Logo from "@/assets/logo_ufca_white.svg";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { getWindowSize } from "@/hooks/screen";
+import { useScreenSize } from "@/hooks/useScreenSize";
 import { BREAKPOINTS } from "@/utils/constants";
 import { useState } from "react";
 import { Search } from "lucide-react";
@@ -30,12 +30,12 @@ function ToggleableSearchBar() {
 function SearchArea() {
   const { term, setTerm, handleSearch } = useSearch();
 
-  const { width } = getWindowSize();
+  const { width } = useScreenSize();
 
-  let isMobile: boolean = width < BREAKPOINTS.small;
-  let isTablet: boolean =
+  const isMobile: boolean = width < BREAKPOINTS.small;
+  const isTablet: boolean =
     width >= BREAKPOINTS.small && width < BREAKPOINTS.medium;
-  let isDesktop: boolean = width >= BREAKPOINTS.medium;
+  const isDesktop: boolean = width >= BREAKPOINTS.medium;
 
   return (
     <div className="flex justify-end w-full m-4 gap-3">

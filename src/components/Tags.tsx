@@ -38,25 +38,31 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
 
   const currentSize = sizeStyles[size];
 
+  const existingTags: Array<string> = [];
+
   return (
-    <div className="flex flex-wrap gap-2">
-      {tags.map((tag, _) => {
+    <div className="flex flex-wrap gap-2 z-10">
+      {tags.map((tag) => {
         const category = CATEGORIES[tag.tagType as keyof typeof CATEGORIES];
 
-        const IconTag: ElementType | null = category.icon ?? tag.icon ?? null;
-        const bkgColor: string =
-          category.backgroundColor ?? tag.backgroundColor ?? "";
-        const textColor: string = category.textColor ?? tag.textColor ?? "";
+        if (category && !existingTags.includes(tag.tagType)) {
+          const IconTag: ElementType | null = category.icon ?? tag.icon ?? null;
+          const bkgColor: string =
+            category.backgroundColor ?? tag.backgroundColor ?? "";
+          const textColor: string = category.textColor ?? tag.textColor ?? "";
+          
+          existingTags.push(tag.tagType);
 
-        return (
-          <Badge
-            variant={"secondary"}
-            className={`flex items-center border-none ${currentSize.badge} ${bkgColor} ${textColor}`}
-          >
-            {IconTag && <IconTag className={currentSize.icon} />}
-            {tag.tagType}
-          </Badge>
-        );
+          return (
+            <Badge
+              variant={"secondary"}
+              className={`flex items-center border-none ${currentSize.badge} ${bkgColor} ${textColor}`}
+            >
+              {IconTag && <IconTag className={currentSize.icon} />}
+              {tag.tagType}
+            </Badge>
+          );
+        }
       })}
     </div>
   );

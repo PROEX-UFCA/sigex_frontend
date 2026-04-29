@@ -4,14 +4,14 @@ import {
   Drama,
   GraduationCap,
   Headset,
-  Landmark,
-  Languages,
+  // Landmark,
+  // Languages,
   Leaf,
-  Palette,
+  // Palette,
   Scale,
-  SportShoe,
+  // SportShoe,
   Stethoscope,
-  Users,
+  // Users,
 } from "lucide-react";
 
 export const CATEGORIES = {
@@ -20,16 +20,16 @@ export const CATEGORIES = {
     backgroundColor: "bg-sky-100",
     textColor: "text-sky-600",
   },
-  Esportes: {
-    icon: SportShoe,
-    backgroundColor: "bg-green-100",
-    textColor: "text-green-600",
-  },
-  Sociedade: {
-    icon: Users,
-    backgroundColor: "bg-neutral-300",
-    textColor: "text-neutral-600",
-  },
+  // Esportes: {
+  //   icon: SportShoe,
+  //   backgroundColor: "bg-green-100",
+  //   textColor: "text-green-600",
+  // },
+  // Sociedade: {
+  //   icon: Users,
+  //   backgroundColor: "bg-neutral-300",
+  //   textColor: "text-neutral-600",
+  // },
   Cultura: {
     icon: Drama,
     backgroundColor: "bg-amber-100",
@@ -45,26 +45,26 @@ export const CATEGORIES = {
     backgroundColor: "bg-orange-100",
     textColor: "text-orange-600",
   },
-  Idiomas: {
-    icon: Languages,
-    backgroundColor: "bg-blue-100",
-    textColor: "text-blue-600",
-  },
-  Artes: {
-    icon: Palette,
-    backgroundColor: "bg-pink-100",
-    textColor: "text-pink-600",
-  },
+  // Idiomas: {
+  //   icon: Languages,
+  //   backgroundColor: "bg-blue-100",
+  //   textColor: "text-blue-600",
+  // },
+  // Artes: {
+  //   icon: Palette,
+  //   backgroundColor: "bg-pink-100",
+  //   textColor: "text-pink-600",
+  // },
   Ambiente: {
     icon: Leaf,
     backgroundColor: "bg-lime-100",
     textColor: "text-lime-600",
   },
-  Patrimônio: {
-    icon: Landmark,
-    backgroundColor: "bg-indigo-400",
-    textColor: "text-blue-950",
-  },
+  // Patrimônio: {
+  //   icon: Landmark,
+  //   backgroundColor: "bg-indigo-400",
+  //   textColor: "text-blue-950",
+  // },
   Saúde: {
     icon: Stethoscope,
     backgroundColor: "bg-fuchsia-200",

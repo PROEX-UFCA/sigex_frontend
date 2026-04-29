@@ -1,6 +1,6 @@
-import type { ProjectDataValues } from "@/utils/globals";
+import type { ProjectProps } from "@/utils/globals";
 
 export interface SmallCarouselProps {
   sectionTitle: string;
-  itemList: ProjectDataValues[];
+  itemList: ProjectProps[];
 }

@@ -2,11 +2,11 @@ import { Info, Mail, Phone } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
-import TagsArea from "@/components/Tags";
 
 import type { ProjectData } from "@/utils/project";
 
-import culturaImg from "@/assets/cultura.png";
+import BigProject from "@/components/BigProject";
+import { useParams } from "react-router";
 
 export default function ProjectPage({
   title,
@@ -15,18 +15,10 @@ export default function ProjectPage({
   images,
   // contact,
 }: ProjectData) {
+  const projectID = useParams<{ id: string }>();
   return (
     <div className="flex flex-col w-full">
-      <div
-        className="bg-cover bg-center rounded-3xl min-h-125 flex flex-col justify-end relative text-white"
-        style={{ backgroundImage: `url(${culturaImg})` }}
-      >
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-black/20 blur-md rounded-b-3xl" />
-        <div className="flex flex-col absolute bottom-6 self-center w-fit gap-2">
-          <TagsArea tags={tags} size="lg" />
-          <div className="text-left text-6xl font-bold">{title}</div>
-        </div>
-      </div>
+      <BigProject id={projectID.id ?? ""} tags={tags} title={title} center></BigProject>
       <div className="flex flex-col py-6">
         <div className="text-4xl font-bold underline">Descrição do Projeto</div>
         <div className="flex flex-col gap-2 text-left self-center text-lg w-3/4 ">

@@ -34,6 +34,7 @@ export default function SmallCarousel({
                 className="pl-2 md:pl-4 basis-1/2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
               >
                 <SmallProject
+                  key={item.id}
                   id={item.id}
                   tags={item.tags}
                   title={item.title}
