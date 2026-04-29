@@ -18,33 +18,42 @@ import { Toggle } from "@/components/ui/toggle";
 import DateFilter, {
   type DateFilterProps,
 } from "@/features/Filters/DateFilter";
+import { format } from "date-fns";
+import { useNavigate } from "react-router";
+
+interface FilterOption {
+  filterName: string;
+}
 
 interface Filter {
   filterName: string;
+  isSelected: boolean;
+  onToggle: (name: string) => void;
 }
 
 interface DateComponentEntry {
   DateComponent: React.ComponentType<DateFilterProps>;
   label: string;
+  onDateChange?: (date: Date | undefined) => void;
 }
 
 interface FilterAttributes {
   filterType: string;
-  filters?: Array<Filter>;
+  filters?: Array<FilterOption>;
+  selectedFilters: Array<string>;
+  onToggle?: (name: string) => void;
   DateComponents?: DateComponentEntry[];
 }
 
-function TogglableButton({ filterName }: Filter) {
-  const [toggled, setToggled] = useState(false);
-
+function TogglableButton({ filterName, isSelected, onToggle }: Filter) {
   return (
     <Toggle
       variant={"outline"}
-      aria-pressed={toggled}
-      onClick={() => setToggled(!toggled)}
+      aria-pressed={isSelected}
+      onClick={() => onToggle(filterName)}
       className="my-1"
     >
-      {toggled ? <Check></Check> : null}
+      {isSelected ? <Check></Check> : null}
       {filterName}
     </Toggle>
   );
@@ -53,6 +62,8 @@ function TogglableButton({ filterName }: Filter) {
 function FilterTypes({
   filterType,
   filters,
+  selectedFilters = [],
+  onToggle,
   DateComponents,
 }: FilterAttributes) {
   return (
@@ -64,6 +75,8 @@ function FilterTypes({
             <TogglableButton
               key={index}
               filterName={filter.filterName}
+              isSelected={selectedFilters.includes(filter.filterName)}
+              onToggle={onToggle!}
             ></TogglableButton>
           ))
         ) : (
@@ -74,6 +87,7 @@ function FilterTypes({
             <DateComponent.DateComponent
               key={index}
               label={DateComponent.label}
+              onDateChange={DateComponent.onDateChange}
             ></DateComponent.DateComponent>
           ))}
         </div>
@@ -84,13 +98,74 @@ function FilterTypes({
 
 export default function FilterDialog() {
   const [resetKey, setResetKey] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState<{
+    categories: Array<string>;
+    actionTypes: Array<string>;
+    initialDate: Date | null;
+    finalDate: Date | null;
+  }>({
+    categories: [],
+    actionTypes: [],
+    initialDate: null,
+    finalDate: null,
+  });
+  const navigate = useNavigate();
 
   function handleClear() {
-    setResetKey(prev => prev + 1);
+    setResetKey((prev) => prev + 1);
+    setSelectedFilters({
+      actionTypes: [],
+      categories: [],
+      initialDate: null,
+      finalDate: null,
+    });
+  }
+
+  function handleApplyFilters() {
+    const params = new URLSearchParams();
+
+    if (selectedFilters.categories.length > 0)
+      params.set("area_tematica", selectedFilters.categories.join(","));
+
+    if (selectedFilters.actionTypes.length > 0)
+      params.set("tipo_acao", selectedFilters.actionTypes.join(","));
+
+    if (selectedFilters.initialDate)
+      params.set(
+        "data_inicio",
+        format(selectedFilters.initialDate, "yyyy-MM-dd"),
+      );
+
+    if (selectedFilters.finalDate)
+      params.set(
+        "data_fim",
+        format(selectedFilters.finalDate, "yyyy-MM-dd"),
+      );
+
+    setOpen(false);
+    navigate(`/search?${params.toString()}`);
+  }
+
+  function toggleFilter(key: "categories" | "actionTypes", name: string) {
+    setSelectedFilters((previousFilters) => {
+      const currentFilterList = previousFilters[key];
+
+      const isFilterActive = currentFilterList.includes(name);
+
+      const updatedList = isFilterActive
+        ? currentFilterList.filter((item) => item !== name)
+        : [...currentFilterList, name];
+
+      return {
+        ...previousFilters,
+        [key]: updatedList,
+      };
+    });
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant={"secondary"} className="h-10 sm:w-10 md:w-20 lg:w-30">
           <Funnel className="" />
@@ -101,24 +176,26 @@ export default function FilterDialog() {
         <DialogHeader>
           <DialogTitle className="text-xl">Filtros</DialogTitle>
         </DialogHeader>
-        <div key={resetKey}  className="max-h-72 overflow-y-auto no-scrollbar">
+        <div key={resetKey} className="max-h-72 overflow-y-auto no-scrollbar">
           <FilterTypes
             filterType="Categoria"
             filters={[
               { filterName: "Comunicação" },
-              // { filterName: "Esportes" },
-              // { filterName: "Sociedade" },
               { filterName: "Cultura" },
               { filterName: "Justiça" },
               { filterName: "Educação" },
-              // { filterName: "Idiomas" },
-              // { filterName: "Artes" },
               { filterName: "Meio Ambiente" },
-              // { filterName: "Patrimônio" },
               { filterName: "Saúde" },
               { filterName: "Tecnologia" },
               { filterName: "Trabalho" },
+              // { filterName: "Esportes" },
+              // { filterName: "Sociedade" },
+              // { filterName: "Idiomas" },
+              // { filterName: "Artes" },
+              // { filterName: "Patrimônio" },
             ]}
+            selectedFilters={selectedFilters.categories}
+            onToggle={(name) => toggleFilter("categories", name)}
           />
           <Separator className="my-2" />
           <FilterTypes
@@ -130,19 +207,42 @@ export default function FilterDialog() {
               { filterName: "Programa" },
               { filterName: "Projeto" },
             ]}
+            selectedFilters={selectedFilters.actionTypes}
+            onToggle={(name) => toggleFilter("actionTypes", name)}
           />
           <Separator className="my-2" />
           <FilterTypes
             filterType="Duração da Ação"
             DateComponents={[
-              { DateComponent: DateFilter, label: "Data inicial" },
-              { DateComponent: DateFilter, label: "Data final" },
+              {
+                DateComponent: DateFilter,
+                label: "Data inicial",
+                onDateChange: (date) =>
+                  setSelectedFilters((prev) => ({
+                    ...prev,
+                    initialDate: date ?? null,
+                  })),
+              },
+              {
+                DateComponent: DateFilter,
+                label: "Data final",
+                onDateChange: (date) =>
+                  setSelectedFilters((prev) => ({
+                    ...prev,
+                    finalDate: date ?? null,
+                  })),
+              },
             ]}
+            selectedFilters={[]}
           />
         </div>
         <DialogFooter className="flex flex-row sm:justify-center gap-3 mx-1">
-          <Button variant={"destructive"} onClick={handleClear}>Limpar filtros</Button>
-          <Button variant={"outline"}>Aplicar filtros</Button>
+          <Button variant={"destructive"} onClick={handleClear}>
+            Limpar filtros
+          </Button>
+          <Button variant={"outline"} onClick={handleApplyFilters}>
+            Aplicar filtros
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

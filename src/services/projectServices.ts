@@ -3,18 +3,28 @@ import apiConnection from "@/services/api";
 
 export const getProjects = (): Promise<Projeto[]> =>
   apiConnection.get("/acoes");
-export const getProjectById = (id: string) => apiConnection.get(`/acoes/${id}`);
 
-export const searchProjectsByTitle = async (term: string) => {
-  const response = await apiConnection.get(`/acoes/`);
+interface ProjectFilters {
+  titulo?: string;
+  tipo_acao?: string;
+  area_tematica?: string;
+  data_inicio?: string;
+  data_fim?: string;
+}
+
+export const searchProjectsByFilter = async (filters: ProjectFilters) => {
+  const params: Record<string, string> = {};
+
+  if (filters.titulo) params.titulo = filters.titulo;
+  if (filters.tipo_acao) params.tipo_acao = filters.tipo_acao;
+  if (filters.area_tematica) params.area_tematica = filters.area_tematica;
+  if (filters.data_inicio) params.data_inicio = filters.data_inicio;
+  if (filters.data_fim) params.data_fim = filters.data_fim;
+
+  const response = await apiConnection.get("/acoes", { params });
 
   const projects = response.data.data.data;
 
   if (!projects) return [];
-
-  const filteredProjects = projects.filter((project: any) =>
-    project.titulo.toLowerCase().includes(term.toLowerCase()),
-  );
-
-  return filteredProjects;
+  return projects;
 };
