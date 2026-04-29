@@ -1,4 +1,4 @@
-import { Info, Mail, Phone } from "lucide-react";
+import { Info, Mail, Phone, TriangleAlert } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
@@ -7,25 +7,62 @@ import type { ProjectData } from "@/utils/project";
 
 import BigProject from "@/components/BigProject";
 import { useParams } from "react-router";
+import { getProjectByID } from "@/services/projectServices";
+import { useEffect, useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
+import type { Projeto } from "@/types/projeto";
+import recognizeTags from "@/utils/tagRecognition";
 
 export default function ProjectPage({
-  title,
-  tags,
+  // title,
+  // tags,
   // description,
   images,
   // contact,
 }: ProjectData) {
   const projectID = useParams<{ id: string }>();
+  const [results, setResults] = useState<Projeto>({} as Projeto);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProjectByID(projectID.id!);
+      setResults(data);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [projectID]);
+
+  if (loading)
+    return (
+      <div className="flex flex-col w-full items-center gap-2">
+        <Spinner className="w-12 h-12 text-gray-400" />
+        <p className="text-3xl text-gray-400">Buscando resultados...</p>
+      </div>
+    );
+
+  if (!results.id)
+    return (
+      <div className="flex flex-col w-2/3 self-center text-gray-400 my-4 py-4">
+        <TriangleAlert className="scale-400 mb-10 self-center" />
+        <p className="text-4xl">
+          Não foi possível obter os dados referentes a este projeto. Tente
+          novamente mais tarde!
+        </p>
+      </div>
+    );
 
   const hasImageList: boolean = images ? true : false;
   const isImageListEmpty: boolean = images!.imageURL.includes("");
+  const tags = recognizeTags([results.area_tematica]);
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full gap-1">
       <BigProject
         id={projectID.id ?? ""}
         tags={tags}
-        title={title}
+        title={results.titulo}
         center
       ></BigProject>
       <div className="flex flex-col py-6">
@@ -70,7 +107,7 @@ export default function ProjectPage({
           </p>
         </div>
       </div>
-      {(hasImageList && !isImageListEmpty) ? (
+      {hasImageList && !isImageListEmpty ? (
         <ProjectGallery imageURL={images!.imageURL} />
       ) : (
         <div className="flex flex-col w-2/3 self-center gap-4">
