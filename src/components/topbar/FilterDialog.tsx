@@ -18,6 +18,8 @@ import { Toggle } from "@/components/ui/toggle";
 import DateFilter, {
   type DateFilterProps,
 } from "@/features/Filters/DateFilter";
+import { format } from "date-fns";
+import { useNavigate } from "react-router";
 
 interface FilterOption {
   filterName: string;
@@ -96,6 +98,7 @@ function FilterTypes({
 
 export default function FilterDialog() {
   const [resetKey, setResetKey] = useState(0);
+  const [open, setOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<{
     categories: Array<string>;
     actionTypes: Array<string>;
@@ -107,6 +110,7 @@ export default function FilterDialog() {
     initialDate: null,
     finalDate: null,
   });
+  const navigate = useNavigate();
 
   function handleClear() {
     setResetKey((prev) => prev + 1);
@@ -116,6 +120,31 @@ export default function FilterDialog() {
       initialDate: null,
       finalDate: null,
     });
+  }
+
+  function handleApplyFilters() {
+    const params = new URLSearchParams();
+
+    if (selectedFilters.categories.length > 0)
+      params.set("area_tematica", selectedFilters.categories.join(","));
+
+    if (selectedFilters.actionTypes.length > 0)
+      params.set("tipo_acao", selectedFilters.actionTypes.join(","));
+
+    if (selectedFilters.initialDate)
+      params.set(
+        "data_inicio",
+        format(selectedFilters.initialDate, "yyyy-MM-dd"),
+      );
+
+    if (selectedFilters.finalDate)
+      params.set(
+        "data_fim",
+        format(selectedFilters.finalDate, "yyyy-MM-dd"),
+      );
+
+    setOpen(false);
+    navigate(`/search?${params.toString()}`);
   }
 
   function toggleFilter(key: "categories" | "actionTypes", name: string) {
@@ -136,7 +165,7 @@ export default function FilterDialog() {
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant={"secondary"} className="h-10 sm:w-10 md:w-20 lg:w-30">
           <Funnel className="" />
@@ -211,7 +240,9 @@ export default function FilterDialog() {
           <Button variant={"destructive"} onClick={handleClear}>
             Limpar filtros
           </Button>
-          <Button variant={"outline"} onClick={() => console.log(selectedFilters)}>Aplicar filtros</Button>
+          <Button variant={"outline"} onClick={handleApplyFilters}>
+            Aplicar filtros
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
