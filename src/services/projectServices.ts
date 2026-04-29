@@ -21,10 +21,14 @@ export const searchProjectsByFilter = async (filters: ProjectFilters) => {
   if (filters.data_inicio) params.data_inicio = filters.data_inicio;
   if (filters.data_fim) params.data_fim = filters.data_fim;
 
-  const response = await apiConnection.get("/acoes", { params });
-
-  const projects = response.data.data.data;
-
-  if (!projects) return [];
-  return projects;
+  try {
+    const response = await apiConnection.get("/acoes", { params });
+    const projects = response.data.data.data;
+    
+    if (!projects) return [];
+    return projects;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
