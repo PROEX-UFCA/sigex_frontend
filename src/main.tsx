@@ -25,7 +25,7 @@ const router = createHashRouter([
             title="Título/nome do Projeto"
             contact={{ email: "", phoneNum: "" }}
             description=""
-            images={{ imageURL: ["", "", ""] }}
+            images={{imageURL: [""]}}
             tags={[
               {
                 tagType: "Tecnologia",

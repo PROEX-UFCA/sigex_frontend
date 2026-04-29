@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
 import type { ProjectProps } from "@/utils/globals";
 import TagsArea from "@/components/Tags";
+import { hashId } from "@/utils/hashId";
 
 export default function BigProject({
   id,
@@ -18,7 +19,7 @@ export default function BigProject({
       onClick={() => navigate(`/projects/${id}`)}
       className="cursor-pointer bg-cover bg-center rounded-3xl 2xl:h-180 xl:h-130 lg:h-120 md:h-120 sm:h-100 h-125 flex flex-col justify-end relative"
       style={{
-        backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][Number(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
+        backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
       }}
     >
       <div className="absolute bottom-0 left-0 right-0 lg:h-55 md:h-60 sm:h-80 h-80 bg-black/20 blur-md rounded-b-3xl"></div>

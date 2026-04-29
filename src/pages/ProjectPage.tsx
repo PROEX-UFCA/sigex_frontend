@@ -16,9 +16,18 @@ export default function ProjectPage({
   // contact,
 }: ProjectData) {
   const projectID = useParams<{ id: string }>();
+
+  const hasImageList: boolean = images ? true : false;
+  const isImageListEmpty: boolean = images!.imageURL.includes("");
+
   return (
     <div className="flex flex-col w-full">
-      <BigProject id={projectID.id ?? ""} tags={tags} title={title} center></BigProject>
+      <BigProject
+        id={projectID.id ?? ""}
+        tags={tags}
+        title={title}
+        center
+      ></BigProject>
       <div className="flex flex-col py-6">
         <div className="text-4xl font-bold underline">Descrição do Projeto</div>
         <div className="flex flex-col gap-2 text-left self-center text-lg w-3/4 ">
@@ -61,8 +70,8 @@ export default function ProjectPage({
           </p>
         </div>
       </div>
-      {images ? (
-        <ProjectGallery imageURL={images.imageURL} />
+      {(hasImageList && !isImageListEmpty) ? (
+        <ProjectGallery imageURL={images!.imageURL} />
       ) : (
         <div className="flex flex-col w-2/3 self-center gap-4">
           <div className="text-4xl font-bold underline">Galeria</div>
