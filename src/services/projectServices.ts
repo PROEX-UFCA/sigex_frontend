@@ -23,12 +23,6 @@ export const searchProjectsByFilter = async (filters: ProjectFilters) => {
 
   try {
     const response = await apiConnection.get("/acoes", { params });
-    
-    console.log(response);
-    console.log(response.data);
-    console.log(response.data?.data);
-    console.log(response.data?.data?.data);
-    
     const projects = response?.data?.data?.data;
     
     if (!projects) return [];
