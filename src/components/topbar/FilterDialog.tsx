@@ -87,7 +87,7 @@ function FilterTypes({
             <DateComponent.DateComponent
               key={index}
               label={DateComponent.label}
-              onDateChange={DateComponent.onDateChange}
+              onDateChange={DateComponent.onDateChange!}
             ></DateComponent.DateComponent>
           ))}
         </div>
