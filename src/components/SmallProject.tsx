@@ -4,13 +4,17 @@ import { useScreenSize } from "@/hooks/useScreenSize";
 
 import type { ProjectProps } from "@/utils/globals";
 import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
-import { BREAKPOINTS } from "@/utils/constants";
 
 import TagsArea from "@/components/Tags";
 import { hashId } from "@/utils/hashId";
+import { getActiveBreakpoint } from "@/utils/breakpoints";
 
 export default function SmallProject({ id, title, tags }: ProjectProps) {
   const navigate = useNavigate();
+
+  const { width } = useScreenSize();
+  const windowSize = getActiveBreakpoint(width);
+  
 
   return (
     <div
@@ -26,7 +30,7 @@ export default function SmallProject({ id, title, tags }: ProjectProps) {
       </p>
       <TagsArea
         tags={tags}
-        size={useScreenSize().width > BREAKPOINTS.medium ? "md" : "sm"}
+        size={(windowSize != "xs" && windowSize != "sm") ? "md" : "sm"}
       ></TagsArea>
     </div>
   );

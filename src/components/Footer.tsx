@@ -1,8 +1,12 @@
 import logoProex from "@/assets/proex-branco_total_teste.png";
 import { useScreenSize } from "@/hooks/useScreenSize";
-import { BREAKPOINTS } from "@/utils/constants";
+import { getActiveBreakpoint } from "@/utils/breakpoints";
 
 export default function Footer() {
+  const { width } = useScreenSize();
+  const windowSize = getActiveBreakpoint(width);
+  
+
   return (
     <footer className="w-full text-white">
       <div className="flex flex-col h-fit bg-[#532b1d] gap-4">
@@ -19,7 +23,7 @@ export default function Footer() {
             &ndash; Bloco "K", Salas K201 e K202 (2° Andar) &ndash; Telefone:
             (88) 3221-9286
           </div>
-          {useScreenSize().width > BREAKPOINTS.small ? (
+          {(windowSize == "xs" || windowSize == "sm") ? (
             <div className="justify-start w-1/3"></div>
           ) : (
             <></>
