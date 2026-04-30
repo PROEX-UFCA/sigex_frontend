@@ -7,13 +7,14 @@ import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
 
 import TagsArea from "@/components/Tags";
 import { hashId } from "@/utils/hashId";
-import { getActiveBreakpoint } from "@/utils/breakpoints";
+import { BREAKPOINTS } from "@/lib/breakpoints";
+// import { getActiveBreakpoint } from "@/utils/breakpoints";
 
 export default function SmallProject({ id, title, tags }: ProjectProps) {
   const navigate = useNavigate();
 
   const { width } = useScreenSize();
-  const windowSize = getActiveBreakpoint(width);
+  // const windowSize = getActiveBreakpoint(width);
   
 
   return (
@@ -30,7 +31,7 @@ export default function SmallProject({ id, title, tags }: ProjectProps) {
       </p>
       <TagsArea
         tags={tags}
-        size={(windowSize != "xs" && windowSize != "sm") ? "md" : "sm"}
+        size={(width >= BREAKPOINTS.md) ? "md" : "sm"}
       ></TagsArea>
     </div>
   );
