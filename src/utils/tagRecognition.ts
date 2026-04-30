@@ -6,7 +6,6 @@ export default function recognizeTags(
   const result: Array<TagAttributes> = [];
 
   for (const tag of tagArray) {
-    // console.log(tag);
     if (/\bcultural?/i.test(tag)) result.push({ tagType: "Cultura" });
     if (/tecnologia/i.test(tag)) result.push({ tagType: "Tecnologia" });
     if (/comunica[cç][aã]o/i.test(tag)) result.push({ tagType: "Comunicação" });

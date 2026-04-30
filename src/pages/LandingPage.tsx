@@ -1,7 +1,15 @@
 import MainCarousel from "@/features/LandingPage/MainCarousel";
+// import MobileMainCarousel from "@/features/LandingPage/MobileMainCarousel";
 import SmallCarousel from "@/features/LandingPage/SmallCarousel";
 
+// import { useScreenSize } from "@/hooks/useScreenSize";
+// import { BREAKPOINTS } from "@/lib/breakpoints";
+// import { getActiveBreakpoint } from "@/utils/breakpoints";
+
 export default function LandingPage() {
+  // const { width } = useScreenSize();
+  // const windowSize = getActiveBreakpoint(width);
+
   return (
     <div className="w-full flex flex-col">
       <MainCarousel
@@ -62,7 +70,7 @@ export default function LandingPage() {
               "Tempor esse labore consectetur quis dolor laborum magna nulla dolore. Consequat laborum esse minim et ullamco id enim culpa irure. Exercitation nulla duis pariatur anim ea nostrud eu dolore proident eiusmod. In sunt reprehenderit irure do do. Voluptate velit exercitation ea aute nisi. Culpa elit Lorem fugiat Lorem sunt reprehenderit.",
           },
         ]}
-      ></MainCarousel>
+      />
       <SmallCarousel
         sectionTitle="Filtro 1"
         itemList={[
