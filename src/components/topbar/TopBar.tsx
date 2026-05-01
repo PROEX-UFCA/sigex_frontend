@@ -4,12 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
-import { BREAKPOINTS } from "@/utils/constants";
 import { useState } from "react";
 import { Search } from "lucide-react";
 import FilterDialog from "./FilterDialog";
 import { Link } from "react-router";
 import { useSearch } from "@/hooks/useSearch";
+import { getActiveBreakpoint } from "@/utils/breakpoints";
 
 function ToggleableSearchBar() {
   const [active, setActive] = useState(false);
@@ -31,22 +31,18 @@ function SearchArea() {
   const { term, setTerm, handleSearch } = useSearch();
 
   const { width } = useScreenSize();
-
-  const isMobile: boolean = width < BREAKPOINTS.small;
-  const isTablet: boolean =
-    width >= BREAKPOINTS.small && width < BREAKPOINTS.medium;
-  const isDesktop: boolean = width >= BREAKPOINTS.medium;
+  const windowSize = getActiveBreakpoint(width);
 
   return (
     <div className="flex justify-end w-full m-4 gap-3">
-      {isMobile && <ToggleableSearchBar></ToggleableSearchBar>}
-      {isTablet && (
+      {(windowSize == "xs" || windowSize == "sm") && <ToggleableSearchBar></ToggleableSearchBar>}
+      {(windowSize == "md") && (
         <Input
           placeholder="Pesquise projetos ou áreas de atuação"
           className="border-gray-400 bg-gray-100 font-bold w-3/5 h-10"
         ></Input>
       )}
-      {isDesktop && (
+      {(windowSize == "lg" || windowSize == "xl" || windowSize == "2xl") && (
         <form className="w-2/5" onSubmit={handleSearch}>
           <Input
             value={term}
@@ -56,7 +52,7 @@ function SearchArea() {
           ></Input>
         </form>
       )}
-      {(isTablet || isDesktop) && <FilterDialog></FilterDialog>}
+      {(windowSize != "xs" && windowSize != "sm") && <FilterDialog></FilterDialog>}
     </div>
   );
 }

@@ -20,16 +20,6 @@ export const CATEGORIES = {
     backgroundColor: "bg-sky-100",
     textColor: "text-sky-600",
   },
-  // Esportes: {
-  //   icon: SportShoe,
-  //   backgroundColor: "bg-green-100",
-  //   textColor: "text-green-600",
-  // },
-  // Sociedade: {
-  //   icon: Users,
-  //   backgroundColor: "bg-neutral-300",
-  //   textColor: "text-neutral-600",
-  // },
   Cultura: {
     icon: Drama,
     backgroundColor: "bg-amber-100",
@@ -45,26 +35,11 @@ export const CATEGORIES = {
     backgroundColor: "bg-orange-100",
     textColor: "text-orange-600",
   },
-  // Idiomas: {
-  //   icon: Languages,
-  //   backgroundColor: "bg-blue-100",
-  //   textColor: "text-blue-600",
-  // },
-  // Artes: {
-  //   icon: Palette,
-  //   backgroundColor: "bg-pink-100",
-  //   textColor: "text-pink-600",
-  // },
   Ambiente: {
     icon: Leaf,
     backgroundColor: "bg-lime-100",
     textColor: "text-lime-600",
   },
-  // Patrimônio: {
-  //   icon: Landmark,
-  //   backgroundColor: "bg-indigo-400",
-  //   textColor: "text-blue-950",
-  // },
   Saúde: {
     icon: Stethoscope,
     backgroundColor: "bg-fuchsia-200",
@@ -80,10 +55,30 @@ export const CATEGORIES = {
     backgroundColor: "bg-orange-300",
     textColor: "text-amber-900",
   },
+  // Esportes: {
+  //   icon: SportShoe,
+  //   backgroundColor: "bg-green-100",
+  //   textColor: "text-green-600",
+  // },
+  // Sociedade: {
+  //   icon: Users,
+  //   backgroundColor: "bg-neutral-300",
+  //   textColor: "text-neutral-600",
+  // },
+  // Idiomas: {
+  //   icon: Languages,
+  //   backgroundColor: "bg-blue-100",
+  //   textColor: "text-blue-600",
+  // },
+  // Artes: {
+  //   icon: Palette,
+  //   backgroundColor: "bg-pink-100",
+  //   textColor: "text-pink-600",
+  // },
+  // Patrimônio: {
+  //   icon: Landmark,
+  //   backgroundColor: "bg-indigo-400",
+  //   textColor: "text-blue-950",
+  // },
 };
 export type Category = keyof typeof CATEGORIES;
-
-export const BREAKPOINTS = {
-  small: 768,
-  medium: 1024,
-};

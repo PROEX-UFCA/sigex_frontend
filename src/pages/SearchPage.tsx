@@ -8,6 +8,7 @@ import { searchProjectsByFilter } from "@/services/projectServices";
 
 import Results from "@/features/SearchPage/Results";
 import SearchPagination from "@/features/SearchPage/SearchPagination";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
@@ -32,7 +33,12 @@ export default function SearchPage() {
   }, [term, searchParams]);
 
   if (loading) {
-    return <p className="text-2xl text-gray-400">Buscando resultados...</p>;
+    return (
+      <div className="flex flex-col w-full items-center gap-2">
+        <Spinner className="w-12 h-12 text-gray-400" />
+        <p className="text-3xl text-gray-400">Buscando resultados...</p>
+      </div>
+    );
   }
 
   if (results.length == 0) {

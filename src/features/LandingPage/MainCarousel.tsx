@@ -11,6 +11,8 @@ import Autoplay from "embla-carousel-autoplay";
 import type { ProjectProps } from "@/utils/globals";
 
 import BigProject from "@/components/BigProject";
+import { useScreenSize } from "@/hooks/useScreenSize";
+import { BREAKPOINTS } from "@/lib/breakpoints";
 
 const TIME_DELAY = 10000;
 
@@ -19,11 +21,13 @@ interface MainCarouselProps {
 }
 
 export default function MainCarousel({ itemList }: MainCarouselProps) {
+  const { width } = useScreenSize();
+
   return (
     <section className="w-full">
       <Carousel
         className=""
-        opts={{ loop: true, dragFree: false, watchDrag: false }}
+        opts={{ loop: true, dragFree: false, watchDrag: (width < BREAKPOINTS.md) }}
         plugins={[Autoplay({ delay: TIME_DELAY })]}
       >
         <CarouselContent>
@@ -42,8 +46,8 @@ export default function MainCarousel({ itemList }: MainCarouselProps) {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="w-10 h-10 left-5 bg-gray-300 text-gray-600 hover:bg-[#c1c5cc] -translate-y-1" />
-        <CarouselNext className="w-10 h-10 right-5 bg-gray-300 text-gray-600 hover:bg-[#c1c5cc] -translate-y-1" />
+        <CarouselPrevious className={`${width > BREAKPOINTS.md ? "" : "hidden"} w-10 h-10 left-5 bg-gray-300 text-gray-600 hover:bg-[#c1c5cc] -translate-y-1`} />
+        <CarouselNext className={`${width > BREAKPOINTS.md ? "" : "hidden"} w-10 h-10 right-5 bg-gray-300 text-gray-600 hover:bg-[#c1c5cc] -translate-y-1`} />
       </Carousel>
     </section>
   );
