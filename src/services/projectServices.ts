@@ -23,9 +23,10 @@ interface ProjectFilters {
   area_tematica?: string;
   data_inicio?: string;
   data_fim?: string;
+  page?: number;
 }
 
-export const searchProjectsByFilter = async (filters: ProjectFilters) => {
+export const searchProjectsByFilter = async (filters: ProjectFilters, getAllData?: boolean) => {
   const params: Record<string, string> = {};
 
   if (filters.titulo) params.titulo = filters.titulo;
@@ -33,10 +34,11 @@ export const searchProjectsByFilter = async (filters: ProjectFilters) => {
   if (filters.area_tematica) params.area_tematica = filters.area_tematica;
   if (filters.data_inicio) params.data_inicio = filters.data_inicio;
   if (filters.data_fim) params.data_fim = filters.data_fim;
+  if (filters.page) params.page = String(filters.page);
 
   try {
     const response = await apiConnection.get("/acoes", { params });
-    const projects = response?.data?.data?.data;
+    const projects = getAllData ? response?.data?.data : response?.data?.data?.data;
 
     if (!projects) return [];
     return projects;
