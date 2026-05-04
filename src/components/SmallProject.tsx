@@ -15,7 +15,6 @@ export default function SmallProject({ id, title, tags }: ProjectProps) {
 
   const { width } = useScreenSize();
   // const windowSize = getActiveBreakpoint(width);
-  
 
   return (
     <div
@@ -31,7 +30,7 @@ export default function SmallProject({ id, title, tags }: ProjectProps) {
       </p>
       <TagsArea
         tags={tags}
-        size={(width >= BREAKPOINTS.md) ? "md" : "sm"}
+        size={width >= BREAKPOINTS.md ? "md" : "sm"}
       ></TagsArea>
     </div>
   );

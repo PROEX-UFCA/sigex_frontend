@@ -37,7 +37,9 @@ export default function BigProject({
         >
           {title}
         </span>
-        <p className={`text-left ${(width < BREAKPOINTS.md) ? "text-sm" : "text-md"} line-clamp-3 opacity-80`}>
+        <p
+          className={`text-left ${width < BREAKPOINTS.md ? "text-sm" : "text-md"} line-clamp-3 opacity-80`}
+        >
           {description ?? ""}
         </p>
         <div className={`${center ? "self-center" : ""}`}>

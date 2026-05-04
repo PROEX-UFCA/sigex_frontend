@@ -58,12 +58,11 @@ export default function SmallCarousel({
                 </CarouselItem>
               ))}
             </CarouselContent>
-
             <CarouselPrevious
-              className={`flex bg-white/80 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"}`}
+              className={`flex bg-zinc-100 disabled:bg-zinc-300 text-black disabled:text-gray-600 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"} rounded-md hover:bg-[#c1c5cc]`}
             />
             <CarouselNext
-              className={`flex bg-white/80 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"}`}
+              className={`flex bg-zinc-100 disabled:bg-zinc-300 text-black disabled:text-gray-600 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"} rounded-md hover:bg-[#c1c5cc]`}
             />
           </Carousel>
         </div>
