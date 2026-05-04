@@ -36,9 +36,9 @@ export default function ProjectPage({
 
   if (loading)
     return (
-      <div className="flex flex-col w-full items-center gap-2">
-        <Spinner className="w-12 h-12 text-gray-400" />
-        <p className="text-3xl text-gray-400">Buscando resultados...</p>
+      <div className="flex flex-col w-full items-center gap-2 text-gray-400">
+        <Spinner className="w-12 h-12" />
+        <p className="text-3xl">Buscando resultados...</p>
       </div>
     );
 

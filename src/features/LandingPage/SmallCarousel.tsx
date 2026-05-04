@@ -40,6 +40,8 @@ export default function SmallCarousel({
               align: "start",
               loop: false,
               dragFree: true,
+              watchDrag: width < BREAKPOINTS.md,
+              slidesToScroll: 3,
             }}
             className="w-full"
           >
@@ -59,10 +61,10 @@ export default function SmallCarousel({
               ))}
             </CarouselContent>
             <CarouselPrevious
-              className={`flex bg-zinc-100 disabled:bg-zinc-300 text-black disabled:text-gray-600 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"} rounded-md hover:bg-[#c1c5cc]`}
+              className={`flex bg-zinc-100 disabled:bg-zinc-300 text-black disabled:text-gray-600 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"} rounded-md hover:bg-[#c1c5cc] max-lg:ml-2`}
             />
             <CarouselNext
-              className={`flex bg-zinc-100 disabled:bg-zinc-300 text-black disabled:text-gray-600 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"} rounded-md hover:bg-[#c1c5cc]`}
+              className={`flex bg-zinc-100 disabled:bg-zinc-300 text-black disabled:text-gray-600 -translate-y-1 ${width > BREAKPOINTS.md ? "" : "hidden"} rounded-md hover:bg-[#c1c5cc] max-lg:mr-2`}
             />
           </Carousel>
         </div>
