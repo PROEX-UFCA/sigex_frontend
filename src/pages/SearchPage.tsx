@@ -21,14 +21,17 @@ export default function SearchPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await searchProjectsByFilter({
-        titulo: term,
-        area_tematica: searchParams.get("area_tematica") ?? undefined,
-        tipo_acao: searchParams.get("tipo_acao") ?? undefined,
-        data_inicio: searchParams.get("data_inicio") ?? undefined,
-        data_fim: searchParams.get("data_fim") ?? undefined,
-        page: currentPage,
-      }, true);
+      const data = await searchProjectsByFilter(
+        {
+          titulo: term,
+          area_tematica: searchParams.get("area_tematica") ?? undefined,
+          tipo_acao: searchParams.get("tipo_acao") ?? undefined,
+          data_inicio: searchParams.get("data_inicio") ?? undefined,
+          data_fim: searchParams.get("data_fim") ?? undefined,
+          page: currentPage,
+        },
+        true,
+      );
       setResults(data.data);
       setPageData(data);
       setLoading(false);
@@ -40,12 +43,11 @@ export default function SearchPage() {
   }, [term, searchParams]);
 
   const handlePageChange = (page: number) => {
-    setSearchParams(previous => {
+    setSearchParams((previous) => {
       previous.set("page", String(page));
       return previous;
-    })
-  }
-
+    });
+  };
 
   if (loading) {
     return (
@@ -72,7 +74,11 @@ export default function SearchPage() {
   return (
     <div className="flex flex-col">
       <Results projetos={results}></Results>
-      <SearchPagination current_page={pageData?.current_page ?? 1} last_page={pageData?.last_page ?? 1} onPageChange={handlePageChange}></SearchPagination>
+      <SearchPagination
+        current_page={pageData?.current_page ?? 1}
+        last_page={pageData?.last_page ?? 1}
+        onPageChange={handlePageChange}
+      ></SearchPagination>
     </div>
   );
 }
