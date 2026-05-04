@@ -8,7 +8,7 @@ interface ResultsData {
 
 export default function Results({ projetos }: ResultsData) {
   return (
-    <div className="grid lg:grid-cols-4 gap-4 p-4">
+    <div className="grid max-md:grid-cols-2 max-lg:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       {projetos.map((projeto) => {
         return (
           <SmallProject

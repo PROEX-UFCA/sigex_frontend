@@ -12,25 +12,42 @@ import { Spinner } from "@/components/ui/spinner";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
+  const [pageData, setPageData] = useState();
   const [loading, setLoading] = useState(true);
+
+  const currentPage = Number(searchParams.get("page") ?? 1);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await searchProjectsByFilter({
-        titulo: term,
-        area_tematica: searchParams.get("area_tematica") ?? undefined,
-        tipo_acao: searchParams.get("tipo_acao") ?? undefined,
-        data_inicio: searchParams.get("data_inicio") ?? undefined,
-        data_fim: searchParams.get("data_fim") ?? undefined,
-      });
-      setResults(data);
+      const data = await searchProjectsByFilter(
+        {
+          titulo: term,
+          area_tematica: searchParams.get("area_tematica") ?? undefined,
+          tipo_acao: searchParams.get("tipo_acao") ?? undefined,
+          data_inicio: searchParams.get("data_inicio") ?? undefined,
+          data_fim: searchParams.get("data_fim") ?? undefined,
+          page: currentPage,
+        },
+        true,
+      );
+      setResults(data.data);
+      setPageData(data);
       setLoading(false);
+
+      console.log(pageData);
     };
 
     fetchData();
   }, [term, searchParams]);
+
+  const handlePageChange = (page: number) => {
+    setSearchParams((previous) => {
+      previous.set("page", String(page));
+      return previous;
+    });
+  };
 
   if (loading) {
     return (
@@ -57,7 +74,11 @@ export default function SearchPage() {
   return (
     <div className="flex flex-col">
       <Results projetos={results}></Results>
-      <SearchPagination></SearchPagination>
+      <SearchPagination
+        current_page={pageData?.current_page ?? 1}
+        last_page={pageData?.last_page ?? 1}
+        onPageChange={handlePageChange}
+      ></SearchPagination>
     </div>
   );
 }

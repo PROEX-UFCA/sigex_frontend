@@ -36,9 +36,9 @@ export default function ProjectPage({
 
   if (loading)
     return (
-      <div className="flex flex-col w-full items-center gap-2">
-        <Spinner className="w-12 h-12 text-gray-400" />
-        <p className="text-3xl text-gray-400">Buscando resultados...</p>
+      <div className="flex flex-col w-full items-center gap-2 text-gray-400">
+        <Spinner className="w-12 h-12" />
+        <p className="max-sm:text-xl sm:max-lg:text-2xl text-3xl">Buscando resultados...</p>
       </div>
     );
 
@@ -46,7 +46,7 @@ export default function ProjectPage({
     return (
       <div className="flex flex-col w-2/3 self-center text-gray-400 my-4 py-4">
         <TriangleAlert className="scale-400 mb-10 self-center" />
-        <p className="text-4xl">
+        <p className="max-sm:text-2xl sm:max-lg:text-3xl text-4xl">
           Não foi possível obter os dados referentes a este projeto. Tente
           novamente mais tarde!
         </p>

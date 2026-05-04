@@ -9,20 +9,38 @@ import { Search } from "lucide-react";
 import FilterDialog from "./FilterDialog";
 import { Link } from "react-router";
 import { useSearch } from "@/hooks/useSearch";
-import { getActiveBreakpoint } from "@/utils/breakpoints";
+import { BREAKPOINTS } from "@/lib/breakpoints";
 
 function ToggleableSearchBar() {
+  const { term, setTerm, handleSearch } = useSearch();
   const [active, setActive] = useState(false);
 
   return (
     <div
-      className="flex flex-row justify-end w-full"
-      onBlur={() => setActive(false)}
+      className="flex flex-row justify-end w-full gap-2"
     >
-      <Button variant={"secondary"} onClick={() => setActive(!active)}>
-        <Search />
-        Buscar
-      </Button>
+      {active ? (
+        <div className="flex w-full gap-2">
+          <form className="w-5/6" onSubmit={handleSearch}>
+            <Input
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+              placeholder="Pesquise..."
+              className="border-gray-400 bg-gray-100 font-bold w-full h-10"
+            ></Input>
+          </form>
+          <FilterDialog></FilterDialog>
+        </div>
+      ) : (
+        <Button
+          className="h-10"
+          variant={"secondary"}
+          onClick={() => setActive(!active)}
+        >
+          <Search />
+          Buscar
+        </Button>
+      )}
     </div>
   );
 }
@@ -31,18 +49,17 @@ function SearchArea() {
   const { term, setTerm, handleSearch } = useSearch();
 
   const { width } = useScreenSize();
-  const windowSize = getActiveBreakpoint(width);
 
   return (
     <div className="flex justify-end w-full m-4 gap-3">
-      {(windowSize == "xs" || windowSize == "sm") && <ToggleableSearchBar></ToggleableSearchBar>}
-      {(windowSize == "md") && (
+      {width < BREAKPOINTS.md && <ToggleableSearchBar></ToggleableSearchBar>}
+      {width >= BREAKPOINTS.md && width < BREAKPOINTS.lg && (
         <Input
           placeholder="Pesquise projetos ou áreas de atuação"
           className="border-gray-400 bg-gray-100 font-bold w-3/5 h-10"
         ></Input>
       )}
-      {(windowSize == "lg" || windowSize == "xl" || windowSize == "2xl") && (
+      {width >= BREAKPOINTS.lg && (
         <form className="w-2/5" onSubmit={handleSearch}>
           <Input
             value={term}
@@ -52,7 +69,7 @@ function SearchArea() {
           ></Input>
         </form>
       )}
-      {(windowSize != "xs" && windowSize != "sm") && <FilterDialog></FilterDialog>}
+      {width >= BREAKPOINTS.md && <FilterDialog></FilterDialog>}
     </div>
   );
 }

@@ -1,32 +1,65 @@
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { usePaginationRange } from "@/hooks/usePaginationRange";
 
-export default function SearchPagination() {
+interface SearchPaginationProps {
+  current_page: number;
+  last_page: number;
+  onPageChange: (page: number) => void;
+}
+
+export default function SearchPagination({
+  current_page,
+  last_page,
+  onPageChange,
+}: SearchPaginationProps) {
+  const pages = usePaginationRange(current_page, last_page);
+
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious href="#" />
         </PaginationItem>
+        {pages.map((page, index) =>
+          page === "..." ? (
+            <PaginationItem key={`ellipsis-${index}`}>
+              <PaginationEllipsis></PaginationEllipsis>
+            </PaginationItem>
+          ) : (
+            <PaginationItem key={page}>
+              <PaginationLink
+                href="#"
+                isActive={page === current_page}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onPageChange(page);
+                }}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ),
+        )}
         <PaginationItem>
-          <PaginationLink href="#" isActive>
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
+          <PaginationNext
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (current_page < last_page) onPageChange(current_page + 1);
+            }}
+            aria-disabled={current_page === last_page}
+            className={
+              current_page === last_page ? "pointer-events-none opacity-50" : ""
+            }
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
