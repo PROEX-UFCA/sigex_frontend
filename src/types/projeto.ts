@@ -12,6 +12,7 @@ export interface Projeto {
   area_tematica: string;
   modalidade: string;
   status: number;
+  img: string[] | string | null;
 }
 
 export type ProjetoCard = Pick<Projeto, 'id' | 'titulo'>

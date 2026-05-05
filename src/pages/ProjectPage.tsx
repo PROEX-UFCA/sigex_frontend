@@ -3,8 +3,6 @@ import { Info, Mail, Phone, TriangleAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
 
-import type { ProjectData } from "@/utils/project";
-
 import BigProject from "@/components/BigProject";
 import { useParams } from "react-router";
 import { getProjectByID } from "@/services/projectServices";
@@ -13,13 +11,7 @@ import { Spinner } from "@/components/ui/spinner";
 import type { Projeto } from "@/types/projeto";
 import recognizeTags from "@/utils/tagRecognition";
 
-export default function ProjectPage({
-  // title,
-  // tags,
-  // description,
-  images,
-  // contact,
-}: ProjectData) {
+export default function ProjectPage() {
   const projectID = useParams<{ id: string }>();
   const [results, setResults] = useState<Projeto>({} as Projeto);
   const [loading, setLoading] = useState<boolean>(true);
@@ -30,7 +22,6 @@ export default function ProjectPage({
       setResults(data);
       setLoading(false);
     };
-
     fetchData();
   }, [projectID]);
 
@@ -38,7 +29,9 @@ export default function ProjectPage({
     return (
       <div className="flex flex-col w-full items-center gap-2 text-gray-400">
         <Spinner className="w-12 h-12" />
-        <p className="max-sm:text-xl sm:max-lg:text-2xl text-3xl">Buscando resultados...</p>
+        <p className="max-sm:text-xl sm:max-lg:text-2xl text-3xl">
+          Buscando resultados...
+        </p>
       </div>
     );
 
@@ -53,10 +46,7 @@ export default function ProjectPage({
       </div>
     );
 
-  const hasImageList: boolean = images ? true : false;
-  const isImageListEmpty: boolean = images!.imageURL.includes("");
   const tags = recognizeTags([results.area_tematica]);
-
   return (
     <div className="flex flex-col w-full gap-1">
       <BigProject
@@ -67,7 +57,7 @@ export default function ProjectPage({
       ></BigProject>
       <div className="flex flex-col py-6">
         <div className="text-4xl font-bold underline">Descrição do Projeto</div>
-        <div className="flex flex-col gap-2 text-left self-center text-lg w-3/4 ">
+        <div className="flex flex-col gap-2 text-left self-center text-lg max-md:w-7/8 md:max-xl:w-5/6 xl:w-3/4 ">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
             orci ligula, fermentum vel felis nec, aliquet fermentum mi. Nullam
@@ -107,36 +97,27 @@ export default function ProjectPage({
           </p>
         </div>
       </div>
-      {hasImageList && !isImageListEmpty ? (
-        <ProjectGallery imageURL={images!.imageURL} />
-      ) : (
-        <div className="flex flex-col w-2/3 self-center gap-4">
-          <div className="text-4xl font-bold underline">Galeria</div>
-          <div className="flex flex-col w-2/3 self-center text-gray-400 my-4 py-4">
-            <Info className="scale-300 mb-10 self-center"></Info>
-            <p className="text-3xl ">
-              Galeria indisponível por ausência de conteúdo. Cheque novamente
-              mais tarde!
-            </p>
-          </div>
-        </div>
-      )}
-      <div className="flex flex-col justify-center py-8">
+      <ProjectGallery
+        imageURL={
+          typeof results.img === "string" ? [results.img] : (results.img ?? [])
+        }
+      />
+      <div className="flex flex-col self-center justify-center py-8">
         <p className="font-bold text-5xl">Interessado?</p>
         <p className="font-bold text-2xl">Entre em contato conosco!</p>
         <Card className="self-center w-fit bg-[#75b747]">
-          <CardContent className="flex flex-col gap-6 font-bold">
+          <CardContent className="flex flex-col max-sm:gap-3 sm:max-lg:gap-4 lg:gap-6 font-bold">
             <div className="flex flex-row items-center gap-3">
-              <Phone className="size-8 outline-black text-black"></Phone>
-              <p className="text-3xl">+55 (88) 99999-9999</p>
+              <Phone className="max-md:size-6 md:size-8 outline-black text-black"></Phone>
+              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">+55 (88) 99999-9999</p>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <Mail className="size-8 outline-black text-black"></Mail>
-              <p className="text-3xl">email_aluno_projeto@aluno.ufca.edu.br</p>
+              <Mail className="max-md:size-6 md:size-8 outline-black text-black"></Mail>
+              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">email_aluno_projeto@aluno.ufca.edu.br</p>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <Mail className="size-8 outline-black text-black"></Mail>
-              <p className="text-3xl">email_projeto@ufca.edu.br</p>
+              <Mail className="max-md:size-6 md:size-8 outline-black text-black"></Mail>
+              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">email_projeto@ufca.edu.br</p>
             </div>
           </CardContent>
         </Card>
