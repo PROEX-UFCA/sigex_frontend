@@ -14,7 +14,7 @@ export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
-  const [pageData, setPageData] = useState();
+  const [pageData, setPageData] = useState<any>();
   const [loading, setLoading] = useState(true);
 
   const currentPage = Number(searchParams.get("page") ?? 1);
