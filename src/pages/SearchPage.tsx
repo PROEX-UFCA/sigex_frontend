@@ -35,8 +35,6 @@ export default function SearchPage() {
       setResults(data.data);
       setPageData(data);
       setLoading(false);
-
-      console.log(pageData);
     };
 
     fetchData();
