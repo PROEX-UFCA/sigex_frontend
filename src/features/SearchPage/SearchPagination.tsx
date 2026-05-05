@@ -34,7 +34,7 @@ export default function SearchPagination({
             }}
             aria-disabled={current_page === 1}
             className={
-              current_page === last_page ? "pointer-events-none opacity-50" : ""
+              current_page === 1 ? "pointer-events-none opacity-50" : ""
             }
           />
         </PaginationItem>

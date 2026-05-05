@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useNavigation } from "react-router";
 
 import TagsArea from "@/components/Tags";
 
@@ -33,7 +33,7 @@ export default function BigProject({
         className={`flex flex-col relative z-10 max-md:px-6 px-8 xl:px-16 2xl:px-32 py-8 w-full text-gray-50 gap-2`}
       >
         <span
-          className={`flex lg:text-5xl md:text-4xl sm:text-4xl max-sm:text-3xl font-bold ${center ? "self-center text-center" : ""}`}
+          className={`flex lg:text-5xl md:text-4xl sm:text-4xl max-sm:text-2xl font-bold ${center ? "self-center text-center" : ""}`}
         >
           {title}
         </span>

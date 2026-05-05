@@ -8,12 +8,12 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen gap-3">
+    <div className="flex flex-col min-h-screen">
       <ScrollToTop />
       <div className="flex">
         <TopBar></TopBar>
       </div>
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex flex-1 items-center justify-center py-2">
         <Outlet />
       </div>
       <div className="flex">

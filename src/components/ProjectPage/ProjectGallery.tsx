@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { ProjectImages } from "@/utils/project";
 
 import culturaImg from "@/assets/cultura.png";
-import { Frown } from "lucide-react";
+import { Info } from "lucide-react";
 
 export default function ProjectGallery({ imageURL }: ProjectImages) {
   const imageQtd = imageURL.length;
@@ -42,10 +42,12 @@ export default function ProjectGallery({ imageURL }: ProjectImages) {
 
   return (
     <div className="flex flex-col w-2/3 self-center gap-4">
-      <div className="flex flex-col w-2/3 self-center text-gray-400 my-4 py-4">
-        <Frown className="scale-400 mb-10 self-center" />
-        <p className="text-4xl">
-          Ainda não temos imagens do projeto. Cheque novamente mais tarde!
+      <div className="text-4xl font-bold underline">Galeria</div>
+      <div className="flex flex-col max-xl:w-full xl:w-2/3 self-center text-gray-400 my-4 py-4">
+        <Info className="scale-300 mb-10 self-center"></Info>
+        <p className="text-3xl ">
+          Galeria indisponível por ausência de conteúdo. Cheque novamente mais
+          tarde!
         </p>
       </div>
     </div>

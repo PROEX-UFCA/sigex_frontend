@@ -20,30 +20,12 @@ const router = createHashRouter([
       },
       {
         path: "/projects/:id",
-        element: (
-          <ProjectPage
-            title="Título/nome do Projeto"
-            contact={{ email: "", phoneNum: "" }}
-            description=""
-            images={{imageURL: [""]}}
-            tags={[
-              {
-                tagType: "Tecnologia",
-              },
-              {
-                tagType: "Cultura",
-              },
-              {
-                tagType: "Educação",
-              },
-            ]}
-          />
-        ),
+        element: <ProjectPage></ProjectPage>,
       },
       {
         path: "/search/:term?",
-        element: (<SearchPage></SearchPage>)
-      }
+        element: <SearchPage></SearchPage>,
+      },
     ],
   },
 ]);
