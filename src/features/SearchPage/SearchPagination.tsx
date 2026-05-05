@@ -26,7 +26,17 @@ export default function SearchPagination({
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" />
+          <PaginationPrevious
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (current_page > 1) onPageChange(current_page - 1);
+            }}
+            aria-disabled={current_page === 1}
+            className={
+              current_page === 1 ? "pointer-events-none opacity-50" : ""
+            }
+          />
         </PaginationItem>
         {pages.map((page, index) =>
           page === "..." ? (
