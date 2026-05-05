@@ -25,7 +25,7 @@ export default function LandingPage() {
         sectionTitle="Encerramento Próximo"
         data_fim={format(new Date(), "yyyy-MM-dd")}
       ></SmallCarousel>
-      <section className="text-4xl my-10">
+      <section className="max-md:text-3xl md:text-4xl my-10">
         Ainda em dúvida?<br></br>
         Utilize nossa{" "}
         <a onClick={scrollToTop} className="cursor-pointer underline">
