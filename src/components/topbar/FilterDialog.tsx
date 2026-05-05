@@ -167,7 +167,7 @@ export default function FilterDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant={"secondary"} className="h-10 sm:w-10 md:w-20 lg:w-30">
+        <Button variant={"secondary"} className="h-10 w-1/6 md:w-1/8 lg:w-1/10 xl:w-1/12">
           <Funnel className="" />
           Filtros
         </Button>
