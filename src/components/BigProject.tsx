@@ -1,4 +1,4 @@
-import { useNavigate, useNavigation } from "react-router";
+import { useNavigate } from "react-router";
 
 import TagsArea from "@/components/Tags";
 

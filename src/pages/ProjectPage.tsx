@@ -1,4 +1,4 @@
-import { Info, Mail, Phone, TriangleAlert } from "lucide-react";
+import { Mail, Phone, TriangleAlert } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
@@ -10,11 +10,21 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import type { Projeto } from "@/types/projeto";
 import recognizeTags from "@/utils/tagRecognition";
+import { Button } from "@/components/ui/button";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
 export default function ProjectPage() {
   const projectID = useParams<{ id: string }>();
+
+  const { width } = useScreenSize();
+
   const [results, setResults] = useState<Projeto>({} as Projeto);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const toggleExpansion = () =>
+    setIsExpanded((previousState) => !previousState);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +34,30 @@ export default function ProjectPage() {
     };
     fetchData();
   }, [projectID]);
+
+  const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+            orci ligula, fermentum vel felis nec, aliquet fermentum mi. Nullam
+            at viverra nibh, at auctor est. Phasellus laoreet, nulla sed aliquam
+            luctus, mauris dui consectetur erat, ac gravida turpis leo sit amet
+            turpis. Mauris turpis sem, venenatis sed varius sit amet, malesuada
+            non elit. Sed nec porttitor enim. Donec ultricies consequat
+            pharetra. Mauris tellus nunc, auctor ut odio eget, hendrerit sodales
+            tellus. Vivamus varius libero turpis, vitae posuere augue cursus eu.
+            Donec id sapien sagittis, dapibus leo vitae, semper risus. Praesent
+            turpis dolor, ornare vitae pharetra ut, blandit eget nibh. Nulla
+            fringilla volutpat ex, et posuere nisl pulvinar id. Nam sed ante ut ex feugiat fringilla. Suspendisse urna mauris,
+            mattis vitae purus ut, porta pellentesque odio. Duis at tellus eu
+            nunc hendrerit euismod. Aenean at metus fermentum, varius mauris
+            vel, pulvinar elit. Nunc laoreet lorem quis elit imperdiet
+            tincidunt. Etiam ultricies suscipit justo in auctor. Nulla et elit
+            ornare, posuere velit ut, aliquam odio. Nulla facilisi. Nullam
+            tempus, metus vel vehicula blandit, justo lorem placerat nisl, ac
+            malesuada odio urna vel metus. Nulla eget imperdiet tortor. Praesent
+            nec tortor posuere, vulputate neque a, aliquam nibh. Suspendisse et
+            fermentum ligula. Sed et lectus faucibus, gravida libero ut, tempus
+            eros. Nulla facilisi. Sed in nulla tincidunt, finibus massa sed,
+            semper diam. Maecenas aliquet, nibh id consectetur pulvinar, mi ante
+            faucibus est, accumsan aliquet odio ipsum vel sem.`;
 
   if (loading)
     return (
@@ -46,6 +80,11 @@ export default function ProjectPage() {
       </div>
     );
 
+  const shownContent =
+    isExpanded || width > content.length
+      ? content
+      : `${content.substring(0, width)}...`;
+
   const tags = recognizeTags([results.area_tematica]);
   return (
     <div className="flex flex-col w-full gap-1">
@@ -58,43 +97,17 @@ export default function ProjectPage() {
       <div className="flex flex-col py-6">
         <div className="text-4xl font-bold underline">Descrição do Projeto</div>
         <div className="flex flex-col gap-2 text-left self-center text-lg max-md:w-7/8 md:max-xl:w-5/6 xl:w-3/4 ">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            orci ligula, fermentum vel felis nec, aliquet fermentum mi. Nullam
-            at viverra nibh, at auctor est. Phasellus laoreet, nulla sed aliquam
-            luctus, mauris dui consectetur erat, ac gravida turpis leo sit amet
-            turpis. Mauris turpis sem, venenatis sed varius sit amet, malesuada
-            non elit. Sed nec porttitor enim. Donec ultricies consequat
-            pharetra. Mauris tellus nunc, auctor ut odio eget, hendrerit sodales
-            tellus. Vivamus varius libero turpis, vitae posuere augue cursus eu.
-            Donec id sapien sagittis, dapibus leo vitae, semper risus. Praesent
-            turpis dolor, ornare vitae pharetra ut, blandit eget nibh. Nulla
-            fringilla volutpat ex, et posuere nisl pulvinar id.
-          </p>
-          <p>
-            Nam sed ante ut ex feugiat fringilla. Suspendisse urna mauris,
-            mattis vitae purus ut, porta pellentesque odio. Duis at tellus eu
-            nunc hendrerit euismod. Aenean at metus fermentum, varius mauris
-            vel, pulvinar elit. Nunc laoreet lorem quis elit imperdiet
-            tincidunt. Etiam ultricies suscipit justo in auctor. Nulla et elit
-            ornare, posuere velit ut, aliquam odio. Nulla facilisi. Nullam
-            tempus, metus vel vehicula blandit, justo lorem placerat nisl, ac
-            malesuada odio urna vel metus. Nulla eget imperdiet tortor. Praesent
-            nec tortor posuere, vulputate neque a, aliquam nibh. Suspendisse et
-            fermentum ligula. Sed et lectus faucibus, gravida libero ut, tempus
-            eros. Nulla facilisi. Sed in nulla tincidunt, finibus massa sed,
-            semper diam. Maecenas aliquet, nibh id consectetur pulvinar, mi ante
-            faucibus est, accumsan aliquet odio ipsum vel sem.
-          </p>
-          <p>
-            Mauris tincidunt, metus ut sollicitudin sagittis, purus lectus
-            maximus risus, ut ultricies massa arcu et ex. Pellentesque habitant
-            morbi tristique senectus et netus et malesuada fames ac turpis
-            egestas. Nam sit amet lorem sit amet neque vestibulum rhoncus sed
-            nec mauris. Morbi vulputate lorem vitae felis egestas, sit amet
-            vestibulum arcu condimentum. Nulla nec sollicitudin justo. Quisque
-            nec libero enim. Aenean gravida id risus eu tincidunt.
-          </p>
+          <p>{shownContent}</p>
+          {content.length > width ? (
+            <Button
+              onClick={toggleExpansion}
+              className="bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-xl h-12 w-3/4 self-center"
+            >
+              {isExpanded ? "Ler mais" : "Ler menos"}
+            </Button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <ProjectGallery
@@ -109,15 +122,21 @@ export default function ProjectPage() {
           <CardContent className="flex flex-col max-sm:gap-3 sm:max-lg:gap-4 lg:gap-6 font-bold">
             <div className="flex flex-row items-center gap-3">
               <Phone className="max-md:size-6 md:size-8 outline-black text-black"></Phone>
-              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">+55 (88) 99999-9999</p>
+              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">
+                +55 (88) 99999-9999
+              </p>
             </div>
             <div className="flex flex-row items-center gap-3">
               <Mail className="max-md:size-6 md:size-8 outline-black text-black"></Mail>
-              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">email_aluno_projeto@aluno.ufca.edu.br</p>
+              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">
+                email_aluno_projeto@aluno.ufca.edu.br
+              </p>
             </div>
             <div className="flex flex-row items-center gap-3">
               <Mail className="max-md:size-6 md:size-8 outline-black text-black"></Mail>
-              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">email_projeto@ufca.edu.br</p>
+              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">
+                email_projeto@ufca.edu.br
+              </p>
             </div>
           </CardContent>
         </Card>
