@@ -1,4 +1,4 @@
-import Logo from "@/assets/logo_ufca_white.svg";
+import Logo from "@/assets/logo_proex_top.png";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -78,7 +78,7 @@ export default function TopBar() {
   return (
     <div className="flex justify-around rounded-b-2xl bg-[#532b1d] w-full items-center">
       <Link to={"/"} className="cursor-pointer hover:opacity-85">
-        <img src={Logo} alt="Logo UFCA" className="h-12 m-3" />
+        <img src={Logo} alt="Logo UFCA" className="h-12 m-3 object-contain" />
       </Link>
       <SearchArea></SearchArea>
     </div>
