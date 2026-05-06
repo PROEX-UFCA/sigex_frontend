@@ -1,4 +1,4 @@
-import type { TagAttributes } from "@/components/Tags";
+import type { TagAttributes } from "@/types/tags";
 
 export interface ProjectImages {
   imageURL: string[];

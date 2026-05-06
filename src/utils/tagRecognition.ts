@@ -1,4 +1,4 @@
-import type { TagAttributes } from "@/components/Tags";
+import type { TagAttributes } from "@/types";
 
 export default function recognizeTags(
   tagArray: string[],
