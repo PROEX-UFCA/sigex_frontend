@@ -4,17 +4,17 @@ import { useParams, useSearchParams } from "react-router";
 import { TriangleAlert } from "lucide-react";
 
 import { searchProjectsByFilter } from "@/services/projectServices";
-// import type { Projeto } from "@/types";
 
 import Results from "@/features/SearchPage/Results";
 import SearchPagination from "@/features/SearchPage/SearchPagination";
 import { Spinner } from "@/components/ui/spinner";
+import type { PageData, Project } from "@/types";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [results, setResults] = useState([]);
-  const [pageData, setPageData] = useState<any>();
+  const [results, setResults] = useState<Project[]>([]);
+  const [pageData, setPageData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
 
   const currentPage = Number(searchParams.get("page") ?? 1);
@@ -73,8 +73,8 @@ export default function SearchPage() {
     <div className="flex flex-col">
       <Results projetos={results}></Results>
       <SearchPagination
-        current_page={pageData?.current_page ?? 1}
-        last_page={pageData?.last_page ?? 1}
+        current_page={pageData?.currentPage ?? 1}
+        last_page={pageData?.lastPage ?? 1}
         onPageChange={handlePageChange}
       ></SearchPagination>
     </div>
