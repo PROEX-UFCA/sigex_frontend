@@ -1,40 +1,31 @@
-import type { Projeto } from "@/types";
+import type { ProjectFilters, Project } from "@/types";
 import apiConnection from "@/services/api";
 
-export const getProjects = async (): Promise<Projeto[]> => {
+export const getProjects = async (): Promise<Project[]> => {
   try {
     const data = await apiConnection.get("/acoes");
 
-    const projectList: Projeto[] = data.data.data.data;
+    const projectList: Project[] = data.data.data.data;
 
     return projectList;
   } catch (error) {
-    console.error("ERRO AO PEGAR INFORMAÇÕES DO PROJETO!", error);
-    return {} as Projeto[];
+    console.error("ERRO AO BUSCAR PROJETOS!", error);
+    return [];
   }
 }
 
-export const getProjectByID = async (id: string): Promise<Projeto> => {
+export const getProjectByID = async (id: string): Promise<Project | null> => {
   try {
     const data = await apiConnection.get(`/acoes/${id}`);
 
-    const project: Projeto = data.data.data;
+    const project: Project = data.data.data;
 
     return project;
   } catch (error) {
     console.error("ERRO AO PEGAR INFORMAÇÕES DO PROJETO!", error);
-    return {} as Projeto;
+    return null;
   }
 };
-
-interface ProjectFilters {
-  titulo?: string;
-  tipo_acao?: string;
-  area_tematica?: string;
-  data_inicio?: string;
-  data_fim?: string;
-  page?: number;
-}
 
 export const searchProjectsByFilter = async (filters: ProjectFilters, getAllData: boolean = false) => {
   const params: Record<string, string> = {};
