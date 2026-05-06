@@ -104,7 +104,7 @@ export default function ProjectPage() {
               onClick={toggleExpansion}
               className="bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-xl h-12 w-3/4 self-center"
             >
-              {isExpanded ? "Ler mais" : "Ler menos"}
+              {isExpanded ? "Ler menos" : "Ler mais"}
             </Button>
           ) : (
             <></>
