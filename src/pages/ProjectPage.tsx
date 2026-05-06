@@ -1,6 +1,5 @@
-import { Mail, Phone, TriangleAlert } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
 import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
 
 import BigProject from "@/components/BigProject";
