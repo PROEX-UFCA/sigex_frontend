@@ -8,12 +8,20 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Toggle } from "@/components/ui/toggle";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 import { Check, Funnel } from "lucide-react";
 
 import { useState } from "react";
-
-import { Toggle } from "@/components/ui/toggle";
 
 import DateFilter, {
   type DateFilterProps,
@@ -99,6 +107,7 @@ function FilterTypes({
 export default function FilterDialog() {
   const [resetKey, setResetKey] = useState(0);
   const [open, setOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<{
     categories: Array<string>;
     actionTypes: Array<string>;
@@ -112,6 +121,15 @@ export default function FilterDialog() {
   });
   const navigate = useNavigate();
 
+  function hasFiltersSelected() {
+    return (
+      selectedFilters.actionTypes.length > 0 ||
+      selectedFilters.categories.length > 0 ||
+      selectedFilters.finalDate !== null ||
+      selectedFilters.initialDate !== null
+    );
+  }
+
   function handleClear() {
     setResetKey((prev) => prev + 1);
     setSelectedFilters({
@@ -123,6 +141,11 @@ export default function FilterDialog() {
   }
 
   function handleApplyFilters() {
+    if (!hasFiltersSelected()) {
+      setShowAlert(true);
+      return;
+    }
+
     const params = new URLSearchParams();
 
     if (selectedFilters.categories.length > 0)
@@ -138,10 +161,7 @@ export default function FilterDialog() {
       );
 
     if (selectedFilters.finalDate)
-      params.set(
-        "data_fim",
-        format(selectedFilters.finalDate, "yyyy-MM-dd"),
-      );
+      params.set("data_fim", format(selectedFilters.finalDate, "yyyy-MM-dd"));
 
     setOpen(false);
     navigate(`/search?${params.toString()}`);
@@ -165,86 +185,110 @@ export default function FilterDialog() {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant={"secondary"} className="h-10 w-1/6 md:w-1/8 lg:w-1/10 xl:w-1/12">
-          <Funnel className="" />
-          Filtros
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="w-full">
-        <DialogHeader>
-          <DialogTitle className="text-xl">Filtros</DialogTitle>
-        </DialogHeader>
-        <div key={resetKey} className="max-h-72 overflow-y-auto no-scrollbar">
-          <FilterTypes
-            filterType="Categoria"
-            filters={[
-              { filterName: "Comunicação" },
-              { filterName: "Cultura" },
-              { filterName: "Justiça" },
-              { filterName: "Educação" },
-              { filterName: "Meio Ambiente" },
-              { filterName: "Saúde" },
-              { filterName: "Tecnologia" },
-              { filterName: "Trabalho" },
-              // { filterName: "Esportes" },
-              // { filterName: "Sociedade" },
-              // { filterName: "Idiomas" },
-              // { filterName: "Artes" },
-              // { filterName: "Patrimônio" },
-            ]}
-            selectedFilters={selectedFilters.categories}
-            onToggle={(name) => toggleFilter("categories", name)}
-          />
-          <Separator className="my-2" />
-          <FilterTypes
-            filterType="Tipo de Ação"
-            filters={[
-              { filterName: "Curso" },
-              { filterName: "Evento" },
-              { filterName: "Prestação de Serviços" },
-              { filterName: "Programa" },
-              { filterName: "Projeto" },
-            ]}
-            selectedFilters={selectedFilters.actionTypes}
-            onToggle={(name) => toggleFilter("actionTypes", name)}
-          />
-          <Separator className="my-2" />
-          <FilterTypes
-            filterType="Duração da Ação"
-            DateComponents={[
-              {
-                DateComponent: DateFilter,
-                label: "Data inicial",
-                onDateChange: (date) =>
-                  setSelectedFilters((prev) => ({
-                    ...prev,
-                    initialDate: date ?? null,
-                  })),
-              },
-              {
-                DateComponent: DateFilter,
-                label: "Data final",
-                onDateChange: (date) =>
-                  setSelectedFilters((prev) => ({
-                    ...prev,
-                    finalDate: date ?? null,
-                  })),
-              },
-            ]}
-            selectedFilters={[]}
-          />
-        </div>
-        <DialogFooter className="flex flex-row sm:justify-center gap-3 mx-1">
-          <Button variant={"destructive"} onClick={handleClear}>
-            Limpar filtros
+    <div className="contents">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button
+            variant={"secondary"}
+            className="h-10 w-1/6 md:w-1/8 lg:w-1/10 xl:w-1/12"
+          >
+            <Funnel className="" />
+            Filtros
           </Button>
-          <Button variant={"outline"} onClick={handleApplyFilters}>
-            Aplicar filtros
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </DialogTrigger>
+        <DialogContent className="w-full">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Filtros</DialogTitle>
+          </DialogHeader>
+          <div key={resetKey} className="max-h-72 overflow-y-auto no-scrollbar">
+            <FilterTypes
+              filterType="Categoria"
+              filters={[
+                { filterName: "Comunicação" },
+                { filterName: "Cultura" },
+                { filterName: "Justiça" },
+                { filterName: "Educação" },
+                { filterName: "Meio Ambiente" },
+                { filterName: "Saúde" },
+                { filterName: "Tecnologia" },
+                { filterName: "Trabalho" },
+                // { filterName: "Esportes" },
+                // { filterName: "Sociedade" },
+                // { filterName: "Idiomas" },
+                // { filterName: "Artes" },
+                // { filterName: "Patrimônio" },
+              ]}
+              selectedFilters={selectedFilters.categories}
+              onToggle={(name) => toggleFilter("categories", name)}
+            />
+            <Separator className="my-2" />
+            <FilterTypes
+              filterType="Tipo de Ação"
+              filters={[
+                { filterName: "Curso" },
+                { filterName: "Evento" },
+                { filterName: "Prestação de Serviços" },
+                { filterName: "Programa" },
+                { filterName: "Projeto" },
+              ]}
+              selectedFilters={selectedFilters.actionTypes}
+              onToggle={(name) => toggleFilter("actionTypes", name)}
+            />
+            <Separator className="my-2" />
+            <FilterTypes
+              filterType="Duração da Ação"
+              DateComponents={[
+                {
+                  DateComponent: DateFilter,
+                  label: "Data inicial",
+                  onDateChange: (date) =>
+                    setSelectedFilters((prev) => ({
+                      ...prev,
+                      initialDate: date ?? null,
+                    })),
+                },
+                {
+                  DateComponent: DateFilter,
+                  label: "Data final",
+                  onDateChange: (date) =>
+                    setSelectedFilters((prev) => ({
+                      ...prev,
+                      finalDate: date ?? null,
+                    })),
+                },
+              ]}
+              selectedFilters={[]}
+            />
+          </div>
+          <DialogFooter className="flex flex-row sm:justify-center gap-3 mx-1">
+            <Button variant={"destructive"} onClick={handleClear}>
+              Limpar filtros
+            </Button>
+            <Button variant={"outline"} onClick={handleApplyFilters}>
+              Aplicar filtros
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      {hasFiltersSelected() ? (
+        <></>
+      ) : (
+        <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="text-xl">Nenhum filtro selecionado</AlertDialogTitle>
+              <AlertDialogDescription className="text-lg">
+                Selecione ao menos um filtro antes de aplicar a busca.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setShowAlert(false)}>
+                Entendido
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
+    </div>
   );
 }
