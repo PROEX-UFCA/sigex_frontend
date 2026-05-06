@@ -1,4 +1,6 @@
-export interface Projeto {
+import type { TagAttributes } from "@/types/tags";
+
+export interface Project {
   id: string;
   id_coordenador: string;
   id_atividade: string;
@@ -15,4 +17,10 @@ export interface Projeto {
   img: string[] | string | null;
 }
 
-export type ProjetoCard = Pick<Projeto, 'id' | 'titulo'>
+export interface ProjectProps {
+  id: string;
+  title: string;
+  tags: TagAttributes[];
+  description?: string | null;
+  center?: boolean;
+}
