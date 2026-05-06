@@ -1,9 +1,9 @@
 import SmallProject from "@/components/SmallProject";
-import type { Projeto } from "@/types";
+import type { Project } from "@/types";
 import recognizeTags from "@/utils/tagRecognition";
 
 interface ResultsData {
-  projetos: Projeto[];
+  projetos: Project[];
 }
 
 export default function Results({ projetos }: ResultsData) {

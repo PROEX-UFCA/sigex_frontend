@@ -2,19 +2,18 @@ import { useNavigate } from "react-router";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 
-import type { ProjectProps } from "@/utils/globals";
 import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
 
 import TagsArea from "@/components/Tags";
 import { hashId } from "@/utils/hashId";
 import { BREAKPOINTS } from "@/lib/breakpoints";
-// import { getActiveBreakpoint } from "@/utils/breakpoints";
+
+import type { ProjectProps } from "@/types";
 
 export default function SmallProject({ id, title, tags }: ProjectProps) {
   const navigate = useNavigate();
 
   const { width } = useScreenSize();
-  // const windowSize = getActiveBreakpoint(width);
 
   return (
     <div

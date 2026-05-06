@@ -1,18 +1,8 @@
 import type { ElementType } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CATEGORIES } from "@/utils/constants";
+import type { TagProps } from "@/types";
 
-export interface TagAttributes {
-  tagType: string;
-  icon?: ElementType;
-  backgroundColor?: string;
-  textColor?: string;
-}
-
-interface TagProps {
-  tags: Array<TagAttributes>;
-  size?: "sm" | "md" | "lg" | "xl";
-}
 
 export default function TagsArea({ tags, size = "md" }: TagProps) {
   const sizeStyles = {
