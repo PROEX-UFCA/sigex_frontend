@@ -1,6 +1,6 @@
 import "@/App.css";
 
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 
 import Footer from "@/components/Footer";
 import TopBar from "@/components/topbar/TopBar";
