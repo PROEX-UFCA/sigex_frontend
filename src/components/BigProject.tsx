@@ -28,7 +28,7 @@ export default function BigProject({
         backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
       }}
     >
-      <div className="absolute bottom-0 left-0 right-0 h-50 bg-black/20 blur-md rounded-b-3xl"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-transparent max-md:from-40% md:from-60% to-black/70 rounded-b-3xl"></div>
       <div
         className={`flex flex-col relative z-10 max-md:px-6 px-8 xl:px-16 2xl:px-32 py-8 text-gray-50 gap-2 w-full overflow-hidden`}
       >

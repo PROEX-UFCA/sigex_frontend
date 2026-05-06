@@ -9,6 +9,7 @@ import Results from "@/features/SearchPage/Results";
 import SearchPagination from "@/features/SearchPage/SearchPagination";
 import { Spinner } from "@/components/ui/spinner";
 import type { PageData, Project } from "@/types";
+// import type { APIData } from "@/types/apiData";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
@@ -30,10 +31,10 @@ export default function SearchPage() {
           data_fim: searchParams.get("data_fim") ?? undefined,
           page: currentPage,
         },
-        true,
+        true
       );
       setResults(data.data);
-      setPageData(data);
+      setPageData({data: data.data, current_page: data.current_page, last_page: data.last_page});
       setLoading(false);
     };
 
@@ -73,8 +74,8 @@ export default function SearchPage() {
     <div className="flex flex-col">
       <Results projetos={results}></Results>
       <SearchPagination
-        current_page={pageData?.currentPage ?? 1}
-        last_page={pageData?.lastPage ?? 1}
+        current_page={pageData?.current_page ?? 1}
+        last_page={pageData?.last_page ?? 1}
         onPageChange={handlePageChange}
       ></SearchPagination>
     </div>

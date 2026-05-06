@@ -1,5 +1,6 @@
 import type { ProjectFilters, Project } from "@/types";
 import apiConnection from "@/services/api";
+import type { APIData } from "@/types/apiData";
 
 export const getProjects = async (): Promise<Project[]> => {
   try {
@@ -12,7 +13,7 @@ export const getProjects = async (): Promise<Project[]> => {
     console.error("ERRO AO BUSCAR PROJETOS!", error);
     return [];
   }
-}
+};
 
 export const getProjectByID = async (id: string): Promise<Project | null> => {
   try {
@@ -27,7 +28,18 @@ export const getProjectByID = async (id: string): Promise<Project | null> => {
   }
 };
 
-export const searchProjectsByFilter = async (filters: ProjectFilters, getAllData: boolean = false) => {
+export async function searchProjectsByFilter(
+  filters: ProjectFilters,
+  getAllData: true,
+): Promise<APIData>;
+export async function searchProjectsByFilter(
+  filters: ProjectFilters,
+  getAllData?: false,
+): Promise<Project[]>;
+export async function searchProjectsByFilter(
+  filters: ProjectFilters,
+  getAllData: boolean = false,
+): Promise<APIData | Project[]> {
   const params: Record<string, string> = {};
 
   if (filters.titulo) params.titulo = filters.titulo;
@@ -41,7 +53,9 @@ export const searchProjectsByFilter = async (filters: ProjectFilters, getAllData
 
   try {
     const response = await apiConnection.get("/acoes", { params });
-    const projects = getAllData ? response?.data?.data : response?.data?.data?.data;
+    const projects = getAllData
+      ? response?.data?.data
+      : response?.data?.data?.data;
 
     if (!projects) return [];
     return projects;
@@ -49,4 +63,4 @@ export const searchProjectsByFilter = async (filters: ProjectFilters, getAllData
     console.error(error);
     return [];
   }
-};
+}
