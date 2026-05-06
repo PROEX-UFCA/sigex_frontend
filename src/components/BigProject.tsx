@@ -5,7 +5,7 @@ import TagsArea from "@/components/Tags";
 import { useScreenSize } from "@/hooks/useScreenSize";
 
 import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
-import type { ProjectProps } from "@/utils/globals";
+import type { ProjectProps } from "@/types";
 import { hashId } from "@/utils/hashId";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
