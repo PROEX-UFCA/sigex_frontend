@@ -16,7 +16,7 @@ export default function Footer() {
               className="left-0 h-48 object-contain"
             ></img>
           </div>
-          <div className="justify-start w-1/2 lg:w-1/3 text-left text-lg py-6">
+          <div className="justify-start w-1/2 lg:w-1/3 text-left max-sm:text-sm sm:max-lg:text-base lg:text-lg py-6">
             Endereço: Av. Tenente Raimundo Rocha N° 1639 &ndash; Bairro Cidade
             Universitária Juazeiro do Norte &ndash; Ceará &ndash; CEP: 63048-080
             &ndash; Bloco "K", Salas K201 e K202 (2° Andar) &ndash; Telefone:

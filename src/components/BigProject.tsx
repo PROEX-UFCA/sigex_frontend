@@ -30,13 +30,13 @@ export default function BigProject({
     >
       <div className="absolute bottom-0 left-0 right-0 h-50 bg-black/20 blur-md rounded-b-3xl"></div>
       <div
-        className={`flex flex-col relative z-10 max-md:px-6 px-8 xl:px-16 2xl:px-32 py-8 w-full text-gray-50 gap-2`}
+        className={`flex flex-col relative z-10 max-md:px-6 px-8 xl:px-16 2xl:px-32 py-8 text-gray-50 gap-2 w-full overflow-hidden`}
       >
-        <span
-          className={`flex lg:text-5xl md:text-4xl sm:text-4xl max-sm:text-2xl font-bold ${center ? "self-center text-center" : ""}`}
+        <p
+          className={`block line-clamp-3 wrap-break-word lg:text-5xl md:text-4xl sm:text-4xl max-sm:text-2xl font-bold ${center ? "text-center" : ""}`}
         >
           {title}
-        </span>
+        </p>
         <p
           className={`text-left ${width < BREAKPOINTS.md ? "text-sm" : "text-md"} line-clamp-3 opacity-80`}
         >

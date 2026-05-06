@@ -78,7 +78,7 @@ export default function SmallCarousel({
       <div
         className={`flex flex-col max-md:w-full md:w-47/50 mx-auto px-6 items-center`}
       >
-        <div className="flex self-start mb-2">
+        <div className="flex w-full self-start mb-2">
           <h2 className="text-2xl font-bold text-[#553a25]">{sectionTitle}</h2>
         </div>
 

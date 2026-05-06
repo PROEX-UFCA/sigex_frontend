@@ -12,6 +12,7 @@ import type { Projeto } from "@/types/projeto";
 import recognizeTags from "@/utils/tagRecognition";
 import { Button } from "@/components/ui/button";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import ContactArea from "@/components/ContactArea";
 
 export default function ProjectPage() {
   const projectID = useParams<{ id: string }>();
@@ -95,7 +96,7 @@ export default function ProjectPage() {
         center
       ></BigProject>
       <div className="flex flex-col py-6">
-        <div className="text-4xl font-bold underline">Descrição do Projeto</div>
+        <p className="max-lg:text-3xl lg:text-4xl font-bold underline">Descrição do Projeto</p>
         <div className="flex flex-col gap-2 text-left self-center text-lg max-md:w-7/8 md:max-xl:w-5/6 xl:w-3/4 ">
           <p>{shownContent}</p>
           {content.length > width ? (
@@ -103,7 +104,7 @@ export default function ProjectPage() {
               onClick={toggleExpansion}
               className="bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-xl h-12 w-3/4 self-center"
             >
-              {isExpanded ? "Ler mais" : "Ler menos"}
+              {isExpanded ? "Ler menos" : "Ler mais"}
             </Button>
           ) : (
             <></>
@@ -116,30 +117,9 @@ export default function ProjectPage() {
         }
       />
       <div className="flex flex-col self-center justify-center py-8">
-        <p className="font-bold text-5xl">Interessado?</p>
+        <p className="font-bold max-lg:text-3xl lg:text-4xl">Interessado?</p>
         <p className="font-bold text-2xl">Entre em contato conosco!</p>
-        <Card className="self-center w-fit bg-[#75b747]">
-          <CardContent className="flex flex-col max-sm:gap-3 sm:max-lg:gap-4 lg:gap-6 font-bold">
-            <div className="flex flex-row items-center gap-3">
-              <Phone className="max-md:size-6 md:size-8 outline-black text-black"></Phone>
-              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">
-                +55 (88) 99999-9999
-              </p>
-            </div>
-            <div className="flex flex-row items-center gap-3">
-              <Mail className="max-md:size-6 md:size-8 outline-black text-black"></Mail>
-              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">
-                email_aluno_projeto@aluno.ufca.edu.br
-              </p>
-            </div>
-            <div className="flex flex-row items-center gap-3">
-              <Mail className="max-md:size-6 md:size-8 outline-black text-black"></Mail>
-              <p className="max-sm:text-xl sm:max-md:text-2xl md:max-lg:text-3xl lg:text-3xl">
-                email_projeto@ufca.edu.br
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+        <ContactArea />
       </div>
     </div>
   );
