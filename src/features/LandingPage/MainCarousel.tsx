@@ -12,7 +12,7 @@ import BigProject from "@/components/BigProject";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 import { useEffect, useState } from "react";
-import type { Projeto } from "@/types";
+import type { Project } from "@/types";
 import { getProjects } from "@/services/projectServices";
 import { TriangleAlert } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
@@ -22,7 +22,7 @@ const TIME_DELAY = 10000;
 
 export default function MainCarousel() {
   const { width } = useScreenSize();
-  const [results, setResults] = useState<Projeto[]>([]);
+  const [results, setResults] = useState<Project[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -67,20 +67,6 @@ export default function MainCarousel() {
         plugins={[Autoplay({ delay: TIME_DELAY })]}
       >
         <CarouselContent>
-          {/* {itemList.map((item, index) => {
-            return (
-              <CarouselItem key={index}>
-                <BigProject
-                  key={item.id}
-                  id={item.id}
-                  tags={item.tags}
-                  title={item.title}
-                  description={item.description}
-                  center={false}
-                />
-              </CarouselItem>
-            );
-          })} */}
           {results.map((item, index) => {
             return (
               <CarouselItem key={index}>

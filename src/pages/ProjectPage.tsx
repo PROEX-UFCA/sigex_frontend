@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 import { getProjectByID } from "@/services/projectServices";
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
-import type { Projeto } from "@/types/projeto";
+import type { Project } from "@/types";
 import recognizeTags from "@/utils/tagRecognition";
 import { Button } from "@/components/ui/button";
 import { useScreenSize } from "@/hooks/useScreenSize";
@@ -18,7 +18,7 @@ export default function ProjectPage() {
 
   const { width } = useScreenSize();
 
-  const [results, setResults] = useState<Projeto>({} as Projeto);
+  const [results, setResults] = useState<Project>({} as Project);
   const [loading, setLoading] = useState<boolean>(true);
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -29,7 +29,7 @@ export default function ProjectPage() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getProjectByID(projectID.id!);
-      setResults(data);
+      setResults(data!);
       setLoading(false);
     };
     fetchData();
