@@ -25,7 +25,7 @@ export default function SmallProject({ id, title, tags }: ProjectProps) {
       }}
     >
       <div className="absolute inset-0 bg-linear-to-b from-transparent max-md:from-10% md:from-30% to-black/60 rounded-xl"></div>
-      <p className="z-2 font-bold text-gray-50 max-sm:text-sm sm:text-base max-md:text-lg md:text-xl text-left line-clamp-2">
+      <p className="z-2 font-bold text-gray-50 max-sm:text-sm sm:text-base max-md:text-lg md:text-xl text-left line-clamp-2 wrap-break-word">
         {title}
       </p>
       <TagsArea
