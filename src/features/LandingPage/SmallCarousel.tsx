@@ -10,7 +10,7 @@ import SmallProject from "@/components/SmallProject";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 import { useEffect, useState } from "react";
-import type { Projeto } from "@/types";
+import type { Project } from "@/types";
 import { searchProjectsByFilter } from "@/services/projectServices";
 import { Spinner } from "@/components/ui/spinner";
 import { TriangleAlert } from "lucide-react";
@@ -32,7 +32,7 @@ export default function SmallCarousel({
   data_fim,
 }: SmallCarouselSearchProps) {
   const { width } = useScreenSize();
-  const [results, setResults] = useState<Projeto[]>([]);
+  const [results, setResults] = useState<Project[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -102,19 +102,6 @@ export default function SmallCarousel({
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
-              {/* {itemList.map((item, index) => (
-                <CarouselItem
-                  key={index}
-                  className="pl-2 md:pl-4 max-md:basis-[45%] md:basis-[32%] lg:basis-[23%] xl:basis-[19%] 2xl:basis-[15%]"
-                >
-                  <SmallProject
-                    key={item.id}
-                    id={item.id}
-                    tags={item.tags}
-                    title={item.title}
-                  />
-                </CarouselItem>
-              ))} */}
               {results.map((item, index) => (
                 <CarouselItem
                   key={index}
