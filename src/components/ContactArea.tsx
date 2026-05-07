@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function ContactArea() {
   return (
-    <Card className="self-center w-fit bg-[#75b747]">
+    <Card className="self-center w-fit bg-zinc-200 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">
       <CardContent className="flex flex-col max-sm:gap-3 sm:max-lg:gap-4 lg:gap-6 font-bold">
         <div className="flex flex-row items-center gap-3">
           <Phone className="max-md:size-6 md:size-8 outline-black text-black"></Phone>

@@ -1,6 +1,6 @@
 import { TriangleAlert } from "lucide-react";
 
-import ProjectGallery from "@/components/ProjectPage/ProjectGallery";
+import ProjectGallery from "@/components/ProjectGallery";
 
 import BigProject from "@/components/BigProject";
 import { useParams } from "react-router";
