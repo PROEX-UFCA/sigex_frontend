@@ -24,3 +24,7 @@ export interface ProjectProps {
   description?: string | null;
   center?: boolean;
 }
+
+export interface ProjectImages {
+  imageURL: string[];
+}

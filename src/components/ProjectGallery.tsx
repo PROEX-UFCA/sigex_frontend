@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 
-import type { ProjectImages } from "@/utils/project";
+import type { ProjectImages } from "@/types";
 
 import culturaImg from "@/assets/cultura.png";
 import { Info } from "lucide-react";
