@@ -95,13 +95,15 @@ export default function ProjectPage() {
         center
       ></BigProject>
       <div className="flex flex-col py-6">
-        <p className="max-lg:text-3xl lg:text-4xl font-bold underline">Descrição do Projeto</p>
+        <p className="max-lg:text-3xl lg:text-4xl font-bold underline">
+          Descrição do Projeto
+        </p>
         <div className="flex flex-col gap-2 text-left self-center text-lg max-md:w-7/8 md:max-xl:w-5/6 xl:w-3/4 ">
           <p>{shownContent}</p>
           {content.length > width ? (
             <Button
               onClick={toggleExpansion}
-              className="bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-xl h-12 w-3/4 self-center"
+              className="bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-xl h-12 w-3/4 self-center hover:-translate-y-0.5 active:translate-y-2 transition-transform duration-100 ease-in-out"
             >
               {isExpanded ? "Ler menos" : "Ler mais"}
             </Button>

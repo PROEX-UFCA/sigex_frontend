@@ -49,7 +49,7 @@ function ToggleableSearchBar({
     >
       {active ? (
         <div className="flex w-full gap-2">
-          <form className="w-5/6" onSubmit={handleSearch}>
+          <form className="max-md:w-6/8 md:w-5/6" onSubmit={handleSearch}>
             <Input
               value={term}
               onChange={(e) => setTerm(e.target.value)}
@@ -119,7 +119,10 @@ export default function TopBar() {
   return (
     <div className="flex justify-around rounded-b-2xl bg-[#532b1d] w-full items-center">
       {!searchActive && (
-        <Link to={"/"} className="cursor-pointer hover:opacity-85">
+        <Link
+          to={"/"}
+          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out"
+        >
           <img
             src={Logo}
             alt="Logo UFCA"
