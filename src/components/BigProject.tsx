@@ -28,12 +28,12 @@ export default function BigProject({
         backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
       }}
     >
-      <div className="absolute inset-0 bg-linear-to-b from-transparent max-md:from-40% md:from-60% to-black/70 rounded-b-3xl"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-transparent max-md:from-50% md:from-60% to-black/70 rounded-b-3xl"></div>
       <div
         className={`flex flex-col relative z-10 max-md:px-6 px-8 xl:px-16 2xl:px-32 py-8 text-gray-50 gap-2 w-full overflow-hidden`}
       >
         <p
-          className={`block line-clamp-3 wrap-break-word lg:text-5xl md:text-4xl sm:text-4xl max-sm:text-2xl font-bold ${center ? "text-center" : "text-left"}`}
+          className={`block line-clamp-3 wrap-break-word max-sm:text-2xl sm:max-lg:text-3xl lg:max-2xl:text-4xl 2xl:text-5xl font-bold ${center ? "text-center" : "text-left"}`}
         >
           {title}
         </p>

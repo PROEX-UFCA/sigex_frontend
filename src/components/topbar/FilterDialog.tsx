@@ -190,7 +190,7 @@ export default function FilterDialog() {
         <DialogTrigger asChild>
           <Button
             variant={"secondary"}
-            className="h-10 w-1/6 md:w-1/8 lg:w-1/10 xl:w-1/12"
+            className="h-10 w-2/8 md:w-1/8 lg:w-1/10 xl:w-1/12 active:translate-y-1 transition-transform duration-100 ease-in-out"
           >
             <Funnel className="" />
             Filtros
@@ -212,11 +212,6 @@ export default function FilterDialog() {
                 { filterName: "Saúde" },
                 { filterName: "Tecnologia" },
                 { filterName: "Trabalho" },
-                // { filterName: "Esportes" },
-                // { filterName: "Sociedade" },
-                // { filterName: "Idiomas" },
-                // { filterName: "Artes" },
-                // { filterName: "Patrimônio" },
               ]}
               selectedFilters={selectedFilters.categories}
               onToggle={(name) => toggleFilter("categories", name)}
@@ -276,7 +271,9 @@ export default function FilterDialog() {
         <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle className="text-xl">Nenhum filtro selecionado</AlertDialogTitle>
+              <AlertDialogTitle className="text-xl">
+                Nenhum filtro selecionado
+              </AlertDialogTitle>
               <AlertDialogDescription className="text-lg">
                 Selecione ao menos um filtro antes de aplicar a busca.
               </AlertDialogDescription>
