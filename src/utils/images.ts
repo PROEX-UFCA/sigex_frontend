@@ -1,6 +1,6 @@
 import communicationImg from "@/assets/comunicação.png";
-import communicationImg2 from "@/assets/comunicação.png";
-import communicationImg3 from "@/assets/comunicação.png";
+import communicationImg2 from "@/assets/comunicação_2.png";
+import communicationImg3 from "@/assets/comunicação_3.png";
 
 import sportsImg from "@/assets/esportes.png";
 import sportsImg2 from "@/assets/esportes_2.png";
