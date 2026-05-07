@@ -1,14 +1,15 @@
-import Logo from "@/assets/logo_proex_top.png";
+import Logo from "/logo_proex_top.png";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import FilterDialog from "@/components/FilterDialog";
+import SideMenu from "@/components/MenuToggle";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { useSearch } from "@/hooks/useSearch";
 import { useRef, useState } from "react";
 import { Search } from "lucide-react";
-import FilterDialog from "./FilterDialog";
 import { Link } from "react-router";
-import { useSearch } from "@/hooks/useSearch";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
 function ToggleableSearchBar({
@@ -111,7 +112,7 @@ export default function TopBar() {
   const [searchActive, setSearchActive] = useState<boolean>(false);
 
   return (
-    <div className="flex justify-around rounded-b-2xl bg-[#532b1d] w-full items-center">
+    <div className="flex justify-around rounded-b-2xl bg-[#532b1d] w-full items-center px-3">
       {!searchActive && (
         <Link
           to={"/"}
@@ -125,6 +126,7 @@ export default function TopBar() {
         </Link>
       )}
       <SearchArea onSearchActive={setSearchActive}></SearchArea>
+      <SideMenu></SideMenu>
     </div>
   );
 }

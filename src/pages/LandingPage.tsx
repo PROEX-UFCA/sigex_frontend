@@ -29,7 +29,7 @@ export default function LandingPage() {
       ></SmallCarousel>
       <section className="max-md:text-3xl md:text-4xl my-10">
         Ainda em dúvida?<br></br>
-        Utilize nossa{" "}
+        Utilize nossa
         <a onClick={scrollToTop} className="cursor-pointer underline">
           busca por filtro
         </a>

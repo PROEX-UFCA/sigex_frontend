@@ -1,5 +1,5 @@
-import logoProex from "@/assets/proex-branco_total_teste.png";
-import socialMedia from "@/assets/Redes-sociais-branca.png";
+import logoProex from "/proex-branco_total_teste.png";
+import socialMedia from "/Redes-sociais-branca.png";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { BREAKPOINTS } from "@/lib/breakpoints";
