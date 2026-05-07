@@ -26,11 +26,7 @@ export default function DateFilter({ label, onDateChange }: DateFilterProps) {
     <Field>
       <Popover>
         <PopoverTrigger asChild>
-          <Button
-            variant={"outline"}
-            id="date-picker"
-            className="justify-start"
-          >
+          <Button variant={"outline"} className="justify-start">
             {date ? format(date, "yyyy-MM-dd") : <span>{label}</span>}
           </Button>
         </PopoverTrigger>

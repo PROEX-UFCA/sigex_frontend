@@ -4,12 +4,14 @@ import { Outlet } from "react-router-dom";
 
 import Footer from "@/components/Footer";
 import TopBar from "@/components/topbar/TopBar";
-import ScrollToTop from "@/components/ScrollToTop";
+
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 function App() {
+  useScrollToTop();
+
   return (
     <div className="flex flex-col min-h-screen">
-      <ScrollToTop />
       <div className="flex">
         <TopBar></TopBar>
       </div>

@@ -4,14 +4,9 @@ import {
   Drama,
   GraduationCap,
   Headset,
-  // Landmark,
-  // Languages,
   Leaf,
-  // Palette,
   Scale,
-  // SportShoe,
   Stethoscope,
-  // Users,
 } from "lucide-react";
 
 export const CATEGORIES = {
@@ -55,30 +50,6 @@ export const CATEGORIES = {
     backgroundColor: "bg-orange-300",
     textColor: "text-amber-900",
   },
-  // Esportes: {
-  //   icon: SportShoe,
-  //   backgroundColor: "bg-green-100",
-  //   textColor: "text-green-600",
-  // },
-  // Sociedade: {
-  //   icon: Users,
-  //   backgroundColor: "bg-neutral-300",
-  //   textColor: "text-neutral-600",
-  // },
-  // Idiomas: {
-  //   icon: Languages,
-  //   backgroundColor: "bg-blue-100",
-  //   textColor: "text-blue-600",
-  // },
-  // Artes: {
-  //   icon: Palette,
-  //   backgroundColor: "bg-pink-100",
-  //   textColor: "text-pink-600",
-  // },
-  // Patrimônio: {
-  //   icon: Landmark,
-  //   backgroundColor: "bg-indigo-400",
-  //   textColor: "text-blue-950",
-  // },
 };
+
 export type Category = keyof typeof CATEGORIES;

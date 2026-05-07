@@ -1,7 +1,9 @@
 import MainCarousel from "@/features/LandingPage/MainCarousel";
 import SmallCarousel from "@/features/LandingPage/SmallCarousel";
-import { scrollToTop } from "@/utils/scrollToTop";
+
 import { format } from "date-fns";
+
+import { scrollToTop } from "@/lib/scrollToTop";
 
 export default function LandingPage() {
   return (

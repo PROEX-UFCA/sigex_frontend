@@ -92,14 +92,8 @@ function SearchArea({
           onActiveChange={onSearchActive}
         ></ToggleableSearchBar>
       )}
-      {width >= BREAKPOINTS.md && width < BREAKPOINTS.lg && (
-        <Input
-          placeholder="Pesquise projetos ou áreas de atuação"
-          className="border-gray-400 bg-gray-100 font-bold w-3/5 h-10"
-        ></Input>
-      )}
-      {width >= BREAKPOINTS.lg && (
-        <form className="w-2/5" onSubmit={handleSearch}>
+      {width >= BREAKPOINTS.md && (
+        <form className="max-lg:w-3/5 lg:w-2/5" onSubmit={handleSearch}>
           <Input
             value={term}
             onChange={(e) => setTerm(e.target.value)}

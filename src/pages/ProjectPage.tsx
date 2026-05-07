@@ -33,7 +33,7 @@ export default function ProjectPage() {
       setLoading(false);
     };
     fetchData();
-  }, [projectID]);
+  }, [projectID.id]);
 
   const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
             orci ligula, fermentum vel felis nec, aliquet fermentum mi. Nullam

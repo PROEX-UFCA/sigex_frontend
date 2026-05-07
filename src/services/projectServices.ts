@@ -1,6 +1,5 @@
-import type { ProjectFilters, Project } from "@/types";
+import type { ProjectFilters, Project, PageData } from "@/types";
 import apiConnection from "@/services/api";
-import type { APIData } from "@/types/apiData";
 
 export const getProjects = async (): Promise<Project[]> => {
   try {
@@ -31,7 +30,7 @@ export const getProjectByID = async (id: string): Promise<Project | null> => {
 export async function searchProjectsByFilter(
   filters: ProjectFilters,
   getAllData: true,
-): Promise<APIData>;
+): Promise<PageData>;
 export async function searchProjectsByFilter(
   filters: ProjectFilters,
   getAllData?: false,
@@ -39,7 +38,7 @@ export async function searchProjectsByFilter(
 export async function searchProjectsByFilter(
   filters: ProjectFilters,
   getAllData: boolean = false,
-): Promise<APIData | Project[]> {
+): Promise<PageData | Project[]> {
   const params: Record<string, string> = {};
 
   if (filters.titulo) params.titulo = filters.titulo;

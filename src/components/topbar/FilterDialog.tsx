@@ -1,6 +1,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -199,6 +200,7 @@ export default function FilterDialog() {
         <DialogContent className="w-full">
           <DialogHeader>
             <DialogTitle className="text-xl">Filtros</DialogTitle>
+            <DialogDescription>Selecione os filtros que deseja utilizar na sua busca</DialogDescription>
           </DialogHeader>
           <div key={resetKey} className="max-h-72 overflow-y-auto no-scrollbar">
             <FilterTypes

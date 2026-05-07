@@ -15,11 +15,6 @@ export default function recognizeTags(
     if (/sa[uú]de|sa[uú]d[aá]ve(l|is)/i.test(tag))
       result.push({ tagType: "Saúde" });
     if (/trabalho/i.test(tag)) result.push({ tagType: "Trabalho" });
-    // if (/esport(ivo|iva|es?)/i.test(tag)) result.push({ tagType: "Esportes" });
-    // if (/soci(al|edade)\b/i.test(tag)) result.push({ tagType: "Sociedade" });
-    // if (/idiomas?/i.test(tag)) result.push({ tagType: "Idiomas" });
-    // if (/artes?|art[ií]stic[oa]/i.test(tag)) result.push({ tagType: "Artes" });
-    // if (/patrim[oô]ni(o|al)/i.test(tag)) result.push({ tagType: "Patrimônio" });
   }
 
   return result;

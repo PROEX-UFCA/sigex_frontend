@@ -1,4 +1,4 @@
-export function usePaginationRange(current: number, total: number, window: number = 10) {
+export function getPaginationRange(current: number, total: number, window: number = 10) {
   const pages: (number | "...")[] = [];
 
   if (total <= window + 2) {
