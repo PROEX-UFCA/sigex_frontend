@@ -3,7 +3,7 @@ import SmallCarousel from "@/features/LandingPage/SmallCarousel";
 
 import { format } from "date-fns";
 
-import { scrollToTop } from "@/utils/scrollToTop";
+import { scrollToTop } from "@/lib/scrollToTop";
 
 export default function LandingPage() {
   return (
