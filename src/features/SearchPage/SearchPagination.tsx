@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { usePaginationRange } from "@/hooks/usePaginationRange";
+import { getPaginationRange } from "@/utils/getPaginationRange";
 
 interface SearchPaginationProps {
   current_page: number;
@@ -20,7 +20,7 @@ export default function SearchPagination({
   last_page,
   onPageChange,
 }: SearchPaginationProps) {
-  const pages = usePaginationRange(current_page, last_page);
+  const pages = getPaginationRange(current_page, last_page);
 
   return (
     <Pagination>
