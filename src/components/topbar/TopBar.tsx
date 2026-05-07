@@ -1,14 +1,14 @@
-import Logo from "@/assets/logo_proex_top.png";
+import Logo from "/logo_proex_top.png";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import FilterDialog from "@/components/topbar/FilterDialog";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
+import { useSearch } from "@/hooks/useSearch";
 import { useRef, useState } from "react";
 import { Search } from "lucide-react";
-import FilterDialog from "./FilterDialog";
 import { Link } from "react-router";
-import { useSearch } from "@/hooks/useSearch";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
 function ToggleableSearchBar({

@@ -9,7 +9,6 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import type { ProjectImages } from "@/types";
 
-import culturaImg from "@/assets/cultura.png";
 import { Info } from "lucide-react";
 
 export default function ProjectGallery({ imageURL }: ProjectImages) {
@@ -26,7 +25,7 @@ export default function ProjectGallery({ imageURL }: ProjectImages) {
                 <Card className="p-0 rounded-3xl">
                   <CardContent className="p-0">
                     <img
-                      src={`${item != "" ? item : culturaImg}`}
+                      src={`${item != "" ? item : "/cultura.png"}`}
                       className="rounded-3xl"
                     />
                   </CardContent>
