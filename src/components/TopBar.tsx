@@ -2,7 +2,7 @@ import Logo from "/logo_proex_top.png";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import FilterDialog from "@/components/topbar/FilterDialog";
+import FilterDialog from "@/components/FilterDialog";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { useSearch } from "@/hooks/useSearch";
