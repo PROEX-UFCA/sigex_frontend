@@ -9,7 +9,6 @@ import Results from "@/features/SearchPage/Results";
 import SearchPagination from "@/features/SearchPage/SearchPagination";
 import { Spinner } from "@/components/ui/spinner";
 import type { PageData, Project } from "@/types";
-// import type { APIData } from "@/types/apiData";
 
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
