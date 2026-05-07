@@ -126,7 +126,7 @@ export default function TopBar() {
           <img
             src={Logo}
             alt="Logo UFCA"
-            className="max-md:h-12 md:max-2xl:h-14 2xl:h-16 m-3 object-contain"
+            className="max-md:h-16 md:max-2xl:h-14 2xl:h-16 max-md:mx-3 md:m-3 object-contain"
           />
         </Link>
       )}
