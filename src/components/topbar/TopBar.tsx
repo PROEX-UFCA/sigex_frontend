@@ -4,20 +4,48 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Search } from "lucide-react";
 import FilterDialog from "./FilterDialog";
 import { Link } from "react-router";
 import { useSearch } from "@/hooks/useSearch";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
-function ToggleableSearchBar() {
+function ToggleableSearchBar({
+  onActiveChange,
+}: {
+  onActiveChange: (value: boolean) => void;
+}) {
   const { term, setTerm, handleSearch } = useSearch();
   const [active, setActive] = useState(false);
+  const timerReference = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const toggle = (value: boolean) => {
+    setActive(value);
+    onActiveChange(value);
+  };
+
+  const clearTimer = () => {
+    if (timerReference.current) {
+      clearTimeout(timerReference.current);
+      timerReference.current = null;
+    }
+  };
+
+  const startIdleTimer = () => {
+    clearTimer();
+    timerReference.current = setTimeout(() => {
+      toggle(false);
+    }, 5000);
+  };
 
   return (
     <div
       className="flex flex-row justify-end w-full gap-2"
+      onMouseMove={startIdleTimer}
+      onKeyDown={startIdleTimer}
+      onFocus={clearTimer}
+      onBlur={startIdleTimer}
     >
       {active ? (
         <div className="flex w-full gap-2">
@@ -35,7 +63,10 @@ function ToggleableSearchBar() {
         <Button
           className="h-10"
           variant={"secondary"}
-          onClick={() => setActive(!active)}
+          onClick={() => {
+            toggle(true);
+            startIdleTimer();
+          }}
         >
           <Search />
           Buscar
@@ -45,14 +76,22 @@ function ToggleableSearchBar() {
   );
 }
 
-function SearchArea() {
+function SearchArea({
+  onSearchActive,
+}: {
+  onSearchActive: (active: boolean) => void;
+}) {
   const { term, setTerm, handleSearch } = useSearch();
 
   const { width } = useScreenSize();
 
   return (
     <div className="flex justify-end w-full m-4 gap-3">
-      {width < BREAKPOINTS.md && <ToggleableSearchBar></ToggleableSearchBar>}
+      {width < BREAKPOINTS.md && (
+        <ToggleableSearchBar
+          onActiveChange={onSearchActive}
+        ></ToggleableSearchBar>
+      )}
       {width >= BREAKPOINTS.md && width < BREAKPOINTS.lg && (
         <Input
           placeholder="Pesquise projetos ou áreas de atuação"
@@ -75,12 +114,20 @@ function SearchArea() {
 }
 
 export default function TopBar() {
+  const [searchActive, setSearchActive] = useState<boolean>(false);
+
   return (
     <div className="flex justify-around rounded-b-2xl bg-[#532b1d] w-full items-center">
-      <Link to={"/"} className="cursor-pointer hover:opacity-85">
-        <img src={Logo} alt="Logo UFCA" className="h-12 m-3 object-contain" />
-      </Link>
-      <SearchArea></SearchArea>
+      {!searchActive && (
+        <Link to={"/"} className="cursor-pointer hover:opacity-85">
+          <img
+            src={Logo}
+            alt="Logo UFCA"
+            className="max-md:h-12 md:max-2xl:h-14 2xl:h-16 m-3 object-contain"
+          />
+        </Link>
+      )}
+      <SearchArea onSearchActive={setSearchActive}></SearchArea>
     </div>
   );
 }
