@@ -29,6 +29,14 @@ export const getProjectByID = async (id: string): Promise<Project | null> => {
 
 export async function searchProjectsByFilter(
   filters: ProjectFilters,
+  getAllData: true,
+): Promise<PageData>;
+export async function searchProjectsByFilter(
+  filters: ProjectFilters,
+  getAllData?: false,
+): Promise<Project[]>;
+export async function searchProjectsByFilter(
+  filters: ProjectFilters,
   getAllData: boolean = false,
 ): Promise<PageData | Project[]> {
   const params: Record<string, string> = {};
