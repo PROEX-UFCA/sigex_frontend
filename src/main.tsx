@@ -9,6 +9,7 @@ import LandingPage from "@/pages/LandingPage.tsx";
 import ProjectPage from "@/pages/ProjectPage.tsx";
 import SearchPage from "@/pages/SearchPage.tsx";
 import LoginPage from "@/pages/LoginPage.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage></LoginPage>
+    element: <LoginPage></LoginPage>,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );
