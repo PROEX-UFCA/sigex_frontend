@@ -10,11 +10,14 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
-import { Home, LayoutGrid, Menu, ShieldUser } from "lucide-react";
+import { Home, LayoutGrid, Menu, ShieldUser, User } from "lucide-react";
 import { useNavigate } from "react-router";
+
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function SideMenu() {
   const navigate = useNavigate();
+  const { role, logout } = useAuth();
 
   return (
     <Sheet>
@@ -28,10 +31,12 @@ export default function SideMenu() {
       </SheetTrigger>
       <SheetContent className="rounded-l-4xl">
         <SheetHeader>
-          <SheetTitle className="max-md:text-2xl md:max-xl:text-3xl xl:text-4xl font-bold">SigEx - UFCA</SheetTitle>
+          <SheetTitle className="max-md:text-2xl md:max-xl:text-3xl xl:text-4xl font-bold">
+            SigEx - UFCA
+          </SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-1 flex-col w-full">
           <SheetClose asChild>
             <Button
               variant={"secondary"}
@@ -64,6 +69,40 @@ export default function SideMenu() {
               Sistema Administrativo
             </Button>
           </SheetClose>
+          {role === null && (
+            <SheetClose asChild className="mt-auto">
+              <Button
+                variant={"secondary"}
+                className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
+                onClick={
+                  () => navigate("/login") // temporário
+                }
+              >
+                <User className="w-6! h-6!" strokeWidth={2.2} />
+                Faça seu login
+              </Button>
+            </SheetClose>
+          )}
+          {role && (
+            <div className="flex flex-row mt-auto gap-2 bg-zinc-100 w-full">
+              <SheetClose asChild className="flex-1">
+                <Button
+                  variant={"secondary"}
+                  className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer"
+                >
+                  <User className="w-6! h-6!" strokeWidth={2.2} />
+                  <p>Sua conta</p>
+                </Button>
+              </SheetClose>
+              <Button
+                variant={"destructive"}
+                className="w-24 h-full text-lg"
+                onClick={logout}
+              >
+                Sair
+              </Button>
+            </div>
+          )}
         </div>
         <SheetFooter>
           <p>Design by Guido Xenofonte &copy;</p>
