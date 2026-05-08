@@ -3,13 +3,14 @@ import "./index.css";
 import App from "./App.tsx";
 
 import ReactDOM from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import LandingPage from "@/pages/LandingPage.tsx";
 import ProjectPage from "@/pages/ProjectPage.tsx";
 import SearchPage from "@/pages/SearchPage.tsx";
+import LoginPage from "@/pages/LoginPage.tsx";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -27,6 +28,10 @@ const router = createHashRouter([
         element: <SearchPage></SearchPage>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage></LoginPage>
   },
 ]);
 
