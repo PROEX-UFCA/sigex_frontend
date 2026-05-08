@@ -22,7 +22,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [institution, setInstitution] = useState<string>("");
-  
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -84,14 +84,26 @@ export default function LoginPage() {
   return (
     <div className="flex flex-row h-screen">
       {/* TODO: colocar background aqui */}
-      <div className="max-lg:hidden bg-blue-500 flex-4"></div>{" "}
-      <div className="flex-2 bg-zinc-50 rounded-4xl self-center mx-24">
-        <Card>
+      <img
+        className="max-xl:hidden absolute inset-0 xl:relative xl:flex-4 object-cover object-center w-full h-full xl:blur-none"
+        src="/sigex_bkg.png"
+      ></img>
+      <img
+        className="xl:hidden absolute inset-0 xl:relative xl:flex-4 object-cover object-center w-full h-full xl:blur-none"
+        src="/wave_bkg.png"
+      ></img>
+      <div className="flex flex-1 xl:z-10 xl:flex-3 items-center justify-center px-6 bg-zinc-50 xl:shadow-[-8px_0px_16px_0px_rgba(0,0,0,0.15)]">
+        <Card className="relative z-10 max-sm:w-7/8 sm:max-xl:w-3/5 xl:w-4/5 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">
           {isLogin ? (
-            <form onSubmit={handleSubmitLogin}>
+            <form
+              onSubmit={handleSubmitLogin}
+              className="flex flex-col max-md:gap-3 md:max-xl:gap-4"
+            >
               <CardHeader className="gap-1">
-                <CardTitle className="text-2xl">Faça seu Login</CardTitle>
-                <CardDescription>
+                <CardTitle className="max-xl:text-3xl xl:text-2xl">
+                  Faça seu Login
+                </CardTitle>
+                <CardDescription className="text-base!">
                   Insira suas informações abaixo
                 </CardDescription>
               </CardHeader>
@@ -117,8 +129,9 @@ export default function LoginPage() {
                         Senha
                       </Label>
                       <Button
+                        type="button"
                         variant={"link"}
-                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                        className="ml-auto inline-block max-lg:text-base max-lg:underline lg:text-sm underline-offset-4 hover:underline"
                       >
                         Esqueceu sua senha?
                       </Button>
@@ -144,7 +157,7 @@ export default function LoginPage() {
                   <Button
                     type="submit"
                     variant={"default"}
-                    className="w-full"
+                    className="w-full max-md:h-14 md:max-xl:h-12 xl:h-10 max-sm:text-xl sm:max-md:text-lg md:max-xl:text-base"
                     disabled={loading}
                   >
                     {loading ? "Entrando..." : "Entrar"}
@@ -153,7 +166,7 @@ export default function LoginPage() {
                     type="button"
                     variant={"secondary"}
                     onClick={goToSignup}
-                    className="w-full bg-zinc-200 hover:bg-zinc-300"
+                    className="w-full max-md:h-14 md:max-xl:h-12 xl:h-10 max-sm:text-xl sm:max-md:text-lg md:max-xl:text-base bg-zinc-200 hover:bg-zinc-300"
                   >
                     Criar Conta
                   </Button>
@@ -164,7 +177,7 @@ export default function LoginPage() {
             <form onSubmit={handleSubmitSignin}>
               <CardHeader className="gap-1">
                 <CardTitle className="text-2xl">Crie sua Conta</CardTitle>
-                <CardDescription>
+                <CardDescription className="text-base!">
                   Insira suas informações abaixo
                 </CardDescription>
               </CardHeader>
@@ -239,7 +252,7 @@ export default function LoginPage() {
                   <Button
                     type="submit"
                     variant={"default"}
-                    className="w-full"
+                    className="w-full max-md:h-14 md:max-xl:h-12 xl:h-10 max-sm:text-xl sm:max-md:text-lg md:max-xl:text-base"
                     disabled={loading}
                   >
                     {loading ? "Criando..." : "Criar Conta"}
@@ -248,7 +261,7 @@ export default function LoginPage() {
                     type="button"
                     variant={"secondary"}
                     onClick={goToLogin}
-                    className="w-full bg-zinc-200 hover:bg-zinc-300"
+                    className="w-full max-md:h-14 md:max-xl:h-12 xl:h-10 max-sm:text-xl sm:max-md:text-lg md:max-xl:text-base bg-zinc-200 hover:bg-zinc-300"
                   >
                     Fazer Login
                   </Button>
