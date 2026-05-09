@@ -20,6 +20,14 @@ import recognizeTags from "@/utils/tagRecognition";
 
 const TIME_DELAY = 10000;
 
+/**
+ * Exibe um carrossel de tamanho grande de projetos. Possui um timer de 10seg
+ * que passa automaticamente os projetos apos o timeout. Caso não consiga
+ * receber os projetos da API, exibe uma mensagem de erro.
+ *
+ * @example
+ * <MainCarousel />
+ */
 export default function MainCarousel() {
   const { width } = useScreenSize();
   const [results, setResults] = useState<Project[]>([]);

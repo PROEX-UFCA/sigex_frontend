@@ -24,6 +24,19 @@ interface SmallCarouselSearchProps {
   data_fim?: string | null;
 }
 
+/**
+ * Exibe um carrossel de tamanho reduzido de projetos com base em um dado filtro.
+ * Caso não consiga receber os projetos com base no filtro, exibe uma mensagem de erro
+ * 
+ * @param sectionTitle - Título da Seção
+ * @param area_tematica? - Filtro por área temática (opcional)
+ * @param tipo_acao? - Filtro por tipo de ação (opcional)
+ * @param data_inicio? - Filtro por data de início (opcional)
+ * @param data_fim? - Filtro por data de finalização (opcional)
+ *  
+ * @example
+ * <SmallCarousel sectionTitle={"Tecnologia"} area_tematica={"Tecnologia"}>
+ */
 export default function SmallCarousel({
   sectionTitle,
   area_tematica,
