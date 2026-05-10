@@ -1,5 +1,22 @@
 import type { TagAttributes } from "@/types";
 
+/**
+ * Converte um array de strings de área temática em objetos {@link TagAttributes}.
+ *
+ * Cada string é testada contra expressões regulares (case-insensitive) para
+ * identificar as categorias reconhecidas pela aplicação. Uma mesma string pode
+ * gerar múltiplas tags se corresponder a mais de uma categoria.
+ *
+ * @param tagArray - Array de strings vindas da API (campo `area_tematica`).
+ * @returns Array de `TagAttributes` com o `tagType` correspondente a cada match.
+ *
+ * @example
+ * recognizeTags(["Tecnologia da Informação"])
+ * // → [{ tagType: "Tecnologia" }]
+ *
+ * recognizeTags(["Educação Cultural"])
+ * // → [{ tagType: "Cultura" }, { tagType: "Educação" }]
+ */
 export default function recognizeTags(
   tagArray: string[],
 ): Array<TagAttributes> {
