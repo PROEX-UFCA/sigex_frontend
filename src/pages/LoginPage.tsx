@@ -118,7 +118,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row min-h-screen">
       {/* TODO: colocar background aqui */}
       <img
         className="max-xl:hidden absolute inset-0 xl:relative xl:flex-4 object-cover object-center w-full h-full xl:blur-none"
