@@ -18,8 +18,24 @@ import { TriangleAlert } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 import recognizeTags from "@/utils/tagRecognition";
 
+/** Intervalo de avanço automático do carrossel em milissegundos. */
 const TIME_DELAY = 10000;
 
+/**
+ * Carrossel principal da Landing Page com cards grandes de projetos.
+ *
+ * Busca todos os projetos via {@link getProjects} ao montar e os exibe
+ * em um carrossel com avanço automático a cada {@link TIME_DELAY} ms.
+ * Em mobile, o drag manual é habilitado e as setas ficam ocultas.
+ *
+ * Estados de renderização:
+ * - **Carregando** → exibe spinner.
+ * - **Sem resultados** (erro de API ou lista vazia) → exibe mensagem de erro.
+ * - **Com resultados** → exibe carrossel com {@link BigProject}.
+ *
+ * @example
+ * <MainCarousel />
+ */
 export default function MainCarousel() {
   const { width } = useScreenSize();
   const [results, setResults] = useState<Project[]>([]);

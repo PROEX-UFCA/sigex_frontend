@@ -5,6 +5,20 @@ import { format } from "date-fns";
 
 import { scrollToTop } from "@/lib/scrollToTop";
 
+/**
+ * Página inicial (Landing Page) da aplicação.
+ *
+ * Exibe:
+ * - {@link MainCarousel}: carrossel principal com todos os projetos.
+ * - Múltiplos {@link SmallCarousel} segmentados por área/tipo:
+ *   - Tecnologia, Educação, Cursos, Eventos Culturais.
+ *   - "Encerramento Próximo": projetos cuja data de fim é hoje ou posterior.
+ * - CTA ao final incentivando uso dos filtros de busca.
+ *
+ * @example
+ * // Definido como rota index em main.tsx:
+ * { index: true, element: <LandingPage /> }
+ */
 export default function LandingPage() {
   return (
     <div className="w-full flex flex-col max-lg:gap-4 lg:gap-6">

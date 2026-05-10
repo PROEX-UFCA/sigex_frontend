@@ -9,6 +9,17 @@ import {
   Stethoscope,
 } from "lucide-react";
 
+/**
+ * Mapeamento de categorias temáticas para seus atributos visuais.
+ *
+ * Cada entrada define o ícone (componente Lucide), a cor de fundo e a cor
+ * do texto usados no componente {@link TagsArea} (Badge). A chave deve
+ * coincidir exatamente com os `tagType` gerados por {@link recognizeTags}.
+ *
+ * @example
+ * const cat = CATEGORIES["Tecnologia"];
+ * // → { icon: CpuIcon, backgroundColor: "bg-cyan-100", textColor: "text-cyan-600" }
+ */
 export const CATEGORIES = {
   Comunicação: {
     icon: Headset,
@@ -52,4 +63,5 @@ export const CATEGORIES = {
   },
 };
 
+/** Tipo literal das chaves de {@link CATEGORIES}. */
 export type Category = keyof typeof CATEGORIES;

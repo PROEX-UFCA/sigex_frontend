@@ -15,7 +15,29 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "@/contexts/AuthContext";
 
+/**
+ * Página de autenticação — Login e Cadastro.
+ *
+ * Gerencia dois formulários dentro de um único componente:
+ * - **Login** (`isLogin = true`): email + senha. Chama {@link useAuth.login}.
+ * - **Cadastro** (`isLogin = false`): nome, instituição, email + senha.
+ *   Atualmente usa credenciais fixas de instituição (temporário).
+ *
+ * Comportamentos comuns a ambos os formulários:
+ * - Validação básica de campos obrigatórios antes do envio.
+ * - Feedback de carregamento no botão de submit.
+ * - Exibição de mensagem de erro abaixo dos campos.
+ * - Redirecionamento para `/` em caso de sucesso.
+ *
+ * @remarks
+ * A lógica de cadastro (`handleSubmitSignin`) é **temporária** e deve ser
+ * substituída por uma chamada real à API de criação de usuário.
+ *
+ * @example
+ * // Rota: /login
+ */
 export default function LoginPage() {
+  /** Controla qual formulário está visível: `true` = login, `false` = cadastro. */
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const [email, setEmail] = useState<string>("");
@@ -29,16 +51,24 @@ export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  /** Muda para o formulário de cadastro e limpa erros. */
   const goToSignup = () => {
     setError(null);
     setIsLogin(false);
   };
 
+  /** Muda para o formulário de login e limpa erros. */
   const goToLogin = () => {
     setError(null);
     setIsLogin(true);
   };
 
+  /**
+   * Handler de submissão do formulário de login.
+   * Valida campos, chama `login` do contexto e redireciona em caso de sucesso.
+   *
+   * @param e - Evento de submissão do formulário.
+   */
   const handleSubmitLogin = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setError(null);
@@ -60,6 +90,12 @@ export default function LoginPage() {
     }
   };
 
+  /**
+   * Handler de submissão do formulário de cadastro.
+   * Atualmente autentica com credenciais fixas de instituição (temporário).
+   *
+   * @param e - Evento de submissão do formulário.
+   */
   const handleSubmitSignin = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setError(null);

@@ -30,22 +30,26 @@ import DateFilter, {
 import { format } from "date-fns";
 import { useNavigate } from "react-router";
 
+/** Um item de filtro por nome (categoria ou tipo de ação). */
 interface FilterOption {
   filterName: string;
 }
 
+/** Props do botão toggle individual de filtro. */
 interface Filter {
   filterName: string;
   isSelected: boolean;
   onToggle: (name: string) => void;
 }
 
+/** Entrada de um componente de filtro por data dentro de um grupo `FilterTypes`. */
 interface DateComponentEntry {
   DateComponent: React.ComponentType<DateFilterProps>;
   label: string;
   onDateChange?: (date: Date | undefined) => void;
 }
 
+/** Props do grupo de filtros `FilterTypes`. */ 
 interface FilterAttributes {
   filterType: string;
   filters?: Array<FilterOption>;
@@ -54,6 +58,16 @@ interface FilterAttributes {
   DateComponents?: DateComponentEntry[];
 }
 
+/**
+ * Botão toggle de filtro individual.
+ *
+ * Exibe um checkmark quando selecionado e chama `onToggle` ao ser clicado,
+ * passando o `filterName` como argumento.
+ *
+ * @param filterName - Rótulo e identificador do filtro.
+ * @param isSelected - Se `true`, exibe o indicador de selecionado.
+ * @param onToggle   - Callback chamado com o `filterName` ao clicar.
+ */
 function TogglableButton({ filterName, isSelected, onToggle }: Filter) {
   return (
     <Toggle
@@ -68,6 +82,18 @@ function TogglableButton({ filterName, isSelected, onToggle }: Filter) {
   );
 }
 
+/**
+ * Grupo de filtros de um mesmo tipo (categoria, tipo de ação ou datas).
+ *
+ * Renderiza um cabeçalho com o nome do tipo e, abaixo, os filtros toggleáveis
+ * e/ou os seletores de data.
+ *
+ * @param filterType      - Nome do grupo exibido como cabeçalho.
+ * @param filters         - Lista de opções de filtro por nome (opcional).
+ * @param selectedFilters - Filtros atualmente selecionados (para controlar estado ativo).
+ * @param onToggle        - Callback de alternância de filtro por nome (opcional).
+ * @param DateComponents  - Componentes de filtro por data (opcional).
+ */
 function FilterTypes({
   filterType,
   filters,
@@ -105,6 +131,28 @@ function FilterTypes({
   );
 }
 
+/**
+ * Diálogo de filtros avançados para busca de projetos.
+ *
+ * Permite ao usuário selecionar categorias temáticas, tipos de ação e
+ * um intervalo de datas. Ao aplicar, constrói uma query string e navega
+ * para `/search` com os filtros como parâmetros de URL.
+ *
+ * Comportamentos:
+ * - Se nenhum filtro estiver selecionado ao clicar em "Aplicar filtros",
+ *   exibe um `AlertDialog` alertando o usuário.
+ * - "Limpar filtros" reseta todos os estados e força remontagem do
+ *   grupo de filtros via `resetKey`.
+ *
+ * Parâmetros de URL gerados:
+ * - `area_tematica` — categorias separadas por vírgula.
+ * - `tipo_acao` — tipos de ação separados por vírgula.
+ * - `data_inicio` — data inicial no formato `yyyy-MM-dd`.
+ * - `data_fim` — data final no formato `yyyy-MM-dd`.
+ *
+ * @example
+ * <FilterDialog />
+ */
 export default function FilterDialog() {
   const [resetKey, setResetKey] = useState(0);
   const [open, setOpen] = useState(false);
@@ -122,6 +170,7 @@ export default function FilterDialog() {
   });
   const navigate = useNavigate();
 
+  /** Retorna `true` se ao menos um filtro estiver selecionado. */
   function hasFiltersSelected() {
     return (
       selectedFilters.actionTypes.length > 0 ||
@@ -131,6 +180,7 @@ export default function FilterDialog() {
     );
   }
 
+  /** Reseta todos os filtros e força remontagem dos componentes de data. */
   function handleClear() {
     setResetKey((prev) => prev + 1);
     setSelectedFilters({
@@ -141,6 +191,10 @@ export default function FilterDialog() {
     });
   }
 
+  /**
+   * Valida os filtros selecionados e navega para a página de busca.
+   * Exibe alerta se nenhum filtro estiver selecionado.
+   */
   function handleApplyFilters() {
     if (!hasFiltersSelected()) {
       setShowAlert(true);
@@ -168,6 +222,12 @@ export default function FilterDialog() {
     navigate(`/search?${params.toString()}`);
   }
 
+  /**
+   * Alterna um filtro de texto (categoria ou tipo de ação) no estado.
+   *
+   * @param key  - A chave do estado a atualizar (`"categories"` ou `"actionTypes"`).
+   * @param name - O nome do filtro a adicionar ou remover.
+   */
   function toggleFilter(key: "categories" | "actionTypes", name: string) {
     setSelectedFilters((previousFilters) => {
       const currentFilterList = previousFilters[key];

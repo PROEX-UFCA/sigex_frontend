@@ -13,6 +13,29 @@ import { Button } from "@/components/ui/button";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import ContactArea from "@/components/ContactArea";
 
+/**
+ * Página de detalhe de um projeto específico.
+ *
+ * Busca o projeto pelo `id` presente no parâmetro de rota `/projects/:id`
+ * via {@link getProjectByID}. Exibe:
+ * - {@link BigProject} com imagem de capa centralizada.
+ * - Descrição do projeto com expansão "Ler mais / Ler menos"
+ *   (truncagem baseada na largura da tela).
+ * - {@link ProjectGallery} com as imagens do projeto.
+ * - {@link ContactArea} com informações de contato.
+ *
+ * Estados de renderização:
+ * - **Carregando** → spinner.
+ * - **Projeto não encontrado** → mensagem de erro.
+ * - **Projeto carregado** → conteúdo completo.
+ *
+ * @remarks
+ * O campo `content` (descrição) é atualmente um placeholder Lorem Ipsum
+ * e deve ser substituído pelo campo real da API quando disponível.
+ *
+ * @example
+ * // Rota: /projects/42
+ */
 export default function ProjectPage() {
   const projectID = useParams<{ id: string }>();
 
@@ -21,6 +44,7 @@ export default function ProjectPage() {
   const [results, setResults] = useState<Project>({} as Project);
   const [loading, setLoading] = useState<boolean>(true);
 
+  /** Controla se o texto de descrição está expandido ou truncado. */
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const toggleExpansion = () =>
@@ -35,6 +59,7 @@ export default function ProjectPage() {
     fetchData();
   }, [projectID.id]);
 
+  // TODO: substituir pelo campo de descrição real da API
   const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
             orci ligula, fermentum vel felis nec, aliquet fermentum mi. Nullam
             at viverra nibh, at auctor est. Phasellus laoreet, nulla sed aliquam
@@ -80,6 +105,10 @@ export default function ProjectPage() {
       </div>
     );
 
+  /**
+   * Texto de descrição a exibir: completo quando expandido ou quando a
+   * largura da tela excede o comprimento do texto; truncado caso contrário.
+   */
   const shownContent =
     isExpanded || width > content.length
       ? content

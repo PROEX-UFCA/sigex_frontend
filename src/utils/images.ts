@@ -1,3 +1,17 @@
+/**
+ * Mapeamento de área temática para lista de imagens padrão do projeto.
+ *
+ * Cada chave corresponde a uma categoria reconhecida pela aplicação.
+ * As imagens são selecionadas deterministicamente via {@link hashId},
+ * garantindo que o mesmo projeto sempre exiba a mesma imagem.
+ *
+ * @remarks
+ * Os arquivos de imagem devem estar na pasta `public/` da build.
+ *
+ * @example
+ * const images = DEFAULT_PROJECT_IMAGES["Tecnologia"];
+ * const img = images[hashId(projectId) % images.length];
+ */
 export const DEFAULT_PROJECT_IMAGES = {
   Comunicação: ["/comunicação.png", "/comunicação_2.png", "/comunicação_3.png"],
   Cultura: ["/cultura.png", "/cultura_2.png", "/cultura_3.png"],

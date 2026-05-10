@@ -11,6 +11,16 @@ import SearchPage from "@/pages/SearchPage.tsx";
 import LoginPage from "@/pages/LoginPage.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
+/**
+ * Definição das rotas da aplicação usando React Router.
+ *
+ * Estrutura de rotas:
+ * - `/`            → {@link App} (layout raiz)
+ *   - `index`      → {@link LandingPage}
+ *   - `/projects/:id` → {@link ProjectPage}
+ *   - `/search/:term?` → {@link SearchPage} (parâmetro `term` opcional)
+ * - `/login`       → {@link LoginPage} (rota sem layout global)
+ */
 const router = createBrowserRouter([
   {
     path: "/",

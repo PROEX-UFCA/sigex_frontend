@@ -11,6 +11,21 @@ import type { ProjectImages } from "@/types";
 
 import { Info } from "lucide-react";
 
+/**
+ * Galeria de imagens de um projeto em formato de carrossel.
+ *
+ * - Se `imageURL` contiver pelo menos uma URL, renderiza um carrossel
+ *   navegável com as imagens do projeto.
+ * - Se a lista estiver vazia, exibe uma mensagem informando que a galeria
+ *   está indisponível por ausência de conteúdo.
+ *
+ * @param imageURL - Array de URLs das imagens do projeto.
+ *                   URLs vazias (`""`) são substituídas por `/cultura.png`.
+ *
+ * @example
+ * <ProjectGallery imageURL={["https://cdn.example.com/img1.jpg"]} />
+ * <ProjectGallery imageURL={[]} /> // exibe estado vazio
+ */
 export default function ProjectGallery({ imageURL }: ProjectImages) {
   const imageQtd = imageURL.length;
 

@@ -1,6 +1,16 @@
 import { Mail, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
+/**
+ * Exibe as informações de contato dos projetos.
+ *
+ * Renderiza um card com telefone e e-mails institucionais,
+ * utilizado na página de detalhe de projeto para orientar
+ * interessados a entrar em contato.
+ *
+ * @example
+ * <ContactArea />
+ */
 export default function ContactArea() {
   return (
     <Card className="self-center w-fit bg-zinc-200 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">

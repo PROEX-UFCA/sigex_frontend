@@ -1,6 +1,14 @@
 import type { ProjectFilters, Project, PageData } from "@/types";
 import apiConnection from "@/services/api";
 
+/**
+ * Busca a lista de projetos sem filtros aplicados.
+ *
+ * @returns Array de {@link Project} ou array vazio em caso de erro.
+ *
+ * @example
+ * const projetos = await getProjects();
+ */
 export const getProjects = async (): Promise<Project[]> => {
   try {
     const data = await apiConnection.get("/acoes");
@@ -14,6 +22,15 @@ export const getProjects = async (): Promise<Project[]> => {
   }
 };
 
+/**
+ * Busca um projeto específico pelo seu ID.
+ *
+ * @param id - Identificador único do projeto.
+ * @returns O {@link Project} encontrado, ou `null` em caso de erro/não encontrado.
+ *
+ * @example
+ * const projeto = await getProjectByID("123");
+ */
 export const getProjectByID = async (id: string): Promise<Project | null> => {
   try {
     const data = await apiConnection.get(`/acoes/${id}`);
@@ -27,6 +44,27 @@ export const getProjectByID = async (id: string): Promise<Project | null> => {
   }
 };
 
+/**
+ * Busca projetos aplicando filtros opcionais, com suporte a paginação.
+ *
+ * Esta função possui duas sobrecargas:
+ * - Quando `getAllData` é `true`, retorna o objeto completo {@link PageData}
+ *   (incluindo metadados de paginação).
+ * - Quando `getAllData` é `false` ou omitido, retorna apenas o array de projetos.
+ *
+ * Se nenhum filtro for fornecido, retorna um array vazio imediatamente
+ * sem realizar chamada à API.
+ *
+ * @param filters    - Objeto com os filtros a serem aplicados. Ver {@link ProjectFilters}.
+ * @param getAllData  - Se `true`, retorna {@link PageData}. Padrão: `false`.
+ *
+ * @example
+ * // Apenas projetos
+ * const projetos = await searchProjectsByFilter({ area_tematica: "Tecnologia" });
+ *
+ * // Com dados de paginação
+ * const pageData = await searchProjectsByFilter({ titulo: "extensão", page: 2 }, true);
+ */
 export async function searchProjectsByFilter(
   filters: ProjectFilters,
   getAllData: true,

@@ -10,6 +10,27 @@ import SearchPagination from "@/features/SearchPage/SearchPagination";
 import { Spinner } from "@/components/ui/spinner";
 import type { PageData, Project } from "@/types";
 
+/**
+ * Página de busca e listagem de projetos.
+ *
+ * Lê o termo de busca do parâmetro de rota `:term` e os filtros avançados
+ * dos query params (`area_tematica`, `tipo_acao`, `data_inicio`, `data_fim`, `page`).
+ * Re-executa a busca sempre que esses valores mudam.
+ *
+ * Estados de renderização:
+ * - **Carregando** → spinner.
+ * - **Sem resultados** → mensagem informativa.
+ * - **Com resultados** → grade {@link Results} + {@link SearchPagination}.
+ *
+ * A mudança de página atualiza o query param `page` via `setSearchParams`,
+ * o que dispara um novo `useEffect` e recarrega os dados.
+ *
+ * @example
+ * // Acessível em:
+ * // /search            → sem filtros
+ * // /search/extensão   → busca por "extensão"
+ * // /search?area_tematica=Tecnologia&page=2
+ */
 export default function SearchPage() {
   const { term } = useParams<{ term: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,6 +61,12 @@ export default function SearchPage() {
     fetchData();
   }, [term, searchParams]);
 
+  /**
+   * Atualiza o query param `page` sem remover os demais filtros ativos,
+   * disparando nova busca via `useEffect`.
+   *
+   * @param page - Número da nova página selecionada.
+   */
   const handlePageChange = (page: number) => {
     setSearchParams((previous) => {
       previous.set("page", String(page));

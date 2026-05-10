@@ -15,6 +15,26 @@ import { useNavigate } from "react-router";
 
 import { useAuth } from "@/contexts/AuthContext";
 
+/**
+ * Menu lateral deslizante (Sheet) acessível pelo ícone de hambúrguer.
+ *
+ * Exibe links de navegação principais e, condicionalmente, opções de
+ * autenticação com base no `role` do usuário:
+ * - Se não autenticado (`role === null`): mostra botão "Faça seu login".
+ * - Se autenticado: mostra "Sua conta" e botão de logout.
+ *
+ * Links disponíveis:
+ * - **Menu Principal** → `/`
+ * - **Todos os Projetos** → `/search`
+ * - **Sistema Administrativo** → URL externa (temporário)
+ *
+ * @remarks
+ * O redirecionamento para o sistema administrativo via `window.location.href`
+ * é marcado como temporário e deve ser substituído pela rota interna correta.
+ *
+ * @example
+ * <SideMenu />
+ */
 export default function SideMenu() {
   const navigate = useNavigate();
   const { role, logout } = useAuth();

@@ -10,6 +10,22 @@ import { BREAKPOINTS } from "@/lib/breakpoints";
 
 import type { ProjectProps } from "@/types";
 
+/**
+ * Card compacto de projeto, utilizado em listas e carrosséis.
+ *
+ * Exibe o título e as tags sobre uma imagem de fundo com gradiente.
+ * A imagem é selecionada deterministicamente via {@link hashId} e
+ * {@link DEFAULT_PROJECT_IMAGES}, da mesma forma que {@link BigProject}.
+ *
+ * Ao ser clicado, navega para `/projects/:id`.
+ *
+ * @param id    - Identificador único do projeto.
+ * @param title - Título do projeto.
+ * @param tags  - Tags do projeto; a primeira define a categoria visual.
+ *
+ * @example
+ * <SmallProject id="7" title="Curso de Programação" tags={[{ tagType: "Tecnologia" }]} />
+ */
 export default function SmallProject({ id, title, tags }: ProjectProps) {
   const navigate = useNavigate();
 
