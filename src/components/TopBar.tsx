@@ -12,6 +12,16 @@ import { Search } from "lucide-react";
 import { Link } from "react-router";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
+/**
+ * Barra de busca expansível para dispositivos móveis (largura < `md`).
+ *
+ * Por padrão exibe apenas um botão de busca. Ao ser clicado, expande-se
+ * mostrando o campo de texto e o botão de filtros. Após 5 segundos de
+ * inatividade (sem movimento de mouse ou digitação), retrai automaticamente.
+ *
+ * @param onActiveChange - Callback chamado sempre que o estado ativo/inativo muda.
+ *                         Usado pela `TopBar` para ocultar o logo enquanto a busca está aberta.
+ */
 function ToggleableSearchBar({
   onActiveChange,
 }: {
@@ -21,11 +31,13 @@ function ToggleableSearchBar({
   const [active, setActive] = useState(false);
   const timerReference = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  /** Altera o estado de visibilidade e notifica o pai. */
   const toggle = (value: boolean) => {
     setActive(value);
     onActiveChange(value);
   };
 
+  /** Cancela o timer de inatividade em curso. */
   const clearTimer = () => {
     if (timerReference.current) {
       clearTimeout(timerReference.current);
@@ -33,6 +45,10 @@ function ToggleableSearchBar({
     }
   };
 
+  /**
+   * Inicia (ou reinicia) o timer de 5 s.
+   * Quando expira, retrai a barra de busca.
+   */
   const startIdleTimer = () => {
     clearTimer();
     timerReference.current = setTimeout(() => {
@@ -77,6 +93,15 @@ function ToggleableSearchBar({
   );
 }
 
+/**
+ * Área de busca da TopBar, responsiva.
+ *
+ * - Em telas menores que `md`: usa {@link ToggleableSearchBar}.
+ * - Em telas `md` ou maiores: exibe campo de texto e filtros diretamente.
+ *
+ * @param onSearchActive - Callback que informa à `TopBar` se a busca está expandida,
+ *                         permitindo ocultar o logo em telas pequenas.
+ */
 function SearchArea({
   onSearchActive,
 }: {
@@ -108,6 +133,17 @@ function SearchArea({
   );
 }
 
+/**
+ * Barra de navegação superior da aplicação.
+ *
+ * Contém:
+ * - Logo da PROEX (link para `/`) — ocultado em mobile quando a busca está ativa.
+ * - {@link SearchArea} — campo de busca responsivo com filtros.
+ * - {@link SideMenu} — menu lateral hambúrguer.
+ *
+ * @example
+ * <TopBar />
+ */
 export default function TopBar() {
   const [searchActive, setSearchActive] = useState<boolean>(false);
 

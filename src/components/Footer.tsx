@@ -4,6 +4,17 @@ import socialMedia from "/Redes-sociais-branca.png";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
+/**
+ * Rodapé global da aplicação.
+ *
+ * Exibe o logotipo da PROEX, o endereço institucional e os ícones de
+ * redes sociais. Em telas menores que `lg`, os ícones de redes sociais
+ * são movidos para dentro da coluna de texto; em telas maiores, ocupam
+ * uma coluna à direita.
+ *
+ * @example
+ * <Footer />
+ */
 export default function Footer() {
   const { width } = useScreenSize();
 

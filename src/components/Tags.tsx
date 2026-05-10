@@ -3,7 +3,20 @@ import { Badge } from "@/components/ui/badge";
 import { CATEGORIES } from "@/utils/constants";
 import type { TagProps } from "@/types";
 
-
+/**
+ * Renderiza um conjunto de badges de categorias temáticas de um projeto.
+ *
+ * Cada tag é exibida apenas uma vez (deduplicação por `tagType`).
+ * O ícone, cor de fundo e cor do texto são obtidos de {@link CATEGORIES};
+ * se a categoria não for encontrada, a tag é ignorada silenciosamente.
+ *
+ * @param tags - Array de {@link TagAttributes} a renderizar.
+ * @param size - Tamanho visual dos badges (`"sm"` | `"md"` | `"lg"` | `"xl"`).
+ *               Padrão: `"md"`.
+ *
+ * @example
+ * <TagsArea tags={[{ tagType: "Tecnologia" }, { tagType: "Educação" }]} size="lg" />
+ */
 export default function TagsArea({ tags, size = "md" }: TagProps) {
   const sizeStyles = {
     sm: {
@@ -28,6 +41,7 @@ export default function TagsArea({ tags, size = "md" }: TagProps) {
 
   const currentSize = sizeStyles[size];
 
+  /** Lista de `tagType` já renderizados, usada para deduplicação. */
   const existingTags: Array<string> = [];
 
   return (

@@ -9,6 +9,31 @@ import type { ProjectProps } from "@/types";
 import { hashId } from "@/utils/hashId";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
+/**
+ * Card grande de projeto com imagem de fundo, título, descrição e tags.
+ *
+ * A imagem de fundo é selecionada deterministicamente a partir da categoria
+ * principal do projeto (primeira tag) e do hash do ID, garantindo consistência
+ * entre renderizações. Um gradiente escuro na parte inferior garante legibilidade
+ * do texto sobre a imagem.
+ *
+ * Ao ser clicado, navega para a página de detalhe do projeto (`/projects/:id`).
+ *
+ * @param id          - Identificador único do projeto.
+ * @param title       - Título do projeto.
+ * @param tags        - Array de tags do projeto; a primeira define a categoria visual.
+ * @param description - Texto descritivo exibido abaixo do título (opcional).
+ * @param center      - Se `true`, centraliza o conteúdo de texto. Padrão: `false`.
+ *
+ * @example
+ * <BigProject
+ *   id="42"
+ *   title="Projeto de Extensão"
+ *   tags={[{ tagType: "Tecnologia" }]}
+ *   description="Descrição breve..."
+ *   center
+ * />
+ */
 export default function BigProject({
   id,
   title,
