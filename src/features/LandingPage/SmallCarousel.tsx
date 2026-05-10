@@ -16,6 +16,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { TriangleAlert } from "lucide-react";
 import recognizeTags from "@/utils/tagRecognition";
 
+/** Props do componente {@link SmallCarousel}. */
 interface SmallCarouselSearchProps {
   sectionTitle: string;
   area_tematica?: string | null;
@@ -25,17 +26,27 @@ interface SmallCarouselSearchProps {
 }
 
 /**
+ * Carrossel compacto de projetos filtrados por categoria/tipo/data.
+ *
  * Exibe um carrossel de tamanho reduzido de projetos com base em um dado filtro.
- * Caso não consiga receber os projetos com base no filtro, exibe uma mensagem de erro
- * 
- * @param sectionTitle - Título da Seção
- * @param area_tematica? - Filtro por área temática (opcional)
- * @param tipo_acao? - Filtro por tipo de ação (opcional)
- * @param data_inicio? - Filtro por data de início (opcional)
- * @param data_fim? - Filtro por data de finalização (opcional)
- *  
+ * Caso não consiga receber os projetos com base no filtro, exibe uma mensagem de erro.
+ *
+ * Em mobile:
+ * - Drag livre habilitado.
+ * - Fades laterais indicam rolagem.
+ * - Setas de navegação ocultas.
+ *
+ * Em desktop: setas habilitadas, drag desabilitado.
+ *
+ * @param sectionTitle  - Título da seção exibido acima do carrossel.
+ * @param area_tematica - Filtro por área temática (opcional).
+ * @param tipo_acao     - Filtro por tipo de ação (opcional).
+ * @param data_inicio   - Filtro por data de início (opcional).
+ * @param data_fim      - Filtro por data de finalização (opcional).
+ *
  * @example
- * <SmallCarousel sectionTitle={"Tecnologia"} area_tematica={"Tecnologia"}>
+ * <SmallCarousel sectionTitle="Tecnologia" area_tematica="Tecnologia" />
+ * <SmallCarousel sectionTitle="Cursos" tipo_acao="Curso" />
  */
 export default function SmallCarousel({
   sectionTitle,
