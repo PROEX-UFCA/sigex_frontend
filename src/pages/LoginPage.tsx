@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "@/contexts/AuthContext";
+import { Undo2 } from "lucide-react";
 
 /**
  * Página de autenticação — Login e Cadastro.
@@ -129,9 +130,18 @@ export default function LoginPage() {
         src="/wave_bkg.png"
       ></img>
       <div
-        className="flex flex-1 xl:z-10 xl:flex-3 items-center justify-center px-6 py-4 bg-zinc-50 xl:shadow-[-8px_0px_16px_0px_rgba(0,0,0,0.15)] overflow-y-auto"
+        className="flex flex-col flex-1 xl:z-10 xl:flex-3 items-center justify-center px-6 py-4 bg-zinc-50 xl:shadow-[-8px_0px_16px_0px_rgba(0,0,0,0.15)] overflow-y-auto gap-10"
         style={{ height: "100dvh" }}
       >
+        <Button
+          className="z-10 self-start"
+          variant={"outline"}
+          size={"sm"}
+          onClick={() => navigate("/")}
+        >
+          <Undo2></Undo2>
+          Voltar
+        </Button>
         <Card className="relative z-10 max-sm:w-7/8 sm:max-xl:w-3/5 xl:w-4/5 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">
           {isLogin ? (
             <form
