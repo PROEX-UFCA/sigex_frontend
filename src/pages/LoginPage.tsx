@@ -118,7 +118,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-row h-screen overflow-hidden">
+    <div className="relative flex flex-row h-screen overflow-hidden">
       {/* TODO: colocar background aqui */}
       <img
         className="max-xl:hidden absolute inset-0 xl:relative xl:flex-4 object-cover object-center w-full h-full xl:blur-none"
@@ -128,7 +128,10 @@ export default function LoginPage() {
         className="xl:hidden absolute inset-0 xl:relative xl:flex-4 object-cover object-center w-full h-full xl:blur-none"
         src="/wave_bkg.png"
       ></img>
-      <div className="flex flex-1 xl:z-10 xl:flex-3 items-center justify-center px-6 py-4 bg-zinc-50 xl:shadow-[-8px_0px_16px_0px_rgba(0,0,0,0.15)] overflow-y-auto">
+      <div
+        className="flex flex-1 xl:z-10 xl:flex-3 items-center justify-center px-6 py-4 bg-zinc-50 xl:shadow-[-8px_0px_16px_0px_rgba(0,0,0,0.15)] overflow-y-auto"
+        style={{ height: "100dvh" }}
+      >
         <Card className="relative z-10 max-sm:w-7/8 sm:max-xl:w-3/5 xl:w-4/5 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">
           {isLogin ? (
             <form
