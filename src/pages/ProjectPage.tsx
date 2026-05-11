@@ -5,7 +5,7 @@ import ProjectGallery from "@/components/ProjectGallery";
 import BigProject from "@/components/BigProject";
 import { useNavigate, useParams } from "react-router";
 import { getProjectByID } from "@/services/projectServices";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import type { Project } from "@/types";
 import recognizeTags from "@/utils/tagRecognition";
