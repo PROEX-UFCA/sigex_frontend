@@ -1,5 +1,5 @@
 import { Mail, Phone } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 /**
  * Exibe as informações de contato dos projetos.
@@ -14,6 +14,9 @@ import { Card, CardContent } from "@/components/ui/card";
 export default function ContactArea() {
   return (
     <Card className="self-center w-fit bg-zinc-200 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">
+      <CardHeader>
+        <CardTitle className="max-lg:text-2xl lg:text-3xl font-bold">Informações de Contato</CardTitle>
+      </CardHeader>
       <CardContent className="flex flex-col max-sm:gap-3 sm:max-lg:gap-4 lg:gap-6 font-bold">
         <div className="flex flex-row items-center gap-3">
           <Phone className="max-md:size-6 md:size-8 outline-black text-black"></Phone>

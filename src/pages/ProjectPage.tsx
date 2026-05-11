@@ -1,9 +1,9 @@
-import { TriangleAlert } from "lucide-react";
+import { CircleDollarSign, ScrollText, TriangleAlert, University } from "lucide-react";
 
 import ProjectGallery from "@/components/ProjectGallery";
 
 import BigProject from "@/components/BigProject";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getProjectByID } from "@/services/projectServices";
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
@@ -12,6 +12,8 @@ import recognizeTags from "@/utils/tagRecognition";
 import { Button } from "@/components/ui/button";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import ContactArea from "@/components/ContactArea";
+import { useAuth } from "@/contexts/AuthContext";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 /**
  * Página de detalhe de um projeto específico.
@@ -40,12 +42,15 @@ export default function ProjectPage() {
   const projectID = useParams<{ id: string }>();
 
   const { width } = useScreenSize();
+  const { role } = useAuth();
 
   const [results, setResults] = useState<Project>({} as Project);
   const [loading, setLoading] = useState<boolean>(true);
 
   /** Controla se o texto de descrição está expandido ou truncado. */
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   const toggleExpansion = () =>
     setIsExpanded((previousState) => !previousState);
@@ -148,8 +153,60 @@ export default function ProjectPage() {
       />
       <div className="flex flex-col self-center justify-center py-8">
         <p className="font-bold max-lg:text-3xl lg:text-4xl">Interessado?</p>
-        <p className="font-bold text-2xl">Entre em contato conosco!</p>
-        <ContactArea />
+        {role === "institution" && (
+          <>
+            <p className="font-bold text-2xl">Entre em contato conosco!</p>
+            <ContactArea />
+          </>
+        )}
+        {role === "student" && (
+          <>
+            <p className="font-bold text-2xl">Participe também do projeto!</p>
+            <div className="flex max-lg:flex-col lg:flex-row gap-6">
+              <ContactArea />
+              <Card className="self-center w-fit bg-zinc-200 shadow-[4px_4px_3px_0px_rgba(0,0,0,0.1)]">
+                <CardHeader>
+                  <CardTitle className="max-lg:text-2xl lg:text-3xl font-bold">
+                    Informações do Projeto
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col max-sm:gap-3 sm:max-lg:gap-4 lg:gap-6 font-bold">
+                  <div className="flex flex-row items-center gap-3">
+                    <CircleDollarSign className="max-md:size-6 md:size-8 outline-black text-black"></CircleDollarSign>
+                    <p className="max-sm:text-lg sm:max-md:text-xl md:max-lg:text-xl lg:max-xl:text-2xl xl:text-3xl">
+                      Bolsas disponíveis: 2
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center gap-3">
+                    <University className="max-md:size-6 md:size-8 outline-black text-black"></University>
+                    <p className="max-sm:text-lg sm:max-md:text-xl md:max-lg:text-xl lg:max-xl:text-2xl xl:text-3xl">
+                      Centro Acadêmico: CCSA
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center gap-3">
+                    <ScrollText className="max-md:size-6 md:size-8 outline-black text-black"></ScrollText>
+                    <p className="max-sm:text-lg sm:max-md:text-xl md:max-lg:text-xl lg:max-xl:text-2xl xl:text-3xl">
+                      Modalidade: Ampla Concorrência
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </>
+        )}
+        {role === null && (
+          <>
+            <p className="font-bold text-2xl">
+              <span
+                className="underline-offset-6 underline cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Faça seu login
+              </span>{" "}
+              para ver mais informações.
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

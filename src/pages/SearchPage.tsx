@@ -50,11 +50,16 @@ export default function SearchPage() {
           data_inicio: searchParams.get("data_inicio") ?? undefined,
           data_fim: searchParams.get("data_fim") ?? undefined,
           page: currentPage,
+          modalidade: searchParams.get("modalidade") ?? undefined,
         },
-        true
+        true,
       );
       setResults(data.data);
-      setPageData({data: data.data, current_page: data.current_page, last_page: data.last_page});
+      setPageData({
+        data: data.data,
+        current_page: data.current_page,
+        last_page: data.last_page,
+      });
       setLoading(false);
     };
 

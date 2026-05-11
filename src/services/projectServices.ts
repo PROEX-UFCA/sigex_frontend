@@ -85,6 +85,7 @@ export async function searchProjectsByFilter(
   if (filters.data_inicio) params.data_inicio = filters.data_inicio;
   if (filters.data_fim) params.data_fim = filters.data_fim;
   if (filters.page) params.page = String(filters.page);
+  if (filters.modalidade) params.modalidade = String(filters.modalidade);
 
   if (!Object.keys(params).length) return [];
 

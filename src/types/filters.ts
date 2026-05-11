@@ -17,4 +17,5 @@ export interface ProjectFilters {
   data_inicio?: string;
   data_fim?: string;
   page?: number;
+  modalidade?: string;
 }
