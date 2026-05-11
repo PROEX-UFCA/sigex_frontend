@@ -29,6 +29,7 @@ import DateFilter, {
 } from "@/features/Filters/DateFilter";
 import { format } from "date-fns";
 import { useNavigate } from "react-router";
+import { useAuth } from "@/contexts/AuthContext";
 
 /** Um item de filtro por nome (categoria ou tipo de ação). */
 interface FilterOption {
@@ -49,7 +50,7 @@ interface DateComponentEntry {
   onDateChange?: (date: Date | undefined) => void;
 }
 
-/** Props do grupo de filtros `FilterTypes`. */ 
+/** Props do grupo de filtros `FilterTypes`. */
 interface FilterAttributes {
   filterType: string;
   filters?: Array<FilterOption>;
@@ -162,12 +163,17 @@ export default function FilterDialog() {
     actionTypes: Array<string>;
     initialDate: Date | null;
     finalDate: Date | null;
+    modality: Array<string>;
   }>({
     categories: [],
     actionTypes: [],
     initialDate: null,
     finalDate: null,
+    modality: [],
   });
+
+  const { role } = useAuth();
+
   const navigate = useNavigate();
 
   /** Retorna `true` se ao menos um filtro estiver selecionado. */
@@ -176,7 +182,8 @@ export default function FilterDialog() {
       selectedFilters.actionTypes.length > 0 ||
       selectedFilters.categories.length > 0 ||
       selectedFilters.finalDate !== null ||
-      selectedFilters.initialDate !== null
+      selectedFilters.initialDate !== null ||
+      selectedFilters.modality.length > 0
     );
   }
 
@@ -188,6 +195,7 @@ export default function FilterDialog() {
       categories: [],
       initialDate: null,
       finalDate: null,
+      modality: [],
     });
   }
 
@@ -218,6 +226,9 @@ export default function FilterDialog() {
     if (selectedFilters.finalDate)
       params.set("data_fim", format(selectedFilters.finalDate, "yyyy-MM-dd"));
 
+    if (selectedFilters.modality.length > 0)
+      params.set("modalidade", selectedFilters.modality.join(","));
+
     setOpen(false);
     navigate(`/search?${params.toString()}`);
   }
@@ -228,7 +239,10 @@ export default function FilterDialog() {
    * @param key  - A chave do estado a atualizar (`"categories"` ou `"actionTypes"`).
    * @param name - O nome do filtro a adicionar ou remover.
    */
-  function toggleFilter(key: "categories" | "actionTypes", name: string) {
+  function toggleFilter(
+    key: "categories" | "actionTypes" | "modality",
+    name: string,
+  ) {
     setSelectedFilters((previousFilters) => {
       const currentFilterList = previousFilters[key];
 
@@ -260,7 +274,9 @@ export default function FilterDialog() {
         <DialogContent className="w-full">
           <DialogHeader>
             <DialogTitle className="text-xl">Filtros</DialogTitle>
-            <DialogDescription>Selecione os filtros que deseja utilizar na sua busca</DialogDescription>
+            <DialogDescription>
+              Selecione os filtros que deseja utilizar na sua busca
+            </DialogDescription>
           </DialogHeader>
           <div key={resetKey} className="max-h-72 overflow-y-auto no-scrollbar">
             <FilterTypes
@@ -292,6 +308,23 @@ export default function FilterDialog() {
               onToggle={(name) => toggleFilter("actionTypes", name)}
             />
             <Separator className="my-2" />
+            {role === "student" && (
+              <>
+                <FilterTypes
+                  filterType="Modalidade"
+                  filters={[
+                    { filterName: "Fluxo Contínuo" },
+                    { filterName: "Vinculada a Edital" },
+                    { filterName: "UFCA Itinerante" },
+                    { filterName: "PROPE" },
+                    { filterName: "Ampla Concorrência" },
+                  ]}
+                  selectedFilters={selectedFilters.modality}
+                  onToggle={(name) => toggleFilter("modality", name)}
+                />
+                <Separator className="my-2" />
+              </>
+            )}
             <FilterTypes
               filterType="Duração da Ação"
               DateComponents={[
