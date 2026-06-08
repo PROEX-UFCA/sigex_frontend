@@ -1,4 +1,9 @@
-import { CircleDollarSign, ScrollText, TriangleAlert, University } from "lucide-react";
+import {
+  CircleDollarSign,
+  ScrollText,
+  TriangleAlert,
+  University,
+} from "lucide-react";
 
 import ProjectGallery from "@/components/ProjectGallery";
 
@@ -14,6 +19,8 @@ import { useScreenSize } from "@/hooks/useScreenSize";
 import ContactArea from "@/components/ContactArea";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import getTextFromHTML from "@/utils/getTextFromHTML";
+import ODSGrid from "@/components/ODSGrid";
 
 /**
  * Página de detalhe de um projeto específico.
@@ -64,30 +71,7 @@ export default function ProjectPage() {
     fetchData();
   }, [projectID.id]);
 
-  // TODO: substituir pelo campo de descrição real da API
-  const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            orci ligula, fermentum vel felis nec, aliquet fermentum mi. Nullam
-            at viverra nibh, at auctor est. Phasellus laoreet, nulla sed aliquam
-            luctus, mauris dui consectetur erat, ac gravida turpis leo sit amet
-            turpis. Mauris turpis sem, venenatis sed varius sit amet, malesuada
-            non elit. Sed nec porttitor enim. Donec ultricies consequat
-            pharetra. Mauris tellus nunc, auctor ut odio eget, hendrerit sodales
-            tellus. Vivamus varius libero turpis, vitae posuere augue cursus eu.
-            Donec id sapien sagittis, dapibus leo vitae, semper risus. Praesent
-            turpis dolor, ornare vitae pharetra ut, blandit eget nibh. Nulla
-            fringilla volutpat ex, et posuere nisl pulvinar id. Nam sed ante ut ex feugiat fringilla. Suspendisse urna mauris,
-            mattis vitae purus ut, porta pellentesque odio. Duis at tellus eu
-            nunc hendrerit euismod. Aenean at metus fermentum, varius mauris
-            vel, pulvinar elit. Nunc laoreet lorem quis elit imperdiet
-            tincidunt. Etiam ultricies suscipit justo in auctor. Nulla et elit
-            ornare, posuere velit ut, aliquam odio. Nulla facilisi. Nullam
-            tempus, metus vel vehicula blandit, justo lorem placerat nisl, ac
-            malesuada odio urna vel metus. Nulla eget imperdiet tortor. Praesent
-            nec tortor posuere, vulputate neque a, aliquam nibh. Suspendisse et
-            fermentum ligula. Sed et lectus faucibus, gravida libero ut, tempus
-            eros. Nulla facilisi. Sed in nulla tincidunt, finibus massa sed,
-            semper diam. Maecenas aliquet, nibh id consectetur pulvinar, mi ante
-            faucibus est, accumsan aliquet odio ipsum vel sem.`;
+  const content = getTextFromHTML({ htmlString: results.resumo });
 
   if (loading)
     return (
@@ -145,6 +129,12 @@ export default function ProjectPage() {
             <></>
           )}
         </div>
+      </div>
+      <div className="flex flex-col py-2">
+        <p className="max-lg:text-3xl lg:text-4xl font-bold underline">
+          Objetivos de Desenvolvimento Sustentável - ODS
+        </p>
+        <ODSGrid odsListStr={results.ods}></ODSGrid>
       </div>
       <ProjectGallery
         imageURL={
