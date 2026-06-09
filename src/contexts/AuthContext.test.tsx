@@ -3,6 +3,13 @@ import { render, renderHook, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AuthProvider, useAuth } from "./AuthContext";
 
+import { server } from "@/services/mswServer";
+import { afterAll, afterEach, beforeAll } from "vitest";
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
 const LoginButton = ({
   email,
   password,
@@ -25,20 +32,20 @@ describe("AuthContext Tests", () => {
   it("Should have role initialized as null", () => {
     render(
       <AuthProvider>
-        <LoginButton email="institution@gmail.com" password="ufcaufca" />
+        <LoginButton email="admin@gmail.com" password="password" />
       </AuthProvider>,
     );
     expect(screen.getByTestId("role").textContent).toBe("null");
   });
 
-  it("Should define role as 'institution' when given correct credentials", async () => {
+  it("Should define role as 'Desenvolvimento' when given correct credentials", async () => {
     render(
       <AuthProvider>
-        <LoginButton email="institution@gmail.com" password="ufcaufca" />
+        <LoginButton email="admin@gmail.com" password="password" />
       </AuthProvider>,
     );
     await userEvent.click(screen.getByText("Login instituição"));
-    expect(screen.getByTestId("role").textContent).toBe("institution");
+    expect(screen.getByTestId("role").textContent).toBe("Desenvolvimento");
   });
 
   it("Should raise an error when given wrong credentials", async () => {
@@ -48,9 +55,9 @@ describe("AuthContext Tests", () => {
 
     const { result } = renderHook(() => useAuth(), { wrapper });
 
-    expect(() =>
+    await expect(() =>
       result.current.login({ email: "errado@gmail.com", password: "errada" }),
-    ).toThrow("Login Inválido");
+    ).rejects.toThrow("Login Inválido");
   });
 
   it("Should raise an error when used outside of AuthProvider", () => {
