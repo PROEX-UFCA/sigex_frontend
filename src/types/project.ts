@@ -20,17 +20,21 @@ import type { TagAttributes } from "@/types/tags";
  */
 export interface Project {
   id: string;
-  id_coordenador: string;
-  id_atividade: string;
+  id_proponente: string;
   id_projeto: string;
   titulo: string;
+  palavras_chave: string;
+  resumo: string;
   centro_departamento: string;
+  com_bolsa: string;
+  ods: string;
   data_inicio: string;
   data_fim: string;
   ano: number;
   tipo_acao: string;
   area_tematica: string;
   modalidade: string;
+  situacao: string;
   status: number;
   img: string[] | string | null;
 }
