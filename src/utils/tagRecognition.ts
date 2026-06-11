@@ -34,5 +34,5 @@ export default function recognizeTags(
     if (/trabalho/i.test(tag)) result.push({ tagType: "Trabalho" });
   }
 
-  return result;
+  return result.length > 0 ? result : [{tagType: "null"}];
 }

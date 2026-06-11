@@ -18,11 +18,11 @@ describe("Tag Recognition Tests", () => {
     expect(recognizeTags(["TECNOLOGIA"])).toEqual([{ tagType: "Tecnologia" }]);
   });
 
-  it("Should return an empty array when given a string without category", () => {
-    expect(recognizeTags(["Equidade"])).toEqual([]);
+  it("Should return fallback value when given a string without category", () => {
+    expect(recognizeTags(["Equidade"])).toEqual([{ tagType: "null" }]);
   });
 
   it("Should not raise an error when given an empty array", () => {
-    expect(recognizeTags([])).toEqual([]);
+    expect(recognizeTags([])).toEqual([{ tagType: "null" }]);
   });
 });

@@ -4,7 +4,7 @@ import TagsArea from "@/components/Tags";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 
-import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
+import { DEFAULT_PROJECT_IMAGES, FALLBACK_IMAGE_KEY } from "@/utils/images";
 import type { ProjectProps } from "@/types";
 import { hashId } from "@/utils/hashId";
 import { BREAKPOINTS } from "@/lib/breakpoints";
@@ -45,12 +45,21 @@ export default function BigProject({
 
   const { width } = useScreenSize();
 
+  const primaryTagType: string =
+    (tags[0]?.tagType as keyof typeof DEFAULT_PROJECT_IMAGES) ??
+    FALLBACK_IMAGE_KEY;
+  const imageList =
+    DEFAULT_PROJECT_IMAGES[
+      primaryTagType as keyof typeof DEFAULT_PROJECT_IMAGES
+    ];
+  const backgroundImage = imageList[hashId(id) % imageList.length];
+
   return (
     <div
       onClick={() => navigate(`/projects/${id}`)}
       className="cursor-pointer bg-cover bg-center rounded-3xl h-125 max-lg:h-160 lg:h-130 2xl:h-180 flex flex-col justify-end relative"
       style={{
-        backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
+        backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <div className="absolute inset-0 bg-linear-to-b from-transparent max-md:from-50% md:from-60% to-black/70 rounded-b-3xl"></div>
