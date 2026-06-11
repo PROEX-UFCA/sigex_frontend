@@ -51,7 +51,7 @@ export default function ProjectPage() {
   const { width } = useScreenSize();
   const { role } = useAuth();
 
-  const [results, setResults] = useState<Project>({} as Project);
+  const [results, setResults] = useState<Project | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   /** Controla se o texto de descrição está expandido ou truncado. */
@@ -71,7 +71,7 @@ export default function ProjectPage() {
     fetchData();
   }, [projectID.id]);
 
-  const content = getTextFromHTML({ htmlString: results.resumo });
+  const content = getTextFromHTML({ htmlString: results?.resumo ?? "" });
 
   if (loading)
     return (
@@ -83,7 +83,7 @@ export default function ProjectPage() {
       </div>
     );
 
-  if (!results.id)
+  if (!results?.id)
     return (
       <div className="flex flex-col w-2/3 self-center text-gray-400 my-4 py-4">
         <TriangleAlert className="scale-400 mb-10 self-center" />
@@ -130,8 +130,8 @@ export default function ProjectPage() {
           )}
         </div>
       </div>
-      <div className="flex flex-col py-2">
-        <p className="max-lg:text-3xl lg:text-4xl font-bold underline">
+      <div className="flex flex-col pb-4 gap-2">
+        <p className="max-sm:text-2xl sm:max-lg:text-3xl lg:text-4xl font-bold underline">
           Objetivos de Desenvolvimento Sustentável - ODS
         </p>
         <ODSGrid odsListStr={results.ods}></ODSGrid>
@@ -143,13 +143,13 @@ export default function ProjectPage() {
       />
       <div className="flex flex-col self-center justify-center py-8">
         <p className="font-bold max-lg:text-3xl lg:text-4xl">Interessado?</p>
-        {role === "institution" && (
+        {role === "Instituição" && (
           <>
             <p className="font-bold text-2xl">Entre em contato conosco!</p>
             <ContactArea />
           </>
         )}
-        {role === "student" && (
+        {role === "Aluno" && (
           <>
             <p className="font-bold text-2xl">Participe também do projeto!</p>
             <div className="flex max-lg:flex-col lg:flex-row gap-6">
