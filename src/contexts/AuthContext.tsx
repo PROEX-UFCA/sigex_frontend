@@ -1,7 +1,21 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import apiConnection from "@/services/api";
+import axios from "axios";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 /** Papel do usuário autenticado. `null` indica que não há sessão ativa. */
-type UserRole = "institution" | "student" | null;
+type UserRole =
+  | "Desenvolvimento"
+  | "Administrador"
+  | "Coordenador"
+  | "Aluno"
+  | "Instituição"
+  | null;
 
 /** Credenciais usadas no processo de login. */
 interface LoginInfo {
@@ -38,22 +52,41 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<UserRole>(null);
 
-  const login = ({ email, password }: LoginInfo) => {
-    // TEMPORÁRIO
-    if (email === "institution@gmail.com" && password === "ufcaufca") {
-      setRole("institution");
-      return;
-    }
+  useEffect(() => {
+    apiConnection
+      .post("/me")
+      .then((response) => setRole(response.data.role as UserRole))
+      .catch(() => setRole(null));
+  }, []);
 
-    // TEMPORÁRIO
-    if (email === "aluno@gmail.com" && password === "ufcaufca") {
-      setRole("student");
-      return;
-    }
+  const login = async ({ email, password }: LoginInfo) => {
+    try {
+      await axios.get(`http://localhost:8000/sanctum/csrf-cookie`, {
+        withCredentials: true,
+      });
 
-    throw Error("Login Inválido");
+      const response = await apiConnection.post("/login", { email, password });
+      setRole(response.data.role);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const status: number | undefined = error.response?.status;
+        const message: string | undefined = error.response?.data?.message;
+
+        if (status === 401) {
+          throw new Error(message ?? "Credenciais inválidas");
+        }
+
+        throw new Error(`Erro inesperado no servidor: código ${status}`);
+      }
+
+      throw new Error("Ocorreu um erro inesperado");
+    }
   };
-  const logout = () => setRole(null);
+
+  const logout = async () => {
+    await apiConnection.post("/logout");
+    setRole(null);
+  };
 
   return (
     <AuthContext.Provider value={{ role, login, logout }}>

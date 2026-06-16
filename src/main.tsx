@@ -9,7 +9,10 @@ import LandingPage from "@/pages/LandingPage.tsx";
 import ProjectPage from "@/pages/ProjectPage.tsx";
 import SearchPage from "@/pages/SearchPage.tsx";
 import LoginPage from "@/pages/LoginPage.tsx";
-import { AuthProvider } from "./contexts/AuthContext.tsx";
+
+import { AuthProvider } from "@/contexts/AuthContext.tsx";
+import { CookiesProvider } from "react-cookie";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 /**
  * Definição das rotas da aplicação usando React Router.
@@ -44,12 +47,18 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginPage></LoginPage>,
   },
+  {
+    path: "*",
+    element: <NotFoundPage></NotFoundPage>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <CookiesProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </CookiesProvider>
   </StrictMode>,
 );

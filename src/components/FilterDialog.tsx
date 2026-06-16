@@ -308,7 +308,7 @@ export default function FilterDialog() {
               onToggle={(name) => toggleFilter("actionTypes", name)}
             />
             <Separator className="my-2" />
-            {role === "student" && (
+            {role === "Aluno" && (
               <>
                 <FilterTypes
                   filterType="Modalidade"

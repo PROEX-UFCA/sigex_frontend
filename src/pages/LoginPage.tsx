@@ -81,8 +81,7 @@ export default function LoginPage() {
 
     setLoading(true);
     try {
-      // TEMPORÁRIO
-      login({ email: email, password: password });
+      await login({ email: email, password: password });
       navigate("/");
     } catch {
       setError("Email ou senha incorretos ou inválidos. Tente novamente");
@@ -108,8 +107,7 @@ export default function LoginPage() {
 
     setLoading(true);
     try {
-      // TEMPORÁRIO
-      login({ email: "institution@gmail.com", password: "ufcaufca" });
+      login({ email: email, password: password });
       navigate("/");
     } catch {
       setError("Email ou senha incorretos ou inválidos. Tente novamente");
@@ -120,7 +118,6 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex flex-row h-screen overflow-hidden">
-      {/* TODO: colocar background aqui */}
       <img
         className="max-xl:hidden absolute inset-0 xl:relative xl:flex-4 object-cover object-center w-full h-full xl:blur-none"
         src="/sigex_bkg.png"

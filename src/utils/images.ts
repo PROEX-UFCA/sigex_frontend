@@ -21,4 +21,7 @@ export const DEFAULT_PROJECT_IMAGES = {
   Saúde: ["/saúde.png", "/saúde_2.png", "/saúde_3.png"],
   Tecnologia: ["/tecnologia.png", "/tecnologia_2.png", "/tecnologia_3.png"],
   Trabalho: ["/trabalho.png", "/trabalho_2.png", "/trabalho_3.png"],
+  null: ["/null.png"]
 };
+
+export const FALLBACK_IMAGE_KEY: string = "null";

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 
-import { DEFAULT_PROJECT_IMAGES } from "@/utils/images";
+import { DEFAULT_PROJECT_IMAGES, FALLBACK_IMAGE_KEY } from "@/utils/images";
 
 import TagsArea from "@/components/Tags";
 import { hashId } from "@/utils/hashId";
@@ -31,12 +31,21 @@ export default function SmallProject({ id, title, tags }: ProjectProps) {
 
   const { width } = useScreenSize();
 
+  const primaryTagType: string =
+    (tags[0]?.tagType as keyof typeof DEFAULT_PROJECT_IMAGES) ??
+    FALLBACK_IMAGE_KEY;
+  const imageList =
+    DEFAULT_PROJECT_IMAGES[
+      primaryTagType as keyof typeof DEFAULT_PROJECT_IMAGES
+    ];
+  const backgroundImage = imageList[hashId(id) % imageList.length];
+
   return (
     <div
       onClick={() => navigate(`/projects/${id}`)}
       className="relative cursor-pointer bg-cover bg-center w-full h-60 md:h-64 lg:h-72 rounded-xl p-4 flex flex-col justify-end shadow-sm max-md:gap-1 md:gap-2 overflow-hidden"
       style={{
-        backgroundImage: `url(${DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES][hashId(id) % DEFAULT_PROJECT_IMAGES[tags[0].tagType as keyof typeof DEFAULT_PROJECT_IMAGES].length]})`,
+        backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <div className="absolute inset-0 bg-linear-to-b from-transparent max-md:from-10% md:from-30% to-black/60 rounded-xl"></div>
