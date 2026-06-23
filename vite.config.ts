@@ -7,6 +7,11 @@ import path from "path";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/",
+  server: {
+    host: true,
+    port: 5173,
+    strictPort: true,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -15,6 +20,6 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./src/test/setup.ts"]
-  }
+    setupFiles: ["./src/test/setup.ts"],
+  },
 });
