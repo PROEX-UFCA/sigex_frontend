@@ -116,7 +116,7 @@ export default function ProjectPage() {
         <p className="max-lg:text-3xl lg:text-4xl font-bold underline">
           Descrição do Projeto
         </p>
-        <div className="flex flex-col gap-2 text-left self-center text-lg max-md:w-7/8 md:max-xl:w-5/6 xl:w-3/4 ">
+        <div className="flex flex-col gap-2 text-justify self-center text-lg max-md:w-7/8 md:max-xl:w-5/6 xl:w-3/4 ">
           <p>{shownContent}</p>
           {content.length > width ? (
             <Button

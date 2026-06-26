@@ -12,6 +12,8 @@ import { Search } from "lucide-react";
 import { Link } from "react-router";
 import { BREAKPOINTS } from "@/lib/breakpoints";
 
+import { DesktopBar } from "./DesktopBar";
+
 /**
  * Barra de busca expansível para dispositivos móveis (largura < `md`).
  *
@@ -56,9 +58,11 @@ function ToggleableSearchBar({
     }, 5000);
   };
 
+  const { width } = useScreenSize();
+
   return (
     <div
-      className="flex flex-row justify-end w-full gap-2"
+      className="flex flex-row justify-end w-full gap-2 sm:px-4 sm:py-2"
       onMouseMove={startIdleTimer}
       onKeyDown={startIdleTimer}
       onFocus={clearTimer}
@@ -78,6 +82,7 @@ function ToggleableSearchBar({
         </div>
       ) : (
         <Button
+          aria-label="Buscar"
           className="h-10"
           variant={"secondary"}
           onClick={() => {
@@ -86,7 +91,7 @@ function ToggleableSearchBar({
           }}
         >
           <Search />
-          Buscar
+          {width >= BREAKPOINTS.xs && "Buscar"}
         </Button>
       )}
     </div>
@@ -112,14 +117,14 @@ function SearchArea({
   const { width } = useScreenSize();
 
   return (
-    <div className="flex justify-end w-full m-4 gap-3">
+    <div className="flex justify-end gap-2">
       {width < BREAKPOINTS.md && (
         <ToggleableSearchBar
           onActiveChange={onSearchActive}
         ></ToggleableSearchBar>
       )}
       {width >= BREAKPOINTS.md && (
-        <form className="max-lg:w-3/5 lg:w-2/5" onSubmit={handleSearch}>
+        <form className="w-64 xl:w-80" onSubmit={handleSearch}>
           <Input
             value={term}
             onChange={(e) => setTerm(e.target.value)}
@@ -128,7 +133,7 @@ function SearchArea({
           ></Input>
         </form>
       )}
-      {width >= BREAKPOINTS.md && <FilterDialog></FilterDialog>}
+      {width >= BREAKPOINTS.md && (<div className="shrink-0"> <FilterDialog></FilterDialog> </div>)}
     </div>
   );
 }
@@ -146,23 +151,30 @@ function SearchArea({
  */
 export default function TopBar() {
   const [searchActive, setSearchActive] = useState<boolean>(false);
+  const { width } = useScreenSize();
+  const isDesktop = width >= BREAKPOINTS.mdlg;
 
   return (
-    <div className="flex justify-around rounded-b-2xl bg-[#532b1d] w-full items-center px-3">
+    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 max-w min-h-14 max-[300px]:px-1">
+      
       {!searchActive && (
         <Link
           to={"/"}
-          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out"
+          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out basis-46 shrink-0 h-full"
         >
           <img
             src={Logo}
             alt="Logo UFCA"
-            className="max-md:h-16 md:max-2xl:h-14 2xl:h-16 max-md:mx-3 md:m-3 object-contain"
+            className="w-full h-full object-contain"
           />
         </Link>
       )}
-      <SearchArea onSearchActive={setSearchActive}></SearchArea>
-      <SideMenu></SideMenu>
+
+      <div className="flex flex-row items-center justify-end gap-2 flex-5 max-[300px]:gap-1">
+         <SearchArea onSearchActive={setSearchActive} />
+         
+         {isDesktop ? <DesktopBar isDesktop={isDesktop} /> : <SideMenu isDesktop={isDesktop} />}
+      </div>
     </div>
-  );
+    )
 }

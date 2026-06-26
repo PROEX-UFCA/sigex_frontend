@@ -10,7 +10,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { ProjectImages } from "@/types";
 
 import { Info } from "lucide-react";
-
 /**
  * Galeria de imagens de um projeto em formato de carrossel.
  *
@@ -59,7 +58,7 @@ export default function ProjectGallery({ imageURL }: ProjectImages) {
       <div className="text-4xl font-bold underline">Galeria</div>
       <div className="flex flex-col max-xl:w-full xl:w-2/3 self-center text-gray-400 my-4 py-4">
         <Info className="scale-300 mb-10 self-center"></Info>
-        <p className="text-3xl ">
+        <p className="text-3xl max-md:text-xl">
           Galeria indisponível por ausência de conteúdo. Cheque novamente mais
           tarde!
         </p>

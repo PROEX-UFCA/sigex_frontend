@@ -265,9 +265,9 @@ export default function FilterDialog() {
         <DialogTrigger asChild>
           <Button
             variant={"secondary"}
-            className="h-10 w-2/8 md:w-1/8 lg:w-1/10 xl:w-1/12 active:translate-y-1 transition-transform duration-100 ease-in-out"
+            className="h-10 shrink-0 whitespace-nowrap active:translate-y-1 transition-transform duration-100 ease-in-out"
           >
-            <Funnel className="" />
+            <Funnel className="w-4 h-4" />
             Filtros
           </Button>
         </DialogTrigger>

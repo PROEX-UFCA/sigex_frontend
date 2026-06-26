@@ -10,10 +10,14 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
-import { Home, LayoutGrid, Menu, ShieldUser, User } from "lucide-react";
+import { Home, LayoutGrid, Menu, ShieldUser } from "lucide-react";
 import { useNavigate } from "react-router";
 
-import { useAuth } from "@/contexts/AuthContext";
+import { UserMenu } from "./UserMenu";
+
+interface SideMenuProps {
+  isDesktop: boolean;
+}
 
 /**
  * Menu lateral deslizante (Sheet) acessível pelo ícone de hambúrguer.
@@ -35,11 +39,11 @@ import { useAuth } from "@/contexts/AuthContext";
  * @example
  * <SideMenu />
  */
-export default function SideMenu() {
+export default function SideMenu( {isDesktop}: SideMenuProps) {
   const navigate = useNavigate();
-  const { role, logout } = useAuth();
 
   return (
+    isDesktop ? null : (
     <Sheet>
       <SheetTrigger asChild>
         <Button
@@ -57,72 +61,43 @@ export default function SideMenu() {
           <SheetDescription></SheetDescription>
         </SheetHeader>
         <div className="flex flex-1 flex-col w-full">
-          <SheetClose asChild>
-            <Button
-              variant={"secondary"}
-              className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
-              onClick={() => navigate("/")}
-            >
-              <Home className="w-6! h-6!" strokeWidth={2.2} />
-              Menu Principal
-            </Button>
-          </SheetClose>
-          <SheetClose asChild>
-            <Button
-              variant={"secondary"}
-              className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
-              onClick={() => navigate("/search")}
-            >
-              <LayoutGrid className="w-6! h-6!" strokeWidth={2.2} />
-              Todos os Projetos
-            </Button>
-          </SheetClose>
-          <SheetClose asChild>
-            <Button
-              variant={"secondary"}
-              className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
-              onClick={
-                () => (window.location.href = "https://sigex.danielnasc.com.br") // temporário
-              }
-            >
-              <ShieldUser className="w-6! h-6!" strokeWidth={2.2} />
-              Sistema Administrativo
-            </Button>
-          </SheetClose>
-          {role === null && (
-            <SheetClose asChild className="mt-auto">
+
+            <SheetClose asChild>
+              <Button
+                variant={"secondary"}
+                className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
+                onClick={() => navigate("/")}
+              >
+                <Home className="w-6! h-6!" strokeWidth={2.2} />
+                Menu Principal
+              </Button>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Button
+                variant={"secondary"}
+                className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
+                onClick={() => navigate("/search")}
+              >
+                <LayoutGrid className="w-6! h-6!" strokeWidth={2.2} />
+                Todos os Projetos
+              </Button>
+            </SheetClose>
+
+            <SheetClose asChild>
               <Button
                 variant={"secondary"}
                 className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
                 onClick={
-                  () => navigate("/login") // temporário
+                  () => (window.location.href = "https://sigex.danielnasc.com.br") // temporário
                 }
               >
-                <User className="w-6! h-6!" strokeWidth={2.2} />
-                Faça seu login
+                <ShieldUser className="w-6! h-6!" strokeWidth={2.2} />
+                Sistema Administrativo
               </Button>
             </SheetClose>
-          )}
-          {role && (
-            <div className="flex flex-row mt-auto gap-2 bg-zinc-100 w-full">
-              <SheetClose asChild className="flex-1">
-                <Button
-                  variant={"secondary"}
-                  className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer"
-                >
-                  <User className="w-6! h-6!" strokeWidth={2.2} />
-                  <p>Sua conta</p>
-                </Button>
-              </SheetClose>
-              <Button
-                variant={"destructive"}
-                className="w-24 h-full text-lg"
-                onClick={logout}
-              >
-                Sair
-              </Button>
-            </div>
-          )}
+
+            <UserMenu isDesktop={isDesktop}></UserMenu>
         </div>
         <SheetFooter>
           <p>Design by Guido Xenofonte &copy;</p>
@@ -132,5 +107,6 @@ export default function SideMenu() {
         </SheetFooter>
       </SheetContent>
     </Sheet>
+    )
   );
 }
