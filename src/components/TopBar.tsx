@@ -3,7 +3,7 @@ import Logo from "/logo_proex_top.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FilterDialog from "@/components/FilterDialog";
-import SideMenu from "@/components/MenuToggle";
+import SideMenu from "@/components/SideMenu";
 
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { useSearch } from "@/hooks/useSearch";
@@ -155,7 +155,7 @@ export default function TopBar() {
   const isDesktop = width >= BREAKPOINTS.mdlg;
 
   return (
-    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 max-w min-h-14 max-[300px]:px-1">
+    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 max-w min-h-16 max-[300px]:px-1">
       
       {!searchActive && (
         <Link

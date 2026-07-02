@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { Home, LayoutGrid, Menu, ShieldUser } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 import { UserMenu } from "./UserMenu";
 
@@ -63,38 +63,33 @@ export default function SideMenu( {isDesktop}: SideMenuProps) {
         <div className="flex flex-1 flex-col w-full">
 
             <SheetClose asChild>
-              <Button
-                variant={"secondary"}
-                className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
-                onClick={() => navigate("/")}
+              <Link
+                className="flex flex-row gap-1.5 font-medium bg-secondary max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
+                to="/"
               >
                 <Home className="w-6! h-6!" strokeWidth={2.2} />
                 Menu Principal
-              </Button>
+              </Link>
             </SheetClose>
 
             <SheetClose asChild>
-              <Button
-                variant={"secondary"}
-                className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
-                onClick={() => navigate("/search")}
+              <Link
+                className="flex flex-row gap-1.5 font-medium bg-secondary max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
+                to="/search"
               >
                 <LayoutGrid className="w-6! h-6!" strokeWidth={2.2} />
                 Todos os Projetos
-              </Button>
+              </Link>
             </SheetClose>
 
             <SheetClose asChild>
-              <Button
-                variant={"secondary"}
-                className="max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
-                onClick={
-                  () => (window.location.href = "https://sigex.danielnasc.com.br") // temporário
-                }
+              <Link
+                className="flex flex-row gap-1.5 font-medium bg-secondary max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none"
+                to="https://sigex.danielnasc.com.br"
               >
                 <ShieldUser className="w-6! h-6!" strokeWidth={2.2} />
                 Sistema Administrativo
-              </Button>
+              </Link>
             </SheetClose>
 
             <UserMenu isDesktop={isDesktop}></UserMenu>
