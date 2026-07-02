@@ -155,22 +155,22 @@ export default function TopBar() {
   const isDesktop = width >= BREAKPOINTS.mdlg;
 
   return (
-    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 max-w min-h-16 max-[300px]:px-1">
+    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 h-18 md:h-20 max-[300px]:px-none">
       
       {!searchActive && (
         <Link
           to={"/"}
-          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out basis-46 shrink-0 h-full"
+          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out w-[192px] md:w-[210px] lg:w-[240px] h-full flex items-center"
         >
           <img
             src={Logo}
             alt="Logo UFCA"
-            className="w-full h-full object-contain"
+            className="w-full h-auto max-h-[85%] object-contain"
           />
         </Link>
       )}
 
-      <div className="flex flex-row items-center justify-end gap-2 flex-5 max-[300px]:gap-1">
+      <div className="flex flex-row items-center justify-end gap-2 flex-1 max-[300px]:gap-1">
          <SearchArea onSearchActive={setSearchActive} />
          
          {isDesktop ? <DesktopBar isDesktop={isDesktop} /> : <SideMenu isDesktop={isDesktop} />}

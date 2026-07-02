@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { Home, LayoutGrid, Menu, ShieldUser } from "lucide-react";
-import { useNavigate, Link } from "react-router";
+import { Link } from "react-router";
 
 import { UserMenu } from "./UserMenu";
 
@@ -40,7 +40,6 @@ interface SideMenuProps {
  * <SideMenu />
  */
 export default function SideMenu( {isDesktop}: SideMenuProps) {
-  const navigate = useNavigate();
 
   return (
     isDesktop ? null : (
