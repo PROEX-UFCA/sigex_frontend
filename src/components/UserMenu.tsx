@@ -27,7 +27,7 @@ function AccountActionButton({
     isLoggedIn ? "rounded-r-none" : ""
   }`;
   const mobileClasses =
-    "max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none flex";
+    "mt-auto max-sm:text-lg sm:max-lg:text-xl lg:text-2xl h-16 hover:bg-zinc-200 w-full items-center justify-start px-5 hover:cursor-pointer rounded-none flex";
 
   if (isDesktop) {
     return (

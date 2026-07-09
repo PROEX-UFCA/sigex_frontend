@@ -57,7 +57,7 @@ export default function BigProject({
   return (
     <div
       onClick={() => navigate(`/projects/${id}`)}
-      className="cursor-pointer bg-cover bg-center rounded-3xl h-125 max-lg:h-160 lg:h-130 2xl:h-160 flex flex-col justify-end relative"
+      className="cursor-pointer bg-cover bg-center rounded-3xl h-125 max-lg:h-160 lg:h-130 2xl:h-171 flex flex-col justify-end relative"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}

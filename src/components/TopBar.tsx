@@ -155,12 +155,12 @@ export default function TopBar() {
   const isDesktop = width >= BREAKPOINTS.mdlg;
 
   return (
-    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 h-18 md:h-20 max-[300px]:px-none">
+    <div className="flex justify-around  bg-[#532b1d] w-full items-center px-3 h-18 md:h-24 max-[300px]:px-0">
       
       {!searchActive && (
         <Link
           to={"/"}
-          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out w-[192px] md:w-[210px] lg:w-[240px] h-full flex items-center"
+          className="cursor-pointer hover:opacity-85 active:opacity-70 active:translate-y-1 transition-transform duration-100 ease-in-out w-[202px] md:w-[230px] lg:w-[290px] h-full flex items-center"
         >
           <img
             src={Logo}
