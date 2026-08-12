@@ -21,9 +21,18 @@ export function useScreenSize() {
 
   useEffect(() => {
     function handleResize() {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    }
-    window.addEventListener("resize", handleResize);
+      setWindowSize(prev => {
+        if (prev.width === window.innerWidth){
+          return prev;
+      }
+
+      return { 
+        width: window.innerWidth, 
+        height: window.innerHeight,
+        };
+      });
+    };
+      window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);

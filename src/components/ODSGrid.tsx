@@ -15,6 +15,7 @@ export default function ODSGrid({ odsListStr }: { odsListStr: string }) {
     <div className="grid self-center items-center max-lg:w-4/5 lg:w-3/5 grid-cols-6 gap-x-0 mx-0">
       {hasSpecificODS.map((value, index) => (
         <img
+          key={index}
           src={`https://sig.ufca.edu.br/sigaa/img/ODS/${value ? `${index + 1}` : `${index + 1}_light`}.png`}
           className="w-full"
         ></img>

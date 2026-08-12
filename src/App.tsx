@@ -15,7 +15,7 @@ function App() {
       <div className="flex">
         <TopBar></TopBar>
       </div>
-      <div className="flex flex-1 items-center justify-center py-2">
+      <div className="flex flex-1 items-center justify-center py-4">
         <Outlet />
       </div>
       <div className="flex">
